@@ -1,18 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-
-    <title>Example Student's HCDE 439 Physical Computing Page!</title>
-
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>Courtney's HCDE 439 Physical Computing Page!</title>
   </head>
   <body>
-    <h1>Example Student's Assignment 1!</h1>
+    <h1>A1: Blink!</h1>
     <div class="header">
-      <img src="red-panda.jpg" />
+      <h2>Schematic of Blink!</h2>
+      <img src="A1schematic.png" />
+      <h2>Resistor Calculation</h2>
+      <p>To calculate the resistor value for each LED, I used Ohm's Law. Each LED is 20mA (0.02A), and the Arduino gives 5 volts so:</p>
+      <pre>
+      V = 5V
+      I = 20mA = 0.02A
+      R = V / I = 5V / 0.02A = 250Ω
+      </pre>
+      <p>The closest standard value resistor is 250Ω however, I used a 330Ω resistor for each LED in our circuit.</p>
+
+      <p>Here is an image of the schematics for Blink!</p>
+      <h2>Circuit of Blink!</h2>
+      <img src="A1pic.jpg" width="500" height="500" />
+      <img src="A1diagram.png" width="500" height="500" />
+      <p>Here is a picture of the circuit for Blink!.</p>
+      <h2>Firmware for Blink!</h2>
+      <pre>
+        <code>
+          
+//Blink
+
+//Turns an LED on for one second, then off for one second, repeatedly.
+
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(13, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(4, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  // turn the LED connected to pin 13 on (HIGH is the voltage level)
+  digitalWrite(13, HIGH); 
+  // wait for 100 miliseconds 
+  delay(1000);  
+  // turn the LED connected to pin 13 off (LOW is the voltage level) 
+  digitalWrite(13, LOW);
+  // wait for 100 miliseconds
+  delay(100);
+
+   // turn the LED connected to pin 8 on (HIGH is the voltage level)
+  digitalWrite(8, HIGH); 
+  // wait for 1000 miliseconds 
+  delay(1000);  
+  // turn the LED connected to pin 8 off (LOW is the voltage level) 
+  digitalWrite(8, LOW);
+  // wait for 100 miliseconds
+  delay(100);
+
+   // turn the LED connected to pin 4 on (HIGH is the voltage level)
+  digitalWrite(4, HIGH); 
+  // wait for 1000 miliseconds 
+  delay(1000);  
+  // turn the LED connected to pin 4 off (LOW is the voltage level) 
+  digitalWrite(4, LOW);
+  // wait for 100 miliseconds
+  delay(100);
+
+  
+}
+        </code>
+      </pre>
       <p>Here is all the documentation for assignment 1!</p>
+      <h2>Blink! Operation</h2>
+      <img src="A1gif.gif" width="500" height="600" />
+      <p>Here is a GIF of Blink! working.</p>
+      <h2>Answers to Questions</h2>
+      <h3>Q1. Draw a graph where the X axis is time and the Y axis is voltage across the LEDs. Draw a line for each of your 3 LEDs.</h3>
+      <img src="A1graph.png" width="500" height="600" />
+      <h3>Q2. How many LEDs could you blink independently with your Arduino? How much current would that draw?</h3>
+      <p>I would be able to blink 13 LEDs on this Arduino since there is a maximum of 13 pin slots available. Blinking 13 LEDs would draw 260 mA since 13 LEDs x 20 mA each is 260 mA.  </p>
+      <h3>Q4. How fast do you need to blink your LEDs until you no longer can tell that they are blinking?</h3>
+      <p>I would have to blink the LEDs at less than 1 milisecond on and off to achieve the appearance that the LEDs are not blinking.</p>
     </div>
   </body>
 </html>
