@@ -14,11 +14,25 @@
       <h2>Resistor Calculation</h2>
       <p>To calculate the resistor value for each LED, I used Ohm's Law. Each LED is 20mA (0.02A), and the Arduino gives 5 volts so:</p>
       <pre>
-      V = 5V
+      Red LED:
+      Voltage drop: 1.8
+      V = 5V - 1.8V = 3.2V
       I = 20mA = 0.02A
-      R = V / I = 5V / 0.02A = 250Ω
+      R = V / I = 3.2V / 0.02A = 160Ω
+
+      Yellow LED:
+      Voltage drop: 1.8
+      V = 5V - 1.8V = 3.2V
+      I = 20mA = 0.02A
+      R = V / I = 3.2V / 0.02A = 160Ω
+
+      Blue LED:
+      Voltage drop: 3.3V
+      V = 5V - 3.3V = 1.7V
+      I = 20mA = 0.02A
+      R = V / I = 1.7V / 0.02A = 85Ω
       </pre>
-      <p>The closest standard value resistor is 250Ω however, I used a 330Ω resistor for each LED in our circuit.</p>
+      <p>The closest resistor is 250Ω however, I used a 330Ω resistor for each LED in our circuit because using a higher resistor does not negatively affect the performance of the circuit.</p>
 
       <p>Here is an image of the schematics for Blink!</p>
       <h2>Circuit of Blink!</h2>
