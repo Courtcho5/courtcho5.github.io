@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>Courtney's HCDE 439 Physical Computing Page!</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Courtney's Assignment 2! Fade!</h1>
+    <div class="header">
+      <p>Here is all the documentation for assignment 2! Fade! will fade on 2 LED and 1 RGB LED light in sequence at the push of a button. </p>
+    </div>
+    <h2>Circuit Schematic</h2>
+      <p>Here is a picture of the schematic used in Fade!</p>
+      <img src = "A2schematic.png" width="500" height="400"/>
+    <h2>Resistor Calculation</h2>
+      <p> BLAH BLAH</p>
+    <h2>Image of Circuit</h2>
+      <p>Here is a picture of the circuit used in Fade!</p>
+      <img src = "A2pic.png" width="500" height="600"/>
+    <h2>GIF of Circuit</h2>
+      <p>Here is a GIF of Fade! in action</p>
+      <img src = "A2gif.gif" width="500" height="600"/>
+    <h2>Firmware for Fade!</h2>
+      <p>Here is the code used for Fade!</p>
+      <pre>
+        <code> 
+          // A2 Fade!
+// This code will fade on a red LED, green LED, and RGB LED (purple) when the button is pressed
+
+// Sets and initalizes the variable buttonState to 0
+int buttonState = 0;
+// Sets and initalizes the variable G to 11
+int G = 11; 
+// Sets and initalizes the variable R to 9 
+int R = 9;
+// Sets and initalizes the variable multi to 10  
+int multi = 10;  
+
+// Use the setup function to initalize the outputs and inputs of the pins
+void setup() {
+// Sets the pin associated with R (pin 9) as an output pin   
+  pinMode(R, OUTPUT);
+// Sets the pin associated with G (pin 11) as an output pin  
+  pinMode(G, OUTPUT); 
+// Sets the pin associated with multi (pin 10) as an output pin 
+  pinMode(multi, OUTPUT);   
+// Sets the pin 2 as an input pin
+  pinMode(2, INPUT); 
+}
+
+// Creates a loop
+void loop (){
+// Reads the state (HIGH or LOW) of pin 2 and stores the value as buttonState 
+  buttonState = digitalRead(2);
+// Begins an if else statement: will run the code underneath if the state of pin 2 is HIGH/ if the button is pressed
+  if (buttonState == HIGH) {
+
+// RED LED
+// Begins a for loop: initializes the variable i as 0 then increases the value of i by one until it reaches 255 resulting in a gradual increase of i.
+    for(int i = 0; i < 256;i++){
+// Takes R or pin 9 and increases the brightness gradually according to i
+      analogWrite(R, i);
+// Hold that state for 5 miliseconds
+      delay(5);
+// End of for loop
+    }
+
+// GREEN LED    
+// Begins a for loop: initializes the variable i as 0 then increases the value of i by one until it reaches 255 resulting in a gradual increase of i.
+    for(int i = 0; i < 256;i++){
+// Takes G or pin 11 and increases the brightness gradually according to i
+      analogWrite(G, i);
+// Hold that state for 5 miliseconds
+      delay(5);
+// End of for loop
+    }
+
+// RGB LED
+// Begins a for loop: initializes the variable i as 0 then increases the value of i by one until it reaches 255 resulting in a gradual increase of i.    
+    for(int i = 0; i < 256;i++){
+// Takes multi or pin 10 and increases the brightness gradually according to i, resulting in an increase in the red led of the RGB LED
+      analogWrite(multi, i);
+// Takes pin 3 and increases the brightness gradually according to i, resulting in an increase in the blue led of the RGB LED to create purple
+      analogWrite(3,i);
+// Hold that state for 5 miliseconds
+      delay(5);
+// End of for loop
+    } 
+    
+// End of if else statement: if the buttonState or pin 2 reads as LOW/ button is not pressed do not turn on any LEDs
+  } else {
+// Turns off R or pin 9 LED
+    digitalWrite(R,LOW);
+// Turns off G or pin 11 LED
+    digitalWrite(G,LOW);
+// Turns off multi or pin 10 LED
+    digitalWrite(multi,LOW);
+// Turns off pin 3 LED
+    digitalWrite(3,LOW);
+// End of for loop
+  }
+// End of the loop 
+}
+        </code>
+          
+  </body>
+</html>
