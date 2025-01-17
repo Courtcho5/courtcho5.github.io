@@ -17,7 +17,47 @@
       <p>Here is a picture of the schematic used in Fade!</p>
       <img src = "A2schematic.png" width="500" height="400"/>
     <h2>Resistor Calculation</h2>
-      <p> BLAH BLAH</p>
+      <p>To calculate the resistor value for each LED, I used Ohm's Law. Each LED is 20mA (0.02A), and the Arduino gives 5 volts so:</p>
+      <pre>
+        Button:
+        V = 5V
+        R = 
+        I = 
+        For the button I used 
+        Red LED:
+        Red Voltage drop: 1.8V
+        V = 5V - 1.8V = 3.2V
+        I = 20mA = 0.02A
+        R = V / I = 3.2V / 0.02A = 160Ω
+  
+        Green LED:
+        Green Voltage drop: 1.8V
+        V = 5V - 1.8V = 3.2V
+        I = 20mA = 0.02A
+        R = V / I = 3.2V / 0.02A = 160Ω
+
+        I used a 220Ω resistor for the green and red LEDs because it was the closest value to 160Ω. Using a higher resistor dimmed the LED.
+
+        RBG LED:
+        Red Voltage drop: 1.8V
+        V = 5V - 1.8V = 3.2V
+        I = 20mA = 0.02A
+        R = V / I = 3.2V / 0.02A = 160Ω
+
+        Blue Voltage drop: 3.3V
+        V = 5V - 3.3V = 1.7V
+        I = 20mA = 0.02A
+        R = V / I = 1.7V / 0.02A = 85Ω
+
+        Green Voltage drop: 1.8V
+        V = 5V - 1.8V = 3.2V
+        I = 20mA = 0.02A
+        R = V / I = 3.2V / 0.02A = 160Ω
+
+        I used a 220Ω resistor for each leg of the RBG LED.
+
+
+      </pre>
     <h2>Image of Circuit</h2>
       <p>Here is a picture of the circuit used in Fade!</p>
       <img src = "A2pic.png" width="500" height="600"/>
@@ -106,6 +146,31 @@ void loop (){
 // End of the loop 
 }
         </code>
-          
-  </body>
+    <h2>Additional Questions</h2>  
+      <h3>Question 1:  Draw a chart where the X axis is time and the Y axis is voltage. Draw 3 lines representing the voltage across an LED with analogWrite(led, 64), analogWrite(led, 128), and analogWrite(led,255)</h3>    
+        <p>analogWrite(led, 64): Represents a PWM signal with a 25% duty cycle.
+          analogWrite(led, 128): Represents a PWM signal with a 50% duty cycle.
+          analogWrite(led, 255): Represents a PWM signal with a 100% duty cycle.</p>
+        <img src = "A2graph.png" width="500" height="600"/>
+      <h3>Question 2:Given your schematic, circuit, and firmware, assuming the only thing that draws current is your LEDs, how long would your circuit run if powered by a 1200 mAh battery?</h3>
+        <pre> If 1200 mAh means that circuit consuming 1200 mA can run for 1 hour then we need to find the amount of current my circuit is drawing.
+          T = 1200 mAh / Drawn Current 
+          To find drawn current we can use Ohm's Law 
+          I = V/R 
+          V = 5V
+          R = total resistance sum = 1/R(total) = 1/R1 + 1/R2 + 1/R3 + 1/R4 + 1/R5 + 1/R6
+          R1 = 10,000Ω
+          R2 = 220Ω
+          R3 = 220Ω
+          R4 = 220Ω
+          R5 = 220Ω
+          R6 = 220Ω
+          1/R(total) = 1/10,000Ω + (1/220Ω) * 5 = 0.022827 or 57/2500
+          Take the reciprocal of 57/2500 is 2500/57
+          R = 2500/57 or about 43.85Ω
+          Now 
+          I = 5V/ 43.85Ω = 0.11399 A or 114 mA
+          T = 1200 mAH / 114 mA = 10.5 hours
+        </pre>
+    </body>
 </html>
