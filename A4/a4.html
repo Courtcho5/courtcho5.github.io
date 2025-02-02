@@ -19,52 +19,141 @@
       <img src = "A4schematic2.png" width="500" height="400"/>
       <p>Note: TinkerCAD did not have an alligator clip, there should be one connected to the 10 M resistor leg to a metal object.</p>
     <h2>Resistor Calculation</h2>
-      <p> A 10kΩ resistor was used for the thermistor because the resistor used on a resistance divider should be the same as the resistance of the divider.
-        If we want 2.5V (to power the fan at 10KΩ or 26 degrees Celsius)= 5V * R2/(R2 + 10kΩ) </p> 
+      <p> A 10MΩ resistor was used for the capacitive sensor because I desired a quick sensitivity for my sensor. If I had used a 
+        100MΩ resistor it may dampen the current too much and result in a delay in response. 
+        I used a 330Ω resistor was used to limit the LCD power and precent damage.
+        A LCD display needs 3.3V to turn on
+        According to the Arduino forum a LCD backlight draws 20mA
+        To find the resistance we can use Omh's law:
+        5V - 3.3V = 1.7V Excess that needs to be absorbed by the resistor
+        1.7V = 0.020 A * R 
+        R = 85Ω
+      </p> 
     <h2>Image of Circuit</h2>
       <p>Here is a picture of the circuit used in Libraries!</p>
       <img src = "A4pic.png" width="800" height="600"/>
     <h2>GIF of Circuit</h2>
-      <p>Here is a GIF of InputOutput! in action. A hair dryer was used to increase the temperature rapidly, not to turn the fan.</p>
+      <p>Here is a GIF of Libraries! in action. A phone camera was not able to pick up the LCD display under many different types of light and video editing. The touch count is increasing.</p>
       <img src = "A4gif.gif" width="500" height="600"/>
-    <h2>Firmware for InputOutput!</h2>
-      <p>Here is the code used for InoutOutput!</p>
+    <h2>Firmware for Libraries!</h2>
+      <p>Here is the code used for Libraries!</p>
       <pre>
         <code> 
-
+          // Library code
+          #include <LiquidCrystal.h>
+          #include <CapacitiveSensor.h>
+          
+          // Initialize the LCD with the pin numbers
+          LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+          // Set the capcitive sensors using the capacitive library to pins 9 and 8, 8 is input 9 is output
+          CapacitiveSensor cs_4_2 = CapacitiveSensor(9, 8);  
+          
+          // Initializes the count for number of touches detected
+          int count = 0;
+          // Boolean variable to track whether the object was previously touched, this will prevent increases during the same contact
+          bool letGo = false;
+          // Sets the threshold for touch read serial monitor to 400
+          int readLimit = 400;  
+          // Defines how many consecutive readings must be above the threshold to confirm a touch
+          int duplicate = 3;   
+          
+          // Starts a setup
+          void setup() {
+            // Initializes the LCD with 16 columns and 2 rows
+            lcd.begin(16, 2);
+            // Prints "Touch Count:" to the LCD display
+            lcd.print("Touch Count:");
+            // Sets the serial monitor to 9600 baud rate
+            Serial.begin(9600);
+          }
+          
+          // Begins loop
+          void loop() {
+            // Sets the position of the blinking cursor to be at position (0,1) on the LCD
+            lcd.setCursor(0, 1);
+            // Sets the sensitivity of the sensor to be low. Less readings are being taken and averaged = lower sensitivity to touch
+            long serialRead = cs_4_2.capacitiveSensor(20);
+            // Prints the sensor reading data to the serial monitor
+            Serial.println(serialRead);
+            // Initializes the number of touches to the metal object
+            int touchCountSerial = 0;  
+          
+            // Begins an if statement where if the value being read by the capacitive sensor is higher than the readLimit of 400, then add a value to touchCountSerial
+            if (serialRead > readLimit) { 
+              // Increase the touchCountSerial if serialRead is higher than limit
+              touchCountSerial++; 
+            } 
+            // Begins else statement where if serialRead is lower than limit, set the touchCountSerial to zero
+            else {
+              touchCountSerial = 0; // Reset if no touch
+            }
+          
+            // Begins an if statement where if touchCountSerial is greater than or equal to duplicate and letGo is false (indicating a new touch)
+            if (touchCountSerial >= duplicate && !letGo) { 
+              // Increases the value of count
+              count++;
+              // Clears the previous value to place a new one
+              lcd.clear();
+              // Prints the statement "Touch Count:" to the LCD display
+              lcd.print("Touch Count:");
+              // Move the cursor of the LCD to the position (0,1)
+              lcd.setCursor(0, 1);
+              // Print the value for count
+              lcd.print(count);
+              // Sets letGo to true to prevent multiple increases during one touch
+              letGo = true; 
+            } 
+            // Else if statement where if serialRead is less than 400 (readLimit - 200), reset letGo to indicate absence of multiple touches
+            else if (serialRead < readLimit - 200) { 
+              letGo = false;
+            }
+            // 100 ms delay for each reading
+            delay(100); 
+          }         
          
         </code>
     <h2>Additional Questions</h2>  
-      <h3>Question 1:In your voltage divider, can the variable resistor be either R1 or R2 or does it need to be one or the other? Justify your answer with example calculations.</h3>    
-        <p>In a voltage divider R2 must be the variable resistance. If the equation is Vout = Vin * (R2/(R1 + R2)) we can make some sample calculations to prove this.</p>
-        <pre>
-          R2 as fixed: R1 varies = 20kΩ and 30kΩ R2 = 10kΩ 
-          Vout = 5v * (10kΩ/(20kΩ + 10kΩ)) = 1.66V
-          Vout = 5v * (10kΩ/30kΩ + 10kΩ) =  1.25V
-           
-          R2 as variable: R1 = 10kΩ and R2 = 20kΩ and 30kΩ
-          Vout = 5v * (20kΩ/(10kΩ+20kΩ)) = 3.33V
-          Vout = 5v * (30k/(10kΩ+30kΩ)) = 3.75V
-
-          As you can see these values are not the same which implies that the variables are not interchangable.
-        </pre>
-        
-      <h3>Question 2: Draw a graph where the x-axis is time and the y-axis is voltage. Plot the voltage at V-measure of your voltage divider of your shared gif.</h3>
-        <img src = "A3graph.png" width="500" height="600"/>  
+      <h3>Question 1: Say you are using a servo motor you attach to pin 9. In your loop() you have the following code:
+        for (int i=0, i<180, i++){servo.write(i); delay(100);} 
+        Draw a graph with the X axis in seconds, for two seconds, and the y-axis the voltage at pin 9 with respect to ground.</h3>   
+        <img src = "A4graph.png" width="500" height="600"/>
+      <h3>Question 2: Your input device is slightly broken, leading it to give us an erroneous reading 1% of the time. How can we address this? Answer in (pseudo)code.</h3>
         <pre> 
-          The fan on my circuit turns on at 80 degrees Fahenheit which is about 26 degrees Celsius. According to the beta equation and datasheets the base resistance of a thermistor at 25 Celsius is 10k Omhs.
-          We can use the resistance divider equation to find the voltage using our known information. Vout = Vin * (Rout/(Rout + Rin)).
-          We also have a 10kΩ resistor in the board so that is Vin.
-          So Vout = 5v * 10kΩ/(10kΩ + 10KΩ) = 2.5 V
-          However, when my fan is not on, the room temperature is below 80 or about 65 degrees Fahenheit or 18 degrees celsius. According to the beta data sheet that is 13K Omhs.
-          So Vout = 5v * 10kΩ/(13kΩ + 10kΩ) = 2.17 V. This is the resting state in my GIF.
+        If our input device is slightly broke and giving us an erroneous reading 1% of the time we can fix this by creating a threshold for readings. 
+        For example, in my circuit if a serial value is above 400 then the output will execute, if my device was randomly sending one or two
+        values above 400 when it is not supposed to we can accomodate to that by increasing the number of times a high value needs to be recorded to 
+        initate the output code.
+        Pseudocode:
+        // Initalize the number of continuous readings needed to execute as 3
+        serialReading = analogRead(sensorPin);
+        threshold = 3;
+        serialThreshold = 500;
+
+        if (serialReading > serialThreshold  ) {
+          count++;
+        }
+        if (count >= threshold) {
+          run output/display LCD;
+        }
+
         </pre>
-        <h3>Question 3: AnalogWrite and analogRead are respectively 8-bit and 10-bit values. Imagine you had 10-bit PWM and a 16-bit analog-to-digital converter instead. How would this change your map() code? Explain your answer.</h3>
+        <h3>Question 3:  Your input device is slightly noisy, leading the measurement to randomly deviate from the true measurement up or down by 10%. How can we address this? Answer in (pseudo)code.</h3>
           <pre> 
-            If the analogWrite and analogRead codes were expanded to 10 and 16 then we would see an increase in the rang that can be supported in map. 
-            For example: standard would be map((analogRead value), 0, 1023, 0, 255); With 10 bits it would still be 0 to 1023 but with 16 it would be 0 to 65535.
-            It can store 2^16 values and 2^10 values. With one less for indexing.
-            So our new map function could look like map((analogRead value), 0, 65535, 0, 1023);
+          If our input device is deviating from the true measurement by 10% we can fix this by averaging the readings from a large time period.
+          This will help smooth the deviations, we can then use the averages in our output calculations.
+          Pseudocode: 
+
+          1. Find the sum of the readings 
+          serialReadings = analogRead(sensorPin); // analogRead the sensor
+          sum = 0; // Initalize the sum value
+          averageLimit = 10; // Set the number of counts per round to be 10, will be used as the denominator in average equation
+          for (int i = 0; i < averageLimit; i++) {// for each serial reading that is not above the 10th one, add them together
+            sum += serialReadings; // Add together the sum of the previous reading to the most recent one 
+          }
+          2. Find the average
+            average = sum / averageLimit; // Average equation
+            Serial.println(average); // Print on a new line
+          
           </pre>
       </body>
 </html>
