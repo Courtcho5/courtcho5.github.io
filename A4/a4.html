@@ -35,12 +35,14 @@
     <h2>GIF of Circuit</h2>
       <p>Here is a GIF of Libraries! in action. A phone camera was not able to pick up the LCD display under many different types of light and video editing. The touch count is increasing.</p>
       <img src = "A4gif.gif" width="500" height="600"/>
-    <h2>Firmware for Libraries!</h2>
+    <h2>Firmware for InputOutput!</h2>
       <p>Here is the code used for Libraries!</p>
       <pre>
         <code> 
-          // Library code
+          // A4 Libraries: This code will count the number of times the metal end of a capacitive sensor was touched and record it to a LCD display.
+          // Library code for LCD
           #include <LiquidCrystal.h>
+          //Capacitivesensor library code
           #include <CapacitiveSensor.h>
           
           // Initialize the LCD with the pin numbers
@@ -54,62 +56,64 @@
           bool letGo = false;
           // Sets the threshold for touch read serial monitor to 400
           int readLimit = 400;  
-          // Defines how many consecutive readings must be above the threshold to confirm a touch
+          // Variable to limit how many consecutive readings must be above the threshold to confirm a touch
           int duplicate = 3;   
           
-          // Starts a setup
+          // Starts setup
           void setup() {
-            // Initializes the LCD with 16 columns and 2 rows
+          // Initializes the LCD with 16 columns and 2 rows
             lcd.begin(16, 2);
-            // Prints "Touch Count:" to the LCD display
+          // Prints "Touch Count:" to the LCD display
             lcd.print("Touch Count:");
-            // Sets the serial monitor to 9600 baud rate
+          // Sets the serial monitor to 9600 baud rate
             Serial.begin(9600);
           }
           
           // Begins loop
           void loop() {
-            // Sets the position of the blinking cursor to be at position (0,1) on the LCD
+          // Sets the position of the blinking cursor to be at position (0,1) on the LCD
             lcd.setCursor(0, 1);
-            // Sets the sensitivity of the sensor to be low. Less readings are being taken and averaged = lower sensitivity to touch
+          // Sets the sensitivity of the sensor to be low. Less readings are being taken and averaged = lower sensitivity to touch
             long serialRead = cs_4_2.capacitiveSensor(20);
-            // Prints the sensor reading data to the serial monitor
+          // Prints the sensor reading data to the serial monitor
             Serial.println(serialRead);
-            // Initializes the number of touches to the metal object
+          // Initializes the number of touches to the metal object
             int touchCountSerial = 0;  
           
-            // Begins an if statement where if the value being read by the capacitive sensor is higher than the readLimit of 400, then add a value to touchCountSerial
+          // if statement where if the value being read by the capacitive sensor is higher than the readLimit of 400, then add a value to touchCountSerial
             if (serialRead > readLimit) { 
-              // Increase the touchCountSerial if serialRead is higher than limit
+          // Increase the touchCountSerial if serialRead is higher than limit
               touchCountSerial++; 
             } 
-            // Begins else statement where if serialRead is lower than limit, set the touchCountSerial to zero
+          // else statement where if serialRead is lower than limit, set the touchCountSerial to zero
             else {
-              touchCountSerial = 0; // Reset if no touch
+          // touchCountSerial is zero if lower than limit
+              touchCountSerial = 0; 
             }
           
-            // Begins an if statement where if touchCountSerial is greater than or equal to duplicate and letGo is false (indicating a new touch)
+          // Begins an if statement where if touchCountSerial is greater than or equal to duplicate and letGo is false (indicating a new touch)
             if (touchCountSerial >= duplicate && !letGo) { 
-              // Increases the value of count
+          // Increases the value of count
               count++;
-              // Clears the previous value to place a new one
+          // Clears the previous value to place a new one
               lcd.clear();
-              // Prints the statement "Touch Count:" to the LCD display
+          // Prints the statement "Touch Count:" to the LCD display
               lcd.print("Touch Count:");
-              // Move the cursor of the LCD to the position (0,1)
+          // Move the cursor of the LCD to the position (0,1)
               lcd.setCursor(0, 1);
-              // Print the value for count
+          // Print the value for count
               lcd.print(count);
-              // Sets letGo to true to prevent multiple increases during one touch
+          // Sets letGo to true to prevent multiple increases during one touch
               letGo = true; 
             } 
-            // Else if statement where if serialRead is less than 400 (readLimit - 200), reset letGo to indicate absence of multiple touches
+          // Else if statement where if serialRead is less than 400 (readLimit - 200), reset letGo to indicate absence of multiple touches
             else if (serialRead < readLimit - 200) { 
+          // letGo becomes false to show absense of duplicate touches
               letGo = false;
             }
-            // 100 ms delay for each reading
+          // 100 ms delay for each reading
             delay(100); 
-          }         
+          }                  
          
         </code>
     <h2>Additional Questions</h2>  
@@ -124,16 +128,22 @@
         values above 400 when it is not supposed to we can accomodate to that by increasing the number of times a high value needs to be recorded to 
         initate the output code.
         Pseudocode:
+        
         // Initalize the number of continuous readings needed to execute as 3
         serialReading = analogRead(sensorPin);
         threshold = 3;
         serialThreshold = 500;
-
+        displayCount = 0;
+        //If the serialReading is higher than 500 add one to the serial count to check against threshold.
         if (serialReading > serialThreshold  ) {
           count++;
+        } else {
+          count = 0;
         }
+        //If the serial count is higher than the threshold (confirming a touch that isn't a fluke) then add to the display/output/run the output
         if (count >= threshold) {
-          run output/display LCD;
+          displayCount++;
+          Serial.println(displayCount);
         }
 
         </pre>
