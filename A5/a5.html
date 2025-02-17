@@ -18,15 +18,22 @@
       <img src = "A5schematic.png" width="500" height="400"/>
     <h2>Critical Points Calculation</h2>
       <pre>
-        Point 1:
-        Point 2:
-        Point 3: 
+        Point 1: Power source to LED Strip: 
+        Voltage = 5V from the power supply, Current = 
+        Point 2: 
+
+        Point 3: Into the Transitior: 1.7A into the transistor see below calculation. 
       </pre>
     <h2>The transistor can handle a max current. Justify how much current you are using.</h2>
       <pre>
         Omh's Law: V = I * R 
-        Max current of the transistor is 33.9A according to the datasheet. 
-
+        Max current of the transistor 80 A according to the datasheet. We are sending 5V through the LED strip via the regulator. 
+        The LED strip has resistors built into the circuit as well as white LEDs with a voltage drop of 3.3V 
+        For all 3 white LEDS: 3.3V * 3 = 9.9V
+        The resistor on one segment of the LED strip says 181Ω so we will use that to find the current of one 3 LED segment
+        12V - 9.9V = 2.1V then 2.1V / 181Ω = 0.012A or 12mA
+        There are 98 sets of the 3 LED segments in the roll so 0.012A * 98 = 1.17 A for the roll
+        This is less than the max current of 80 A.
       </pre>
 
     <h2>Image of Circuit</h2>
@@ -109,18 +116,58 @@ void loop() {
     <h2>Additional Questions</h2>  
       <h3>Question 1: What is the absolute maximum amount of current between pins 2 and 3?</h3>    
         <p>
-
-
+          According to the datasheet the continuous drain current is 37.2 A, this is the maximum current when the current is continuous
+          However, if the current is happening in pulsed duty cycles then  (10µs Pulse, Duty Cycle = 1%) then the maximum current is 80 A.
         </p>
       <h3>Question 2:  Draw a schematic for a circuit with using at least your arduino, a DC motor, a flyback diode, and capacitors between power and ground. Find parts with datasheets you could use for each of these schematic components.</h3>
       <img src = "A5Question2.png" width="500" height="600"/>  
       <pre>
-
+        Datasheets:
+        DC motor: https://www.ti.com/lit/gpn/DRV8840
+        Arduino: https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf
+        Flyback diode: https://www.digikey.in/htmldatasheets/production/1914435/0/0/1/1n4001-1n4007.html
+        Capacitor: https://docs.rs-online.com/e491/0900766b8173e2ff.pdf
       </pre>
-      <h3>Question 3: Here is the datasheet for the L293D chip: https://www.ti.com/product/L293DLinks to an external site.. Draw a schematic using at least your arduino, this chip, and two motors. Write (pseudo) code that shows how you would move the motors both forward, both back, then one forward one back, and one back then forward.</h3>
+      <h3>Question 3: Here is the datasheet for the L293D chip: https://www.ti.com/product/L293DLinks to an external site..
+         Draw a schematic using at least your arduino, this chip, and two motors. Write (pseudo) code that shows how you would move the motors both forward, both back, then one forward one back, and one back then forward.</h3>
         <img src = "A5Question3.png" width="500" height="600"/>  
         <pre> 
+          <code>
+            int  = 10;
+            int = 9;
+            int = 5;
+            int = 6;
 
+            void setup
+            pinmode(10,OUTPUT);
+            pinmode(10,OUTPUT);
+            pinmode(10,OUTPUT);
+            pinmode(10,OUTPUT);
+
+            //Both forward
+            digitalWrite(10,HIGH);
+            digitalWrite(9,LOW);
+            digitalWrite(5,HIGH);
+            digitalWrite(6,LOW);
+
+            //Both back
+            digitalWrite(10,LOW);
+            digitalWrite(9,HIGH);
+            digitalWrite(5,LOW);
+            digitalWrite(6,HIGH);
+
+            //One Back two forward
+            digitalWrite(10,LOW);
+            digitalWrite(9,HIGH);
+            digitalWrite(5,HIGH);
+            digitalWrite(6,LOW);
+
+            //Two forward One back
+            digitalWrite(10,HIGH);
+            digitalWrite(9,LOW);
+            digitalWrite(5,LOW);
+            digitalWrite(6,LOW);
+          </code>
         </pre>
     </body>
 </html>
