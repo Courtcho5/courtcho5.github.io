@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6-DOF Robotic Arm &amp; IK Controller | Courtney Cho</title>
+    <meta name="description" content="A six-axis robotic arm designed in CAD and driven by a Python control application with closed-form inverse kinematics, wrist leveling, and joint-limit validation." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main">
+        <div class="container">
+            <a href="all-projects.html" class="back-link">← All projects</a>
+
+            <!-- ===== Hero ===== -->
+            <header class="case-hero">
+                <span class="case-hero__eyebrow">Robotics · Controls</span>
+                <h1>A 6-DOF Arm and the Software That Drives It</h1>
+                <p class="case-hero__subtitle">
+                    Designing a six-axis manipulator, then writing the inverse kinematics that lets you
+                    tell it <em>where to go</em> instead of what angle every joint should hold.
+                </p>
+                <div class="case-hero__image">
+                    <img src="robotic-arm-cad.png" alt="CAD model of the six-degree-of-freedom robotic arm showing base, shoulder, elbow, wrist, and gripper" />
+                </div>
+            </header>
+
+            <!-- ===== Metadata ===== -->
+            <section class="meta">
+                <div>
+                    <div class="meta__label">Role</div>
+                    <div class="meta__value">Sole designer &amp; developer</div>
+                </div>
+                <div>
+                    <div class="meta__label">Degrees of freedom</div>
+                    <div class="meta__value">6 (base, shoulder, elbow, 2× wrist, gripper)</div>
+                </div>
+                <div>
+                    <div class="meta__label">Stack</div>
+                    <div class="meta__value">Python · Tkinter · pySerial · Arduino · SOLIDWORKS</div>
+                </div>
+                <div>
+                    <div class="meta__label">Source</div>
+                    <div class="meta__value"><a href="arm_controller.py">arm_controller.py</a></div>
+                </div>
+            </section>
+
+            <!-- ===== Problem ===== -->
+            <section class="case-section">
+                <h2>The Problem With Joint Control</h2>
+                <p class="lead">
+                    A servo arm out of the box is controlled one joint at a time. You move a slider, a
+                    servo rotates. That works right up until you want the arm to do something useful.
+                </p>
+                <p>
+                    “Pick up the object 20 cm in front of the base” has no obvious translation into six
+                    servo angles. Getting there by nudging sliders is slow, unrepeatable, and easy to get
+                    wrong in a way that drives a link into the base or the table. I wanted to command the
+                    arm in the coordinate space I actually think in — <code>x</code>, <code>y</code>,
+                    <code>z</code> in centimeters — and have the software work out the joint angles.
+                </p>
+                <p>
+                    That means solving the inverse kinematics problem: given a target position for the
+                    gripper, find the joint configuration that puts it there. And, just as importantly,
+                    recognizing when no such configuration exists.
+                </p>
+            </section>
+
+            <!-- ===== Mechanical design ===== -->
+            <section class="case-section">
+                <h2>Mechanical Design</h2>
+                <p>
+                    The arm is a serial manipulator: a rotating base, two primary links, and a wrist
+                    assembly carrying the gripper. Link lengths are the input the kinematics are built
+                    around, so they were fixed in CAD first and measured precisely.
+                </p>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <caption class="caption" style="text-align:left; margin-bottom: 0.75rem;">Link geometry and joint limits</caption>
+                        <thead>
+                            <tr>
+                                <th>Segment</th>
+                                <th>Length</th>
+                                <th>Joint</th>
+                                <th>Travel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Base to shoulder</td><td>13.5 cm</td><td>Base rotation</td><td>0–180°</td></tr>
+                            <tr><td>Upper arm (L1)</td><td>14.0 cm</td><td>Shoulder</td><td>80–180°</td></tr>
+                            <tr><td>Forearm (L2)</td><td>13.0 cm</td><td>Elbow</td><td>50–180°</td></tr>
+                            <tr><td>Wrist + gripper (L3)</td><td>12.5 cm</td><td>Wrist</td><td>0–180°</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>
+                    Fully extended, that gives a maximum reach of roughly <strong>39.5 cm</strong> from the
+                    base axis. The shoulder and elbow travel are deliberately narrower than the servos'
+                    full range — those limits come from where the links physically collide, and the
+                    software treats them as hard constraints rather than suggestions.
+                </p>
+            </section>
+
+            <!-- ===== IK ===== -->
+            <section class="case-section">
+                <h2>Solving the Kinematics</h2>
+                <p>
+                    Rather than reach for a numerical solver, I derived a closed-form solution. For a
+                    3-link planar arm the geometry is tractable, and a closed-form answer is fast,
+                    deterministic, and — unlike an iterative solver — tells you immediately and exactly
+                    when a target is unreachable.
+                </p>
+
+                <h3>Step 1 — Collapse the problem to two dimensions</h3>
+                <p>
+                    The base rotation is independent of everything above it. Solving it first with
+                    <code>atan2(y, x)</code> reduces a 3D problem to a 2D one in the vertical plane the
+                    arm now lies in, described by horizontal reach <code>r</code> and height
+                    <code>h</code> relative to the shoulder joint.
+                </p>
+
+                <h3>Step 2 — Hold the gripper level</h3>
+                <p>
+                    I wanted the gripper to stay horizontal regardless of arm pose — the natural
+                    orientation for picking objects off a flat surface. Because the wrist segment stays
+                    horizontal, it contributes only to horizontal reach, so subtracting <code>L3</code>
+                    from <code>r</code> gives the position the wrist joint itself has to hit. The two-link
+                    shoulder-elbow problem is then solvable on its own.
+                </p>
+
+                <h3>Step 3 — Law of cosines</h3>
+                <p>
+                    With the shoulder-to-wrist distance <code>d</code> known, the elbow angle falls
+                    directly out of the law of cosines, and the shoulder angle is the sum of the angle to
+                    the target and the interior triangle angle.
+                </p>
+
+                <div class="code-block">
+<pre><code># Flatten into the 2D plane, then remove the wrist segment
+r = math.sqrt(x**2 + y**2)      # horizontal reach
+h = z - BASE_HEIGHT             # height above the shoulder joint
+r_eff = r - L3                  # gripper held horizontal
+
+d = math.sqrt(r_eff**2 + h**2)  # shoulder to wrist
+
+# Elbow angle — law of cosines
+cos_e = (L1**2 + L2**2 - d**2) / (2 * L1 * L2)
+cos_e = max(-1.0, min(1.0, cos_e))   # guard float error at the limits
+elbow_deg = math.degrees(math.acos(cos_e))
+
+# Shoulder angle — angle to target plus interior triangle angle
+phi = math.atan2(h, r_eff)
+cos_s = (L1**2 + d**2 - L2**2) / (2 * L1 * d)
+psi = math.acos(max(-1.0, min(1.0, cos_s)))
+shoulder_deg = math.degrees(phi + psi)
+
+# Wrist compensates to keep the gripper level
+wrist_comp = shoulder_deg + elbow_deg - 90</code></pre>
+                </div>
+
+                <div class="callout">
+                    <span class="callout__label">Detail that mattered</span>
+                    <p>
+                        Both cosine terms are clamped to [-1, 1] before <code>acos</code>. At full
+                        extension the arithmetic can land at 1.0000000002 through floating-point error
+                        alone, and <code>math.acos</code> raises a domain error rather than returning the
+                        obviously-intended 0°. Clamping turns a crash at the edge of the workspace into a
+                        correct answer.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ===== Calibration ===== -->
+            <section class="case-section">
+                <h2>Geometry Is Not Servo Angles</h2>
+                <p>
+                    The kinematics produce angles in a clean geometric frame — shoulder at 0° means the
+                    upper arm is horizontal. The physical servos know nothing about that frame. Each one
+                    has its own zero, its own direction of rotation, and a mounting orientation set by how
+                    the horn happened to seat during assembly.
+                </p>
+                <p>
+                    I handled this with a set of named offset constants that map geometric angles onto
+                    servo commands, and documented the calibration procedure in the source so the mapping
+                    can be re-derived after any rebuild:
+                </p>
+                <ol>
+                    <li>Manually position the arm pointing straight forward and horizontal</li>
+                    <li>Read the servo angles off the sliders in that pose</li>
+                    <li>Adjust each offset until the IK output matches those readings</li>
+                </ol>
+                <p>
+                    Keeping the offsets isolated at the top of the file means a mechanical change never
+                    requires touching the kinematics themselves.
+                </p>
+            </section>
+
+            <!-- ===== Safety ===== -->
+            <section class="case-section">
+                <h2>Refusing Bad Commands</h2>
+                <p class="lead">
+                    The most useful thing the controller does is decline to move.
+                </p>
+                <p>
+                    A solution that is mathematically valid can still be mechanically impossible. The
+                    solver runs three reachability checks before it computes anything, and a full
+                    joint-limit sweep before it returns:
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <h4>Out of reach</h4>
+                        <p>Target further than <code>L1 + L2</code> from the shoulder — reports the actual maximum reach so the operator knows how far to back off.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Too close to the base</h4>
+                        <p>Target inside <code>|L1 − L2|</code>, the dead zone the two links cannot fold tightly enough to enter.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Wrist overshoot</h4>
+                        <p>Effective reach goes negative — the horizontal wrist would extend past the target rather than up to it.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Joint limit violation</h4>
+                        <p>Every joint checked against its mechanical travel. The error names each offending joint, its computed angle, and its permitted range.</p>
+                    </div>
+                </div>
+
+                <p>
+                    Critically, a violation aborts the entire move rather than clamping the offending
+                    joint. A clamped joint produces a pose that is silently wrong — the gripper ends up
+                    somewhere other than where it was told to go, which is far more dangerous than a
+                    refusal. The solver returns a <code>(result, error)</code> pair where exactly one is
+                    ever populated, so a caller cannot accidentally use a failed result.
+                </p>
+            </section>
+
+            <!-- ===== Application ===== -->
+            <section class="case-section">
+                <h2>The Control Application</h2>
+                <p>
+                    The kinematics are wrapped in a Tkinter desktop application that talks to the arm's
+                    microcontroller over serial:
+                </p>
+                <ul>
+                    <li><strong>Port auto-discovery</strong> — enumerates available serial ports rather than hardcoding one, so it works across machines without edits</li>
+                    <li><strong>Per-joint sliders</strong> — each bounded by that joint's real mechanical limits, for manual positioning and calibration</li>
+                    <li><strong>Named presets</strong> — Home, Pick Up, Drop Off, and Rest, as verified joint configurations rather than coordinates to re-solve</li>
+                    <li><strong>IK panel</strong> — enter a Cartesian target, calculate, review the resulting joint angles, then send. Calculation and transmission are deliberately separate steps</li>
+                    <li><strong>Background read thread</strong> — keeps serial responses flowing without blocking the interface</li>
+                    <li><strong>Live log</strong> — every command and response, timestamped, so a misbehaving move can be traced after the fact</li>
+                </ul>
+
+                <div class="callout">
+                    <span class="callout__label">Design decision</span>
+                    <p>
+                        Calculate and send are two separate buttons. The operator sees the joint angles the
+                        solver produced and can sanity-check them against the physical arm before anything
+                        actually moves. One extra click costs nothing; a surprise full-speed move into the
+                        table costs a rebuild.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ===== Takeaways ===== -->
+            <section class="case-section">
+                <h2>What I Took From It</h2>
+                <p>
+                    Deriving the kinematics by hand rather than pulling in a robotics library meant I had
+                    to understand exactly why each term exists — and that understanding is what made the
+                    failure modes obvious. The reachability checks aren't defensive boilerplate; they fall
+                    directly out of the geometry, and each one corresponds to a specific way the triangle
+                    the solver is built on can degenerate.
+                </p>
+                <p>
+                    It also reinforced something the assistive-device work had already taught me: the
+                    hardest part of controlling a physical system isn't the happy path. It's the boundary
+                    — where the math stops describing something the hardware can actually do, and the
+                    software has to notice before the mechanism does.
+                </p>
+            </section>
+
+            <!-- ===== Prev / next ===== -->
+            <nav class="case-nav">
+                <a href="practiv.html">← Previous: PRACTIV</a>
+                <a href="biomechanics-research.html">Next: Implant Test Rig →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,75 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ossesointegrated Implant Biomechanical Test Rig - Courtney Cho</title>
-    <link rel="stylesheet" href="casestudy.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Osseointegrated Implant Test Rig | Courtney Cho</title>
+    <meta name="description" content="Master's thesis: designing and building a biomechanical test rig to predict periprosthetic femur fracture in patients with osseointegrated prosthetic implants." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to home</a>
-        
-        <section class="hero">
-            <h1>Ossesointegrated Implant Biomechanical Test Rig</h1>
-            <p class="subtitle">Designing and building a biomechanical test rig to predict femur fracture in patients with osseointegrated prosthetic implants - the topic of my Master's Thesis</p>
-            <p class="subtitle"></p>
-        </section>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-                <section class="project-details">
-            <div class="detail-grid">
-                <div class="detail-item">
-                    <h4>Role</h4>
-                    <p>Design Engineer and Researcher</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Timeline</h4>
-                    <p>Ongoing</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Collaborators</h4>
-                    <p>Manuela Montes de Oca (PhD Candidate), Dr. Sandra Shefelbine, Dr. Max Shepherd</p>
-                </div>
-            </div>
-        </section>
-
-
-        <div class="image-grid">
-            <div class="grid-item">
-                <img src="earlyrig.png" alt="V1 prototype">
-                <p class="caption">V1 Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="partialrig.png" alt="V3">
-                <p class="caption">V3 Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="tube.png" alt="tube">
-                <p class="caption">Tube Early Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="FEA.png" alt="FEA prototype">
-                <p class="caption">Usinging FEA to test structure integrity</p>
-            </div>
-            <div class="grid-item">
-                <img src="testing-foot-drop.png" alt="Testing prototype">
-                <p class="caption">Testing Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="final-prototype.png" alt="Final prototype">
-                <p class="caption">Final Prototype</p>
-            </div>
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
         </div>
+    </nav>
 
-       
+    <main id="main">
+        <div class="container">
+            <a href="all-projects.html" class="back-link">← All projects</a>
 
-        <div class="project-navigation">
-            <a href="wheelchair-umbrella.html" class="nav-link">← Previous Project</a>
-            <a href="index.html" class="nav-link">Back to Projects</a>
-            <a href="test.html" class="nav-link">Next Project →</a>
+            <!-- ===== Hero ===== -->
+            <header class="case-hero">
+                <span class="case-hero__eyebrow">Master's Thesis · Ongoing</span>
+                <h1>A Test Rig for Predicting Femur Fracture in Osseointegrated Implants</h1>
+                <p class="case-hero__subtitle">
+                    Bone-anchored prosthetics restore natural load transfer to the skeleton. The open
+                    question is how much load the remaining femur can take before it breaks — and there
+                    is no standard fixture for asking.
+                </p>
+                <div class="case-hero__image">
+                    <img src="partialrig.png" alt="Third-iteration test rig assembly for loading an osseointegrated femoral implant" />
+                </div>
+            </header>
+
+            <!-- ===== Metadata ===== -->
+            <section class="meta">
+                <div>
+                    <div class="meta__label">Role</div>
+                    <div class="meta__value">Design Engineer &amp; Researcher</div>
+                </div>
+                <div>
+                    <div class="meta__label">Status</div>
+                    <div class="meta__value">Ongoing — third design iteration</div>
+                </div>
+                <div>
+                    <div class="meta__label">Lab</div>
+                    <div class="meta__value">Shefelbine Lab, Northeastern University</div>
+                </div>
+                <div>
+                    <div class="meta__label">Collaborators</div>
+                    <div class="meta__value">
+                        Manuela Montes de Oca (PhD candidate) ·
+                        Dr. Sandra Shefelbine ·
+                        Dr. Max Shepherd
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Context ===== -->
+            <section class="case-section">
+                <h2>Why This Matters</h2>
+                <p class="lead">
+                    In osseointegration, a titanium implant is anchored directly into the residual femur and
+                    passes through the skin to connect to an external prosthesis. It eliminates the socket —
+                    and with it the skin breakdown, poor fit, and lost proprioception that make traditional
+                    limb prostheses hard to live with.
+                </p>
+                <p>
+                    But routing load straight into the bone changes the mechanics of the femur. Stress
+                    concentrates around the implant, and periprosthetic fracture is a recognized
+                    complication — one that requires revision surgery and can jeopardize the implant
+                    entirely. Clinicians need to know how much load a given patient's femur can safely
+                    carry, and that answer depends on bone quality, implant geometry, and how deep the stem
+                    sits.
+                </p>
+                <p>
+                    Answering it experimentally requires applying physiologically realistic loads to an
+                    instrumented femur–implant construct and recording where and when it fails. There is no
+                    off-the-shelf fixture that does this. Building one is my thesis.
+                </p>
+            </section>
+
+            <!-- ===== Design problem ===== -->
+            <section class="case-section">
+                <h2>The Design Problem</h2>
+                <p>
+                    A fixture for this test has to satisfy several constraints at once, and they pull
+                    against each other:
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <h4>Physiological loading</h4>
+                        <p>Reproduce the load direction and magnitude the femur sees in gait, not just simple axial compression.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Rigid where it counts</h4>
+                        <p>The rig must be stiff enough that measured deflection comes from the specimen, not from the fixture flexing.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Repeatable alignment</h4>
+                        <p>Specimen-to-specimen variation has to come from the bone, so mounting and alignment must be constrained the same way every time.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Fits the load frame</h4>
+                        <p>Bounded by the working envelope and mounting interface of the lab's existing testing machine.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Survives failure</h4>
+                        <p>Fracture releases stored energy suddenly. The fixture has to contain that and remain reusable.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Workable specimens</h4>
+                        <p>Potting and mounting a bone–implant construct has to be practical for one person to do consistently.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Process ===== -->
+            <section class="case-section">
+                <h2>Iterating Toward a Working Fixture</h2>
+                <p>
+                    The rig is on its third major revision. Each iteration has been driven by a specific
+                    limitation found in the one before it.
+                </p>
+
+                <h3>Verifying before machining</h3>
+                <p>
+                    Fixture components are analyzed in FEA before anything is cut. The goal is to confirm
+                    that the structure stays well inside its elastic range under peak test load — if the
+                    fixture yields, the data is worthless and the failure mode is ambiguous. Simulating
+                    first is considerably cheaper than machining a part that turns out to be undersized.
+                </p>
+            </section>
+
+            <div class="figure-grid">
+                <figure>
+                    <img src="earlyrig.png" alt="First-iteration test rig prototype" />
+                    <figcaption>V1 — first full assembly</figcaption>
+                </figure>
+                <figure>
+                    <img src="tube.png" alt="Early prototype of the specimen mounting tube" />
+                    <figcaption>Early specimen mounting tube</figcaption>
+                </figure>
+                <figure>
+                    <img src="partialrig.png" alt="Third-iteration test rig assembly" />
+                    <figcaption>V3 — current iteration</figcaption>
+                </figure>
+                <figure>
+                    <img src="FEA.png" alt="Finite element analysis stress plot of a test rig component under load" />
+                    <figcaption>FEA verification of structural integrity under peak load</figcaption>
+                </figure>
+            </div>
+
+            <!-- ===== TO FILL IN =====
+                 Courtney — this section is scaffolding, not content. I deliberately did not
+                 invent numbers here. Replace the bracketed prompts below with your real
+                 details and delete this comment. The three highest-value things to add:
+
+                   1. What specifically changed between V1, V2, and V3 — and why.
+                      One sentence per revision is enough. This is the part that shows
+                      engineering judgment rather than just CAD ability.
+                   2. Your load case: magnitude, direction, and where it came from
+                      (gait literature? a specific activity? a standard?).
+                   3. Any results so far — even preliminary. If there are none yet,
+                      say what the next test will measure.
+            -->
+            <section class="case-section">
+                <h2>Design Iterations</h2>
+
+                <div class="callout">
+                    <span class="callout__label">Draft — needs your detail</span>
+                    <p>
+                        Replace this block with one short paragraph per revision. For each: what the
+                        previous version couldn't do, what you changed, and what that bought you.
+                        That progression is the single most convincing thing on this page for an
+                        employer — it shows how you respond when a design doesn't work.
+                    </p>
+                </div>
+
+                <h3>V1 — [what it established, and where it fell short]</h3>
+                <p>[One paragraph.]</p>
+
+                <h3>V2 — [what changed and why]</h3>
+                <p>[One paragraph.]</p>
+
+                <h3>V3 — [current state]</h3>
+                <p>[One paragraph.]</p>
+            </section>
+
+            <section class="case-section">
+                <h2>Current Status &amp; Next Steps</h2>
+                <div class="callout">
+                    <span class="callout__label">Draft — needs your detail</span>
+                    <p>
+                        Add your load case (magnitude, direction, source), where testing stands now, and
+                        what the next round measures. Preliminary results are fine — reviewers understand
+                        that ongoing means ongoing, and specifics beat polish.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ===== Prev / next ===== -->
+            <nav class="case-nav">
+                <a href="robotic-arm.html">← Previous: 6-DOF Robotic Arm</a>
+                <a href="wheelchair-umbrella.html">Next: Wheelchair Rain Protection →</a>
+            </nav>
+
         </div>
+    </main>
 
-    </div>
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

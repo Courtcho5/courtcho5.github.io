@@ -1,245 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REWIND Case Study - Courtney Cho</title>
-    <link rel="stylesheet" href="casestudy.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REWIND — AI Memory Support | Courtney Cho</title>
+    <meta name="description" content="REWIND: a full-stack journaling tool that turns a dementia patient's own diary entries into personalized recall quizzes, built with Flask, Firebase, and the Gemini API." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to home</a>
-        
-        <section class="hero">
-            <h1>REWIND: AI-Powered Memory Support for Dementia Care</h1>
-            <p class="subtitle">Developing an intelligent journaling and assessment tool that helps dementia patients maintain cognitive function through personalized memory exercises</p>
-            <div class="hero-image">
-                <img src="rewind-hero.png" alt="REWIND Application">
-            </div>
-        </section>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-        <section class="project-details">
-            <div class="detail-grid">
-                <div class="detail-item">
-                    <h4>Role</h4>
-                    <p>Full-Stack Developer & UX Designer</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Timeline</h4>
-                    <p>Fall 2024 - Spring 2025</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Technologies</h4>
-                    <p>Python, Flask, Firebase, Google AI (Gemini), HTML/CSS</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Team</h4>
-                    <p>Independent Project</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="challenge">
-            <h2>The Challenge</h2>
-            <p>
-                Dementia affects over 55 million people worldwide, with numbers projected to triple by 2050. 
-                While memory loss is progressive, research shows that regular cognitive exercises and memory 
-                retrieval practice can help slow decline and improve quality of life for patients.
-            </p>
-            <p>
-                Current memory support tools face critical limitations:
-            </p>
-            <ul>
-                <li><strong>Generic exercises</strong> that don't connect to patients' personal experiences and memories</li>
-                <li><strong>Lack of personalization</strong> making it difficult for patients to engage meaningfully</li>
-                <li><strong>No adaptive difficulty</strong> to match patients' changing cognitive abilities</li>
-                <li><strong>Poor caregiver visibility</strong> into patient progress and memory retention</li>
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
             </ul>
-            <p>
-                These gaps mean that patients often lose interest in cognitive exercises, and caregivers lack 
-                the data needed to provide informed support and track disease progression.
-            </p>
-        </section>
-
-        <section class="solution">
-            <h2>Our Solution</h2>
-            <p>
-                REWIND combines daily journaling with AI-generated memory quizzes to create a personalized 
-                cognitive exercise system. By using patients' own diary entries as the basis for recall 
-                questions, the tool makes memory practice more engaging and meaningful while providing 
-                caregivers with actionable insights.
-            </p>
-            
-            <h3>Key Features</h3>
-            <div class="features-grid">
-                <div class="feature">
-                    <h4>Personal Diary System</h4>
-                    <p>Simple, accessible interface for patients to record daily experiences and thoughts</p>
-                </div>
-                <div class="feature">
-                    <h4>AI-Generated Quizzes</h4>
-                    <p>Google Gemini AI creates personalized memory questions based on diary entries</p>
-                </div>
-                <div class="feature">
-                    <h4>Adaptive Difficulty Levels</h4>
-                    <p>Four difficulty settings targeting different time periods (1 week to 3 months)</p>
-                </div>
-                <div class="feature">
-                    <h4>Progress Tracking</h4>
-                    <p>Comprehensive analytics showing quiz performance and memory retention over time</p>
-                </div>
-                <div class="feature">
-                    <h4>Secure Cloud Storage</h4>
-                    <p>Firebase integration ensures patient data is safely stored and accessible</p>
-                </div>
-                <div class="feature">
-                    <h4>Caregiver Dashboard</h4>
-                    <p>Planned feature for clinicians to monitor patient progress and cognitive trends</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="image-full">
-            <img src="dashboard.png" alt="Dashboard prototype">
-            <p class="caption">Clean, accessible interface designed for ease of use by dementia patients</p>
         </div>
+    </nav>
 
-        <section class="process">
-            <h2>Development Process</h2>
-            
-            <div class="process-section">
-                <h3>User-Centered Design Approach</h3>
-                <p>
-                    The design prioritized simplicity and clarity, recognizing that dementia patients may 
-                    experience confusion or difficulty with complex interfaces. Large text, high contrast 
-                    colors, and straightforward navigation were essential design principles throughout 
-                    development.
+    <main id="main">
+        <div class="container">
+            <a href="all-projects.html" class="back-link">← All projects</a>
+
+            <!-- ===== Hero ===== -->
+            <header class="case-hero">
+                <span class="case-hero__eyebrow">Health Software · 2024–2025</span>
+                <h1>REWIND: Memory Exercises Built From Your Own Life</h1>
+                <p class="case-hero__subtitle">
+                    Generic cognitive exercises are easy to disengage from. REWIND generates recall
+                    questions from the patient's own diary entries instead.
                 </p>
-            </div>
+                <div class="case-hero__image">
+                    <img src="rewind-hero.png" alt="The REWIND application interface showing a diary entry and generated memory quiz" />
+                </div>
+            </header>
 
-            <div class="process-section">
-                <h3>Technical Architecture</h3>
-                <p>The application was built using a modern web stack optimized for rapid development and scalability:</p>
+            <!-- ===== Metadata ===== -->
+            <section class="meta">
+                <div>
+                    <div class="meta__label">Role</div>
+                    <div class="meta__value">Sole developer &amp; designer</div>
+                </div>
+                <div>
+                    <div class="meta__label">Timeline</div>
+                    <div class="meta__value">Fall 2024 – Spring 2025</div>
+                </div>
+                <div>
+                    <div class="meta__label">Stack</div>
+                    <div class="meta__value">Python · Flask · Firebase · Gemini API · HTML/CSS</div>
+                </div>
+                <div>
+                    <div class="meta__label">Status</div>
+                    <div class="meta__value">Functional prototype</div>
+                </div>
+            </section>
+
+            <!-- ===== Challenge ===== -->
+            <section class="case-section">
+                <h2>The Problem</h2>
+                <p class="lead">
+                    Dementia affects more than 55 million people worldwide, and the figure is projected to
+                    triple by 2050. Memory loss is progressive, but regular retrieval practice is
+                    associated with slower decline and better quality of life — if patients keep doing it.
+                </p>
+                <p>
+                    That last condition is where existing tools fall down:
+                </p>
+                <ul>
+                    <li><strong>Generic exercises.</strong> Recalling a word list has no connection to a patient's life, so there's nothing pulling them back to it.</li>
+                    <li><strong>No personalization.</strong> Without personal relevance, engagement drops off quickly — and an exercise nobody does has no effect.</li>
+                    <li><strong>Fixed difficulty.</strong> A single difficulty level is wrong for almost everyone, and stays wrong as the condition progresses.</li>
+                    <li><strong>Caregivers flying blind.</strong> No visibility into what a patient can still recall means no data to inform care decisions.</li>
+                </ul>
+            </section>
+
+            <!-- ===== Solution ===== -->
+            <section class="case-section">
+                <h2>The Approach</h2>
+                <p>
+                    REWIND pairs a daily journal with AI-generated recall quizzes drawn from what the
+                    patient actually wrote. The diary supplies the source material, so every question is
+                    about something the person genuinely experienced — which makes the exercise both more
+                    meaningful and a more honest measure of recall.
+                </p>
+
+                <h3>Key features</h3>
+                <div class="features">
+                    <div class="feature">
+                        <h4>Accessible diary entry</h4>
+                        <p>A deliberately plain interface for recording daily experiences — large text, high contrast, minimal navigation.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Generated recall questions</h4>
+                        <p>Gemini generates quiz questions from the patient's own entries rather than a fixed question bank.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Four difficulty tiers</h4>
+                        <p>Each tier draws from a different window of history, from one week back out to three months.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Progress tracking</h4>
+                        <p>Quiz performance recorded over time, so retention trends are visible rather than anecdotal.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Authenticated cloud storage</h4>
+                        <p>Firebase Auth and Firestore keep entries private to the user and available across devices.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Caregiver dashboard</h4>
+                        <p>Planned, not built — designed for clinicians to review cognitive trends over time.</p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <span class="callout__label">The core idea</span>
+                    <p>
+                        Difficulty here isn't an abstract setting — it's a time window. A harder quiz asks
+                        about something further back. That maps difficulty directly onto the thing dementia
+                        actually affects, and it means the difficulty tiers double as a rough measure of how
+                        far back reliable recall extends.
+                    </p>
+                </div>
+            </section>
+
+            <figure class="figure">
+                <img src="dashboard.png" alt="REWIND dashboard showing quiz history and progress" />
+                <figcaption>The dashboard — designed for legibility first, with large type and high contrast throughout.</figcaption>
+            </figure>
+
+            <!-- ===== Process ===== -->
+            <section class="case-section">
+                <h2>Building It</h2>
+
+                <h3>Designing for cognitive load</h3>
+                <p>
+                    Every interface decision assumed a user who may be confused or disoriented. Large text,
+                    high contrast, one action per screen, and no nested navigation. Features that would
+                    have been useful for a caregiver were deliberately kept off the patient's screens —
+                    an interface that tries to serve both audiences at once serves neither.
+                </p>
+
+                <h3>Architecture</h3>
                 <ol>
-                    <li><strong>Flask backend</strong> providing lightweight, flexible server-side logic</li>
-                    <li><strong>Firebase Authentication</strong> for secure user management</li>
-                    <li><strong>Firestore database</strong> storing diary entries and quiz results</li>
-                    <li><strong>Google Gemini AI integration</strong> generating contextual quiz questions</li>
-                    <li><strong>Responsive frontend</strong> ensuring accessibility across devices</li>
+                    <li><strong>Flask backend</strong> — lightweight server-side logic, quick to iterate on</li>
+                    <li><strong>Firebase Authentication</strong> — user management without hand-rolling credential storage</li>
+                    <li><strong>Firestore</strong> — diary entries and quiz results, queryable by date range</li>
+                    <li><strong>Gemini API</strong> — question generation from retrieved entries</li>
+                    <li><strong>Responsive frontend</strong> — works on whatever device the patient already has</li>
                 </ol>
-            </div>
 
-            <div class="process-section">
-                <h3>AI Integration Strategy</h3>
+                <h3>The generation step</h3>
                 <p>
-                    The core innovation was connecting personal diary entries to AI-generated memory assessment. 
-                    The system retrieves entries within a specified timeframe, sends them to Google's Gemini API 
-                    with carefully crafted prompts, and receives back personalized quiz questions that test recall 
-                    of specific details and experiences.
+                    The interesting engineering is in the middle. The system pulls entries within the
+                    selected time window, passes them to Gemini with a prompt shaped to produce specific,
+                    factual recall questions rather than open-ended reflection, and returns the result as a
+                    quiz. Getting questions that test detail — rather than asking how the day felt —
+                    took real iteration on the prompt.
                 </p>
-            </div>
-        </section>
+            </section>
 
-        <div class="image-grid">
-            <div class="grid-item">
-                <img src="diary.png" alt="Early prototype">
-                <p class="caption">Simple diary entry form</p>
+            <div class="figure-grid">
+                <figure>
+                    <img src="diary.png" alt="The REWIND diary entry form" />
+                    <figcaption>Diary entry — one field, no distractions</figcaption>
+                </figure>
+                <figure>
+                    <img src="difficulty.png" alt="Difficulty selection screen showing four time-window options" />
+                    <figcaption>Difficulty as a time window, from one week to three months</figcaption>
+                </figure>
+                <figure>
+                    <img src="question.png" alt="A generated recall question drawn from a previous diary entry" />
+                    <figcaption>A generated question, sourced from the user's own entry</figcaption>
+                </figure>
             </div>
-            <div class="grid-item">
-                <img src="difficulty.png" alt="Difficult selection">
-                <p class="caption">Adaptive difficulty options</p>
-            </div>
-            <div class="grid-item">
-                <img src="question.png" alt="AI prototype">
-                <p class="caption">AI-generated quiz questions</p>
-            </div>
-            
+
+            <!-- ===== Results ===== -->
+            <section class="case-section">
+                <h2>What Works, and What Doesn't Yet</h2>
+
+                <div class="results">
+                    <div class="result">
+                        <h3>Built</h3>
+                        <ul>
+                            <li>Authenticated multi-user accounts</li>
+                            <li>Diary capture and retrieval by date range</li>
+                            <li>Question generation across four difficulty tiers</li>
+                            <li>Quiz scoring and history</li>
+                        </ul>
+                    </div>
+
+                    <div class="result">
+                        <h3>Not yet built</h3>
+                        <ul>
+                            <li>Caregiver-facing dashboard</li>
+                            <li>Trend visualization over time</li>
+                            <li>Native mobile application</li>
+                        </ul>
+                    </div>
+
+                    <div class="result">
+                        <h3>Not yet validated</h3>
+                        <ul>
+                            <li>No testing with dementia patients or caregivers</li>
+                            <li>No clinical evidence of cognitive benefit</li>
+                            <li>Accessibility assumptions untested with the target population</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <span class="callout__label">Honest assessment</span>
+                    <p>
+                        This is a working technical prototype resting on an untested premise. The
+                        engineering — auth, storage, generation, scoring — is real and functional. Whether
+                        personalized recall practice actually helps patients is a clinical question this
+                        project does not answer, and testing with real users is the necessary next step
+                        before any claim about benefit would be justified.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ===== Next ===== -->
+            <section class="case-section">
+                <h2>What I'd Do Next</h2>
+                <ul>
+                    <li>Test the interface with dementia patients and caregivers — the accessibility choices are informed guesses until someone in the target population uses it</li>
+                    <li>Build the caregiver dashboard, the feature most likely to make the tool clinically useful</li>
+                    <li>Add trend visualization so recall changes are visible at a glance</li>
+                    <li>Investigate EHR integration for clinical settings</li>
+                </ul>
+                <p>
+                    Technically, the most valuable thing I took from this was prompt engineering as a real
+                    design surface. The difference between a question that tests recall and one that
+                    invites a vague reflection is entirely in how the request is framed — and that framing
+                    needed as much iteration as any part of the interface.
+                </p>
+            </section>
+
+            <!-- ===== Prev / next ===== -->
+            <nav class="case-nav">
+                <a href="all-projects.html">← All projects</a>
+                <a href="practiv.html">Featured work: PRACTIV →</a>
+            </nav>
+
         </div>
+    </main>
 
-        <section class="results">
-            <h2>Technical Achievements</h2>
-            <p>
-                The REWIND platform successfully demonstrates the potential of combining AI with healthcare 
-                applications to create meaningful patient interventions.
-            </p>
-
-            <div class="results-grid">
-                <div class="result-item">
-                    <h3>System Capabilities</h3>
-                    <ul>
-                        <li>Secure user authentication and data storage</li>
-                        <li>Dynamic quiz generation from personal content</li>
-                        <li>Scalable cloud architecture</li>
-                        <li>Responsive, accessible interface</li>
-                    </ul>
-                </div>
-
-                <div class="result-item">
-                    <h3>Technical Stack</h3>
-                    <ul>
-                        <li><strong>Backend:</strong> Python, Flask</li>
-                        <li><strong>Database:</strong> Firebase Firestore</li>
-                        <li><strong>AI:</strong> Google Gemini API</li>
-                        <li><strong>Frontend:</strong> HTML, CSS, JavaScript</li>
-                    </ul>
-                </div>
-
-                <div class="result-item">
-                    <h3>Key Learnings</h3>
-                    <ul>
-                        <li>API integration and prompt engineering</li>
-                        <li>Healthcare-focused UX design principles</li>
-                        <li>Full-stack web development</li>
-                        <li>Cloud database management</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <div class="image-full">
-            <div class="image-placeholder">[Image: System architecture diagram]</div>
-            <p class="caption">REWIND's architecture connecting diary entries, AI processing, and user assessment</p>
-        </div>
-
-        <section class="impact">
-            <h2>Impact & Future Directions</h2>
-            <p>
-                REWIND demonstrates how AI can be thoughtfully applied to healthcare challenges, creating 
-                tools that are both technically sophisticated and genuinely useful for vulnerable populations. 
-                By personalizing cognitive exercises through patients' own experiences, the platform offers 
-                a more engaging approach to memory maintenance than traditional generic exercises.
-            </p>
-
-            <h3>Key Achievements</h3>
-            <ul>
-                <li>Built a functional full-stack web application from concept to deployment</li>
-                <li>Successfully integrated Google's Gemini AI for natural language processing</li>
-                <li>Designed an accessible interface prioritizing dementia patient needs</li>
-                <li>Created a scalable architecture supporting future multi-user deployment</li>
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
             </ul>
-
-            <h3>Next Steps</h3>
-            <ul>
-                <li>Implement caregiver dashboard for clinician access to patient progress</li>
-                <li>Conduct user testing with dementia patients and caregivers</li>
-                <li>Develop mobile application for increased accessibility</li>
-                <li>Add data visualization for tracking cognitive trends over time</li>
-                <li>Explore integration with electronic health records (EHR) systems</li>
-            </ul>
-        </section>
-
-        <div class="image-full">
-            <div class="image-placeholder">[Image: REWIND in use]</div>
-            <p class="caption">REWIND helping dementia patients maintain cognitive function through personalized memory practice</p>
         </div>
-
-        <div class="project-navigation">
-            <a href="test.html" class="nav-link">← Previous Project</a>
-            <a href="index.html" class="nav-link">Back to Projects</a>
-            <a href="wheelchair-umbrella.html" class="nav-link">Next Project →</a>
-        </div>
-
-    </div>
+    </footer>
 </body>
 </html>

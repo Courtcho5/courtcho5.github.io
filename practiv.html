@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRACTIV — IV Arm Trainer | Courtney Cho</title>
+    <meta name="description" content="PRACTIV: a modular, anatomically accurate IV training arm with 3D-printed lattice tissue and pressurized flashback, validated against a commercial trainer in a formal usability study." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main">
+        <div class="container">
+            <a href="all-projects.html" class="back-link">← All projects</a>
+
+            <!-- ===== Hero ===== -->
+            <header class="case-hero">
+                <span class="case-hero__eyebrow">Medical Simulation · 2024–2025</span>
+                <h1>PRACTIV: An IV Training Arm That Behaves Like a Patient</h1>
+                <p class="case-hero__subtitle">
+                    Nurses learn to place IVs on models that are nothing like the people they will
+                    treat. We built one that pushes back.
+                </p>
+                <div class="case-hero__image">
+                    <img src="practiv-hero.jpg" alt="The PRACTIV training arm during a cannulation attempt" />
+                </div>
+            </header>
+
+            <!-- ===== Metadata ===== -->
+            <section class="meta">
+                <div>
+                    <div class="meta__label">Role</div>
+                    <div class="meta__value">Design Engineer &amp; Researcher</div>
+                </div>
+                <div>
+                    <div class="meta__label">Timeline</div>
+                    <div class="meta__value">Winter 2024 – Winter 2025</div>
+                </div>
+                <div>
+                    <div class="meta__label">Collaborators</div>
+                    <div class="meta__value">
+                        Liam Cowin (ME) ·
+                        <a href="https://eih.uw.edu/" target="_blank" rel="noopener">UW Engineering Innovation in Health</a> ·
+                        <a href="https://crest.washington.edu/" target="_blank" rel="noopener">UW CREST</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="meta__label">Funding</div>
+                    <div class="meta__value">
+                        <a href="https://foster.uw.edu/centers/buerk-ctr-entrepreneurship/entrepreneurship-competitions/uw-health-innovation-challenge/" target="_blank" rel="noopener">Hollomon Health Innovation Challenge</a>
+                        ($1,250) · EIH Summer Incubator ($5,000)
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Challenge ===== -->
+            <section class="case-section">
+                <h2>The Problem</h2>
+                <p class="lead">
+                    Peripheral IV insertion is one of the most common procedures in any hospital — and
+                    first-attempt success rates among staff nurses can be as low as 44%. Every failed
+                    attempt means another needle stick for the patient, a delay in treatment, and added cost.
+                </p>
+                <p>
+                    The training equipment is a large part of why. We looked at what was on the market and
+                    found the same four failures repeated across nearly every commercial trainer:
+                </p>
+                <ul>
+                    <li><strong>Oversimplified anatomy.</strong> Veins sit shallow and obvious, so learners never practice the hard part — finding one.</li>
+                    <li><strong>No tactile realism.</strong> The material doesn't feel like tissue, so the muscle memory doesn't transfer.</li>
+                    <li><strong>One body type.</strong> Models overwhelmingly represent lean, light-skinned males, leaving clinicians unprepared for everyone else.</li>
+                    <li><strong>No complications.</strong> Rolling veins and fragile tissue — the cases that actually cause failed sticks — simply aren't simulated.</li>
+                </ul>
+                <p>
+                    The result is a training gap: learners become proficient in a controlled environment and
+                    remain underprepared for real patients.
+                </p>
+            </section>
+
+            <figure class="figure">
+                <img src="current-trainers.png" alt="A survey of commercially available IV training arms showing uniformly pale, lean anatomy" />
+                <figcaption>Commercial trainers we evaluated: uniform anatomy, shallow veins, and no complication modes.</figcaption>
+            </figure>
+
+            <!-- ===== Solution ===== -->
+            <section class="case-section">
+                <h2>What We Built</h2>
+                <p>
+                    Working with UW's Engineering Innovation in Health program and the Center for Research
+                    and Education in Simulation Technologies (CREST), we developed PRACTIV: a modular IV
+                    training arm built around anatomical data rather than convenience.
+                </p>
+
+                <h3>Key features</h3>
+                <div class="features">
+                    <div class="feature">
+                        <h4>Anatomically sourced vein map</h4>
+                        <p>Vein placement from hand to upper arm derived from the <a href="https://www.mohses.org/" target="_blank" rel="noopener">MoHSES™ female dataset</a> — a body type commercial trainers largely ignore.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Lattice tissue core</h4>
+                        <p>A 3D-printed TPU lattice tuned so puncture force lands in the 1.25–3.2 N range measured on real tissue.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Replaceable silicone skin</h4>
+                        <p>Cast in multiple pigmented skin tones and swappable, so one arm covers many patient presentations.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Pressurized flashback</h4>
+                        <p>A 5–15 mmHg fluid system delivers real blood flashback the instant the lumen is entered.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Rolling vein simulation</h4>
+                        <p>Veins that slip under the needle, forcing learners to practice proper stabilization.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Full-body integration</h4>
+                        <p>Compatible with <a href="https://www.mohses.org/" target="_blank" rel="noopener">MoHSES™</a> systems for scenario-based team training.</p>
+                    </div>
+                </div>
+            </section>
+
+            <figure class="figure figure--narrow">
+                <img src="practiv-features.png" alt="Exploded view of PRACTIV showing the lattice core, vein network, and removable skin layer" />
+                <figcaption>The modular stack: lattice core, co-extruded vein network, and replaceable cast skin.</figcaption>
+            </figure>
+
+            <!-- ===== Process ===== -->
+            <section class="case-section">
+                <h2>How We Got There</h2>
+
+                <h3>Grounding the design in clinical practice</h3>
+                <p>
+                    Before drawing anything, we interviewed and observed nurses, clinicians, and trainees to
+                    understand where IV training actually breaks down. Using
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/9819578/" target="_blank" rel="noopener">Cognitive Task Analysis</a>,
+                    we mapped the decision points and manual skills a successful placement requires — which
+                    told us exactly which physical cues the trainer had to reproduce and which we could skip.
+                </p>
+
+                <h3>Iterating on the hard parts</h3>
+                <p>
+                    Five rounds of prototyping, each driven by clinician feedback rather than our own
+                    assumptions:
+                </p>
+                <ol>
+                    <li>Material testing to hit realistic skin puncture forces (1.25–3.2 N)</li>
+                    <li>Lattice optimization in nTop to tune tissue compliance independently of skin</li>
+                    <li>Silicone formulation refinement for feel and durability across cast batches</li>
+                    <li>Vein depth and routing adjustments against anatomical review</li>
+                    <li>Integration of the pressurized fluid loop for flashback</li>
+                </ol>
+
+                <h3>Manufacturing</h3>
+                <ul>
+                    <li>TPU lattice core printed via fused filament fabrication</li>
+                    <li>Custom silicone casting with pigmented skin tones</li>
+                    <li>Co-extruded silicone veins with a blue outer layer for visibility under skin</li>
+                    <li>Modular assembly so consumable parts can be replaced without rebuilding the arm</li>
+                </ul>
+            </section>
+
+            <div class="figure-grid">
+                <figure>
+                    <img src="lattice-render.png" alt="Wireframe render of the TPU lattice cylinder generated in nTop" />
+                    <figcaption>Lattice geometry generated in nTop — cell size sets tissue compliance</figcaption>
+                </figure>
+                <figure>
+                    <img src="lattice-structure.png" alt="3D-printed TPU lattice structure forming the tissue core" />
+                    <figcaption>The printed TPU lattice core</figcaption>
+                </figure>
+                <figure>
+                    <img src="lattice-veins.jpg" alt="Printed lattice forearm core with blue co-extruded silicone veins routed through it" />
+                    <figcaption>Co-extruded veins routed through the lattice, including a bifurcation</figcaption>
+                </figure>
+                <figure>
+                    <img src="silicone-casting.png" alt="Pigmented silicone being cast in a mold to form the skin layer" />
+                    <figcaption>Casting pigmented silicone skin</figcaption>
+                </figure>
+                <figure>
+                    <img src="cast-arm.png" alt="Completed cast silicone arm with vein tubing exiting at the elbow" />
+                    <figcaption>Cast skin over the core, plumbed for the fluid loop</figcaption>
+                </figure>
+                <figure>
+                    <img src="prototype-1.jpg" alt="First-generation PRACTIV prototype arm" />
+                    <figcaption>Early full-arm prototype</figcaption>
+                </figure>
+            </div>
+
+            <!-- ===== Competition ===== -->
+            <section class="case-section">
+                <h2>Hollomon Health Innovation Challenge</h2>
+
+                <div class="stat-row">
+                    <div class="stat">
+                        <span class="stat__number">22</span>
+                        <span class="stat__label">Finalist teams</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number">70</span>
+                        <span class="stat__label">Total applicants</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number">$1,250</span>
+                        <span class="stat__label">Prototyping funds awarded</span>
+                    </div>
+                </div>
+
+                <p>
+                    Four weeks into the project we entered the Hollomon Health Innovation Challenge and were
+                    selected as one of 22 finalist teams from 70 applicants. I presented our pitch to a panel
+                    of investors and healthcare innovation experts, covering the clinical need, our technical
+                    approach, and the market analysis behind it.
+                </p>
+                <p>
+                    Getting that validation early mattered more than the funding did — it confirmed we were
+                    solving a gap the simulation market recognized, before we had committed to a
+                    manufacturing approach.
+                </p>
+
+                <figure class="figure figure--narrow">
+                    <img src="competition-pitch.png" alt="Courtney Cho presenting the PRACTIV pitch on stage at the 2025 UW Health Innovation Challenge" />
+                    <figcaption>Pitching PRACTIV at the 2025 UW Health Innovation Challenge.</figcaption>
+                </figure>
+            </section>
+
+            <!-- ===== Results ===== -->
+            <section class="case-section">
+                <h2>Validation</h2>
+                <p class="lead">
+                    We ran a formal usability study with eight participants — five nurses, one surgeon, and
+                    two simulation technicians — comparing PRACTIV head-to-head against a leading commercial
+                    IV trainer.
+                </p>
+
+                <div class="results">
+                    <div class="result">
+                        <h3>System Usability Scale</h3>
+                        <div class="stat">
+                            <span class="stat__number">73.6</span>
+                            <span class="stat__label">PRACTIV — above the acceptability threshold</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number">49.7</span>
+                            <span class="stat__label">Commercial trainer — below it</span>
+                        </div>
+                    </div>
+
+                    <div class="result">
+                        <h3>Anatomical Fidelity</h3>
+                        <ul>
+                            <li>Soft tissue compliance — <strong>p = 0.0003</strong></li>
+                            <li>Vein coloring realism — <strong>p = 0.0045</strong></li>
+                            <li>Needle insertion feedback — <strong>p = 0.016</strong></li>
+                            <li>Skin tone realism — <strong>p = 0.024</strong></li>
+                            <li>Vein palpation fidelity — <strong>p = 0.031</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="result">
+                        <h3>Educational Value</h3>
+                        <ul>
+                            <li>Potential to train to professional competence — <strong>p = 0.043</strong></li>
+                            <li>Likelihood of curriculum adoption — <strong>p = 0.031</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <span class="callout__label">Result</span>
+                    <p>
+                        PRACTIV rated significantly higher than the commercial trainer on every realism
+                        dimension we measured, and was the only one of the two to clear the standard
+                        acceptability threshold on the System Usability Scale.
+                    </p>
+                </div>
+            </section>
+
+            <figure class="figure figure--narrow">
+                <img src="usability-testing.jpg" alt="A clinician evaluating PRACTIV during a usability testing session" />
+                <figcaption>Clinical experts evaluating PRACTIV during usability testing.</figcaption>
+            </figure>
+
+            <!-- ===== Impact ===== -->
+            <section class="case-section">
+                <h2>Where It Stands</h2>
+                <p>
+                    PRACTIV showed that pairing advanced manufacturing with genuine user research produces
+                    training hardware that measurably outperforms what clinicians are currently issued. The
+                    work was published as “Development and Verification of a Novel Peripheral Intravenous
+                    Catheter Training Device” (Cho et al.) in <em>Simulation in Healthcare</em>.
+                </p>
+
+                <h3>What we established</h3>
+                <ul>
+                    <li>Statistically significant improvement over a commercial trainer across realism, usability, and educational value</li>
+                    <li>A modular architecture that keeps consumable parts replaceable</li>
+                    <li>Feasibility of 3D-printed compliant lattices as a tissue analog in medical simulation</li>
+                    <li>A base platform that extends to additional skin tones, body types, and pathological conditions</li>
+                </ul>
+
+                <h3>What comes next</h3>
+                <ul>
+                    <li>Training-effectiveness studies that measure learner performance, not just perceived realism</li>
+                    <li>Expanded anatomical variation and patient scenarios</li>
+                    <li>Integration into team-based full-body simulation environments</li>
+                    <li>Commercialization pathway</li>
+                </ul>
+            </section>
+
+            <figure class="figure">
+                <img src="final-assembly.png" alt="The completed PRACTIV prototype fully assembled" />
+                <figcaption>The final PRACTIV prototype, assembled and ready for training use.</figcaption>
+            </figure>
+
+            <!-- ===== Prev / next ===== -->
+            <nav class="case-nav">
+                <span></span>
+                <a href="robotic-arm.html">Next: 6-DOF Robotic Arm →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

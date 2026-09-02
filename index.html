@@ -3,146 +3,223 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Courtney Cho's Portfolio</title>
-    <link rel="stylesheet" href="index.css" />
-    <link rel="icon" type="image/png" href="url-logo.png">
+    <title>Courtney Cho — Bioengineer &amp; Robotics</title>
+    <meta name="description" content="Courtney Cho is a bioengineering master's candidate at Northeastern University working on medical devices, assistive robotics, and biomechanical test systems." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <!-- Hero Section -->
-        <header class="hero">
-            <img src="logo.png" alt="Name" class="logo-image">
-            <h1>Courtney Cho</h1>
-            <p class="subtitle">Bioengineering + Design Engineer</p>
-        </header>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-        <!-- About Section with Image -->
-        <div class="intro-section">
-            <section class="bio">
-                <p>
-                    Hi I'm Courtney, a Bioengineering Master's candidate at <a href="https://bioe.northeastern.edu/" class="hyper-link">Northeastern University</a>.
-                    I'm a bioengineer focused on human centered medical innovation. I work on prototyping medical devices, studying 
-                    tissue mechanics, and designing accessible solutions grounded in 
-                    engineering and user research.
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main">
+        <div class="container">
+
+            <!-- ===== Hero ===== -->
+            <header class="hero">
+                <span class="hero__eyebrow">Bioengineering · Robotics · Medical Devices</span>
+                <h1>Courtney Cho</h1>
+                <p class="hero__subtitle">
+                    I design and build mechanical systems that have to work on real people.
                 </p>
+            </header>
 
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" class="link-button">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        LinkedIn
+            <!-- ===== Intro ===== -->
+            <div class="intro">
+                <section class="bio">
+                    <p>
+                        I'm a Bioengineering master's candidate at
+                        <a href="https://bioe.northeastern.edu/" target="_blank" rel="noopener">Northeastern University</a>,
+                        where my thesis work involves designing a biomechanical test rig to predict femur
+                        fracture in patients with osseointegrated prosthetic implants.
+                    </p>
+                    <p>
+                        My work sits where mechanical design meets the human body: actuated assistive
+                        devices, robotic control systems, and medical simulation hardware. I move between
+                        CAD and FEA, embedded control and inverse kinematics, and the user research that
+                        tells me whether any of it actually helps. Before Northeastern I earned a BS in
+                        Human Centered Design and Engineering from the University of Washington.
+                    </p>
+                    <p>
+                        I'm currently looking for robotics and medical device roles where hardware has to
+                        survive contact with real users.
+                    </p>
+
+                    <div class="actions">
+                        <a href="all-projects.html" class="button button--primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                            View all projects
+                        </a>
+                        <a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener" class="button">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                            </svg>
+                            Resume
+                        </a>
+                        <a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener" class="button">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </section>
+
+                <div class="portrait">
+                    <img src="profile.JPG" alt="Portrait of Courtney Cho" />
+                </div>
+            </div>
+
+            <!-- ===== Featured projects ===== -->
+            <section class="section">
+                <div class="section__head">
+                    <h2>Selected Work</h2>
+                    <a href="all-projects.html" class="section__link">All projects →</a>
+                </div>
+
+                <div class="projects">
+                    <a href="practiv.html" class="project-card">
+                        <span class="project-card__tag">Medical Simulation</span>
+                        <h3 class="project-card__title">PRACTIV — A Novel IV Arm Trainer</h3>
+                        <p class="project-card__body">
+                            A modular IV training arm with anatomically accurate vein placement, a 3D-printed
+                            TPU lattice that mimics soft tissue, and a pressurized fluid system for blood
+                            flashback. In a formal usability study against a leading commercial trainer,
+                            PRACTIV scored 73.6 on the System Usability Scale versus 49.7, with significantly
+                            higher ratings across every realism measure tested.
+                        </p>
+                        <div class="chips">
+                            <span>SOLIDWORKS</span>
+                            <span>nTopology</span>
+                            <span>Silicone Casting</span>
+                            <span>Usability Testing</span>
+                        </div>
                     </a>
-                    <a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" class="link-button">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
-                        </svg>
-                        Resume
+
+                    <a href="robotic-arm.html" class="project-card">
+                        <span class="project-card__tag">Robotics</span>
+                        <h3 class="project-card__title">6-DOF Robotic Arm &amp; Inverse Kinematics Controller</h3>
+                        <p class="project-card__body">
+                            A six-axis arm designed in CAD and driven by a Python control application I wrote
+                            from scratch. It solves closed-form inverse kinematics for a target position in
+                            Cartesian space, compensates the wrist to hold the gripper level, and validates
+                            every joint against its mechanical limits before a single command reaches the servos.
+                        </p>
+                        <div class="chips">
+                            <span>Inverse Kinematics</span>
+                            <span>Python</span>
+                            <span>Serial / Arduino</span>
+                            <span>Mechanism Design</span>
+                        </div>
+                    </a>
+
+                    <a href="biomechanics-research.html" class="project-card">
+                        <span class="project-card__tag">Master's Thesis · Research</span>
+                        <h3 class="project-card__title">Osseointegrated Implant Biomechanical Test Rig</h3>
+                        <p class="project-card__body">
+                            Designing and building a mechanical test rig to characterize femur fracture risk
+                            in patients with osseointegrated prosthetic implants. Now on its third design
+                            iteration, with finite element analysis used to verify structural integrity of
+                            the fixture before machining.
+                        </p>
+                        <div class="chips">
+                            <span>Finite Element Analysis</span>
+                            <span>Mechanical Testing</span>
+                            <span>Fixture Design</span>
+                            <span>Experimental Design</span>
+                        </div>
+                    </a>
+
+                    <a href="wheelchair-umbrella.html" class="project-card">
+                        <span class="project-card__tag">Assistive Technology · Team Lead</span>
+                        <h3 class="project-card__title">Wheelchair-Mounted Umbrella</h3>
+                        <p class="project-card__body">
+                            Led mechanical design on a two-year HuskyADAPT project: a servo-actuated canopy
+                            that opens at the press of a button, mounted to a wheelchair's existing accessory
+                            tracks. Requirements came from an occupational therapist whose clients were
+                            cancelling therapy appointments because opening an umbrella meant waiting for
+                            a caregiver.
+                        </p>
+                        <div class="chips">
+                            <span>Team Leadership</span>
+                            <span>Arduino</span>
+                            <span>Servo Actuation</span>
+                            <span>Mechanism Design</span>
+                        </div>
                     </a>
                 </div>
             </section>
 
-            <div class="profile-image">
-                <img src="profile.JPG" alt="Courtney Cho">
-            </div>
+            <!-- ===== News ===== -->
+            <section class="section">
+                <div class="section__head">
+                    <h2>News</h2>
+                </div>
+
+                <ul class="news">
+                    <li>
+                        <span class="news__date">Mar 2026</span>
+                        <span class="news__body">Presented at the 11th Annual Musculoskeletal Research Symposium in Boston, MA.</span>
+                    </li>
+                    <li>
+                        <span class="news__date">Dec 2025</span>
+                        <span class="news__body">Published “Development and Verification of a Novel Peripheral Intravenous Catheter Training Device” (Cho et al.) in <em>Simulation in Healthcare</em>.</span>
+                    </li>
+                    <li>
+                        <span class="news__date">Sep 2025</span>
+                        <span class="news__body">Began my master's in Bioengineering at Northeastern University, supported by the Graduate Dean's Scholarship.</span>
+                    </li>
+                    <li>
+                        <span class="news__date">Jun 2025</span>
+                        <span class="news__body">Graduated from the University of Washington with a BS in Human Centered Design and Engineering.</span>
+                    </li>
+                    <li>
+                        <span class="news__date">Mar 2025</span>
+                        <span class="news__body">Presented PRACTIV at the 2025 Hollomon Health Innovation Challenge — one of 22 finalist teams from 70 applicants.</span>
+                    </li>
+                    <li>
+                        <span class="news__date">Feb 2025</span>
+                        <span class="news__body">Published “Creative Stimuli for Multi-Agent LLM Brainstorming” (Shang et al.).</span>
+                    </li>
+                </ul>
+            </section>
+
         </div>
+    </main>
 
-        <!-- Projects Section -->
-        <section class="projects-section">
-            <h2>Featured Projects</h2>
-            
-            <div class="projects">
-                <a href="test.html" class="project-card">
-                    <div class="project-header">
-                        <span class="project-tag">Medical Simulation</span>
-                        <h3>PRACTIV: A Novel IV Arm Trainer</h3>
-                    </div>
-                    <p class="project-description">
-                        Engineered a modular IV training simulator with anatomically accurate vein placement, 
-                        realistic tactile feedback, and joint articulation. Integrated multi-tone skin models 
-                        and fluidics for dynamic cannulation practice; user testing confirmed superior fidelity 
-                        and training efficacy compared to commercial trainers.
-                    </p>
-                    <div class="project-skills">
-                        <span>SOLIDWORKS</span>
-                        <span>Product Development</span>
-                        <span>Market Analysis</span>
-                        <span>Human Factors</span>
-                    </div>
-                </a>
-
-                <a href="dementia-journal.html" class="project-card">
-                    <div class="project-header">
-                        <span class="project-tag">Healthcare AI</span>
-                        <h3>REWIND: Dementia Technology</h3>
-                    </div>
-                    <p class="project-description">
-                        Developed an AI-driven tool to assist in dementia care by analyzing patient 
-                        interactions and providing actionable insights for caregivers.
-                    </p>
-                    <div class="project-skills">
-                        <span>AI/ML Implementation</span>
-                        <span>Python/HTML/CSS</span>
-                        <span>Data Analysis</span>
-                        <span>UX Research</span>
-                    </div>
-                </a>
-                
-                <a href="wheelchair-umbrella.html" class="project-card">
-                    <div class="project-header">
-                        <span class="project-tag">Robotics</span>
-                        <h3>Wheelchair Umbrella</h3>
-                    </div>
-                    <p class="project-description">
-                        Led multidisciplinary engineering team to create fully automated rain protection 
-                        system for wheelchair users. Implemented sensor fusion algorithms and adaptive 
-                        control systems while collaborating with disability advocacy groups.
-                    </p>
-                    <div class="project-skills">
-                        <span>Robotics Design</span>
-                        <span>Embedded Systems</span>
-                        <span>ROS</span>
-                        <span>Control Algorithms</span>
-                    </div>
-                </a>
-            </div>
-            
-            <div class="more-projects">
-                <a href="all-projects.html">View all projects →</a>
-            </div>
-        </section>
-
-        <!-- News Section -->
-        <section class="news-section">
-            <h2>News & Updates</h2>
-            <ul class="news">
-                <li>
-                    <span class="news-date">MAR 2026</span>
-                    <span class="news-content">Presented at the 11th Annual Musculoskeletal Research Symposium in Boston, MA</span>
-                </li>
-                <li>
-                    <span class="news-date">DEC 2025</span>
-                    <span class="news-content">Published "DEVELOPMENT AND VERIFICATION OF A NOVEL PERIPHERAL INTRAVENOUS CATHETER TRAINING DEVICE" (Cho et al.) in Simulation in Healthcare</span>
-                </li>
-                <li>
-                    <span class="news-date">SEP 2025</span>
-                    <span class="news-content">Began my Master's degree in Bioengineering at Northeastern University! Proud to have been awarded the Graduate Dean's Scholarship.</span>
-                </li>
-                <li>
-                    <span class="news-date">JUN 2025</span>
-                    <span class="news-content">Graduated from the University of Washington with a BS in Human Centered Design and Engineering!</span>
-                </li>
-                <li>
-                    <span class="news-date">MAR 2025</span>
-                    <span class="news-content">Presented PRACTIV: A Novel IV Arm Trainer at the 2025 Holloman Innovation in Health Challenge</span>
-                </li>
-                <li>
-                    <span class="news-date">FEB 2025</span>
-                    <span class="news-content">Published "CREATIVE STIMULI FOR MULTI-AGENT LLM BRAINSTORMING" (Shang et al.)</span>
-                </li>
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
             </ul>
-        </section>
-    </div>
+        </div>
+    </footer>
 </body>
 </html>

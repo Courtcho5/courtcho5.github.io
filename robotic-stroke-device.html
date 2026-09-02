@@ -1,74 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rehabilitation Robotic Device for Stroke Patients - Courtney Cho</title>
-    <link rel="stylesheet" href="casestudy.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foot Drop Assistive Device | Courtney Cho</title>
+    <meta name="description" content="A six-week rehabilitation robotics design sprint: an ankle-foot orthosis for hemiplegic stroke patients, taken from competitive teardown through cardboard mockup, CAD, and tested prototype." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to home</a>
-        
-        <section class="hero">
-            <h1>Rehabilitation Robotic Device for Stroke Patients</h1>
-            <p class="subtitle">Applying robotics and control systems to improve rehabilitation outcomes for stroke survivors</p>
-        </section>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-                <section class="project-details">
-            <div class="detail-grid">
-                <div class="detail-item">
-                    <h4>Role</h4>
-                    <p>Design & Human Factors Engineer</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Timeline</h4>
-                    <p>6 Weeks</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Class</h4>
-                    <p>Design for Rehabilitation Robotics (BIOE 5520)</p>
-                </div>
-            </div>
-        </section>
-
-
-        <div class="image-grid">
-            <div class="grid-item">
-                <img src="foot-splint.png" alt="Existing products">
-                <p class="caption">Existing products</p>
-            </div>
-            <div class="grid-item">
-                <img src="cardboard-prototype.png" alt="Sketch">
-                <p class="caption">Prototype Sketch</p>
-            </div>
-            <div class="grid-item">
-                <img src="sketch.png" alt="Sketch">
-                <p class="caption">Prototype Sketch</p>
-            </div>
-            <div class="grid-item">
-                <img src="CAD-prototype.png" alt="CAD prototype">
-                <p class="caption">CAD Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="testing-foot-drop.png" alt="Testing prototype">
-                <p class="caption">Testing Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="final-prototype.png" alt="Final prototype">
-                <p class="caption">Final Prototype</p>
-            </div>
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
         </div>
+    </nav>
 
-       
+    <main id="main">
+        <div class="container">
+            <a href="all-projects.html" class="back-link">← All projects</a>
 
-        <div class="project-navigation">
-            <a href="wheelchair-umbrella.html" class="nav-link">← Previous Project</a>
-            <a href="index.html" class="nav-link">Back to Projects</a>
-            <a href="test.html" class="nav-link">Next Project →</a>
+            <!-- ===== Hero ===== -->
+            <header class="case-hero">
+                <span class="case-hero__eyebrow">Rehabilitation Robotics · 6-Week Sprint</span>
+                <h1>A Foot Drop Device, From Teardown to Tested Prototype in Six Weeks</h1>
+                <p class="case-hero__subtitle">
+                    Foot drop makes stroke survivors catch their toes and fall. The clinical fix is a rigid
+                    plastic brace that works by preventing motion entirely — this was an attempt at
+                    something less blunt.
+                </p>
+                <div class="case-hero__image">
+                    <img src="final-prototype.png" alt="The final foot drop assistive device prototype" />
+                </div>
+            </header>
+
+            <!-- ===== Metadata ===== -->
+            <section class="meta">
+                <div>
+                    <div class="meta__label">Role</div>
+                    <div class="meta__value">Design &amp; Human Factors Engineer</div>
+                </div>
+                <div>
+                    <div class="meta__label">Timeline</div>
+                    <div class="meta__value">6 weeks</div>
+                </div>
+                <div>
+                    <div class="meta__label">Course</div>
+                    <div class="meta__value">Design for Rehabilitation Robotics (BIOE 5520)</div>
+                </div>
+                <div>
+                    <div class="meta__label">Institution</div>
+                    <div class="meta__value">Northeastern University</div>
+                </div>
+            </section>
+
+            <!-- ===== Context ===== -->
+            <section class="case-section">
+                <h2>The Condition</h2>
+                <p class="lead">
+                    Foot drop is one of the most common mobility consequences of hemiplegic stroke. Damage
+                    to the motor pathways weakens the muscles that lift the front of the foot, so during
+                    the swing phase of gait the toes hang down and catch the ground.
+                </p>
+                <p>
+                    Patients compensate — swinging the leg outward, or lifting the hip to gain clearance —
+                    and those compensations are themselves tiring and unstable. The result is a
+                    substantially elevated fall risk in a population that is already fragile, and falls
+                    after stroke frequently mean fractures and a step backward in recovery.
+                </p>
+                <p>
+                    The standard intervention is a rigid ankle-foot orthosis: a moulded plastic shell that
+                    holds the ankle at a fixed angle. It's effective at preventing the toe catch, and it
+                    achieves that by removing ankle motion altogether — including the motion the patient is
+                    working to recover.
+                </p>
+            </section>
+
+            <!-- ===== Process ===== -->
+            <section class="case-section">
+                <h2>The Design Sprint</h2>
+                <p>
+                    Six weeks is not enough time to be precious about anything. The process ran straight
+                    through: understand what exists, sketch broadly, build something crude enough to learn
+                    from quickly, then commit to a form and test it.
+                </p>
+
+                <h3>1 — Competitive teardown</h3>
+                <p>
+                    Started by examining existing foot drop products to establish what the market already
+                    solves well and where it leaves gaps. Rigid AFOs are cheap, reliable, and widely
+                    prescribed; their weakness is that they trade away the ankle's range of motion, comfort
+                    over long wear, and any capacity to adapt as a patient improves.
+                </p>
+
+                <h3>2 — Sketching</h3>
+                <p>
+                    Broad concept generation before committing to a mechanism — where the device attaches
+                    to the leg and foot, how assistance is applied, and how it gets on and off. That last
+                    constraint quietly kills otherwise good designs, since many stroke patients have
+                    reliable use of only one hand.
+                </p>
+
+                <h3>3 — Cardboard prototyping</h3>
+                <p>
+                    Low-fidelity physical mockups to test geometry and fit before any CAD. Cardboard
+                    answers questions about proportion, attachment position, and clearance in an afternoon
+                    — questions that take days in a modeling package and can't be answered on screen at all.
+                </p>
+
+                <h3>4 — CAD</h3>
+                <p>
+                    Translating the validated geometry into a manufacturable model, resolving the joint and
+                    attachment details the cardboard version had only approximated.
+                </p>
+
+                <h3>5 — Build and test</h3>
+                <p>
+                    Fabricated the prototype and tested it in use, evaluating whether it delivered
+                    dorsiflexion assistance through the swing phase without obstructing the rest of the
+                    gait cycle.
+                </p>
+            </section>
+
+            <div class="figure-grid">
+                <figure>
+                    <img src="foot-splint.png" alt="Existing rigid ankle-foot orthosis products reviewed during the teardown" />
+                    <figcaption>1 — Existing products: rigid, effective, motion-eliminating</figcaption>
+                </figure>
+                <figure>
+                    <img src="sketch.png" alt="Concept sketches exploring device attachment and assistance mechanisms" />
+                    <figcaption>2 — Concept sketching</figcaption>
+                </figure>
+                <figure>
+                    <img src="cardboard-prototype.png" alt="Cardboard mockup used to test geometry and fit" />
+                    <figcaption>3 — Cardboard mockup for fit and geometry</figcaption>
+                </figure>
+                <figure>
+                    <img src="CAD-prototype.png" alt="CAD model of the foot drop device" />
+                    <figcaption>4 — CAD model</figcaption>
+                </figure>
+                <figure>
+                    <img src="testing-foot-drop.png" alt="Testing the foot drop prototype on a wearer" />
+                    <figcaption>5 — Testing on a wearer</figcaption>
+                </figure>
+                <figure>
+                    <img src="final-prototype.png" alt="The completed foot drop device prototype" />
+                    <figcaption>6 — Final prototype</figcaption>
+                </figure>
+            </div>
+
+            <!-- ===== NEEDS YOUR DETAIL =====
+                 Courtney — the two sections below are scaffolding, not content. I described the
+                 process from your images and the clinical background, but deliberately did not
+                 invent your mechanism or your results. Replace the bracketed prompts and delete
+                 this comment. In order of value:
+
+                   1. HOW does the device assist dorsiflexion? Spring, elastic, servo, cable?
+                      This is the biggest gap — a reader can see you built something but not
+                      what it does.
+                   2. What did testing show? Even "it worked but the strap slipped" is worth
+                      writing; honest limitations read as competence.
+                   3. What would you change with more than six weeks?
+            -->
+            <section class="case-section">
+                <h2>The Mechanism</h2>
+
+                <div class="callout">
+                    <span class="callout__label">Draft — needs your detail</span>
+                    <p>
+                        Describe how the device actually assists dorsiflexion: the actuation method, where
+                        it attaches, and why you chose that approach over the alternatives you sketched.
+                        This is the part a rehabilitation robotics employer reads most closely, and it's
+                        the one thing the page currently doesn't say.
+                    </p>
+                </div>
+
+                <p>[One or two paragraphs: the mechanism, and the reasoning behind choosing it.]</p>
+            </section>
+
+            <section class="case-section">
+                <h2>Testing &amp; Outcomes</h2>
+
+                <div class="callout">
+                    <span class="callout__label">Draft — needs your detail</span>
+                    <p>
+                        What did you measure, and what happened? Include what didn't work — a six-week
+                        prototype isn't expected to be flawless, and naming its limitations precisely is a
+                        stronger signal than claiming it succeeded.
+                    </p>
+                </div>
+
+                <p>[What you tested, what you observed, what you'd change.]</p>
+            </section>
+
+            <!-- ===== Prev / next ===== -->
+            <nav class="case-nav">
+                <a href="wheelchair-umbrella.html">← Previous: Wheelchair Umbrella</a>
+                <a href="all-projects.html">All projects →</a>
+            </nav>
+
         </div>
+    </main>
 
-    </div>
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

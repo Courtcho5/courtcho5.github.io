@@ -1,197 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Projects - Courtney Cho</title>
-    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — Courtney Cho</title>
+    <meta name="description" content="Engineering projects by Courtney Cho: medical simulation hardware, assistive robotics, biomechanical test systems, and control software." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to home</a>
-        
-        <header class="hero">
-            <h1>All Projects</h1>
-            <p class="subtitle">A collection of my work in bioengineering, medical devices, and assistive technology</p>
-        </header>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-        <!-- Featured Projects -->
-        <section class="projects-section">
-            <h2>Featured Projects</h2>
-            
-            <div class="projects">
-                <a href="test.html" class="project-card">
-                    <div class="project-header">
-                        <span class="project-tag">Medical Simulation</span>
-                        <h3>PRACTIV: A Novel IV Arm Trainer</h3>
-                    </div>
-                    <p class="project-description">
-                        Engineered a modular IV training simulator with anatomically accurate vein placement, 
-                        realistic tactile feedback, and joint articulation. Integrated multi-tone skin models 
-                        and fluidics for dynamic cannulation practice; user testing confirmed superior fidelity 
-                        and training efficacy compared to commercial trainers.
-                    </p>
-                    <div class="project-skills">
-                        <span>SOLIDWORKS</span>
-                        <span>Product Development</span>
-                        <span>Market Analysis</span>
-                        <span>Human Factors</span>
-                    </div>
-                </a>
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
 
-                <a href="dementia-journal.html" class="project-card">
-                    <div class="project-header">
-                        <span class="project-tag">Healthcare AI</span>
-                        <h3>REWIND: Dementia Technology</h3>
-                    </div>
-                    <p class="project-description">
-                        Developed an AI-driven tool to assist in dementia care by analyzing patient 
-                        interactions and providing actionable insights for caregivers. Built full-stack 
-                        web application with personalized memory quizzes generated from daily diary entries.
-                    </p>
-                    <div class="project-skills">
-                        <span>AI/ML</span>
-                        <span>Python/HTML/CSS</span>
-                        <span>Data Analysis</span>
-                        <span>UX Research</span>
-                    </div>
-                </a>
-                
-                <a href="wheelchair-umbrella.html" class="project-card">
-                    <div class="project-header">
-                        <span class="project-tag">Assistive Robotics</span>
-                        <h3>Automated Wheelchair Rain Protection</h3>
-                    </div>
-                    <p class="project-description">
-                        Led multidisciplinary engineering team to create fully automated rain protection 
-                        system for wheelchair users. Implemented sensor fusion algorithms and adaptive 
-                        control systems while collaborating with disability advocacy groups.
-                    </p>
-                    <div class="project-skills">
-                        <span>Robotics</span>
-                        <span>Team Leadership</span>
-                        <span>Sensor Fusion</span>
-                        <span>Control Systems</span>
-                    </div>
-                </a>
-            </div>
-        </section>
+    <main id="main">
+        <div class="container">
 
-        <!-- Additional Projects -->
-        <section class="projects-section">
-            <h2>Research & Academic Projects</h2>
-            
-            <div class="projects">
-                <a href="biomechanics-research.html" class="project-card">
-                    
-                        <div class="project-header">
-                            <span class="project-tag">Research</span>
-                            <h3>Biomechanics Research with Dr. Sandra Shefelbine</h3>
-                        </div>
-                        <p class="project-description">
-                            Designing and fabricating a custom mechanical testing apparatus for evaluating 
-                            osteointegrated implant (OI) bone implants. Utilizing finite element analysis 
-                            to optimize fixture design and validate experimental protocols for characterizing 
-                            implant-bone interface mechanics under physiological loading conditions.
+            <header class="hero">
+                <span class="hero__eyebrow">Portfolio</span>
+                <h1>Projects</h1>
+                <p class="hero__subtitle">
+                    Medical devices, assistive robotics, and the test hardware that proves they work.
+                </p>
+            </header>
+
+            <!-- ===== Devices & robotics ===== -->
+            <section class="section">
+                <div class="section__head">
+                    <h2>Devices &amp; Robotics</h2>
+                </div>
+
+                <div class="projects">
+                    <a href="practiv.html" class="project-card">
+                        <span class="project-card__tag">Medical Simulation</span>
+                        <h3 class="project-card__title">PRACTIV — A Novel IV Arm Trainer</h3>
+                        <p class="project-card__body">
+                            A modular IV training arm built to fix what commercial trainers get wrong:
+                            oversimplified anatomy, unrealistic tissue feel, and models that represent only
+                            one body type. Validated against a leading commercial trainer in a formal
+                            usability study with eight clinicians, and published in <em>Simulation in
+                            Healthcare</em>.
                         </p>
-                        <div class="project-skills">
-                            <span>Finite Element Analysis</span>
-                            <span>Mechanical Testing</span>
-                            <span>Research Methods</span>
-                            <span>Experimental Design</span>
+                        <div class="chips">
+                            <span>SOLIDWORKS</span>
+                            <span>nTopology</span>
+                            <span>Silicone Casting</span>
+                            <span>Human Factors</span>
+                            <span>Usability Testing</span>
                         </div>
-                </a>
-                
-                <a href="robotic-stroke-device.html" class="project-card">
-                    
-                        <div class="project-header">
-                            <span class="project-tag">Rehabilitation Robotics</span>
-                            <h3>Robotic Foot Drop Treatment System</h3>
-                        </div>
-                        <p class="project-description">
-                            Developed a robotic assistive device to address foot drop in hemiplegic stroke patients. Designed actuated ankle-foot orthosis with real-time gait phase detection and adaptive dorsiflexion assistance to improve mobility and reduce fall risk during rehabilitation therapy.
+                    </a>
+
+                    <a href="robotic-arm.html" class="project-card">
+                        <span class="project-card__tag">Robotics · Controls</span>
+                        <h3 class="project-card__title">6-DOF Robotic Arm &amp; Inverse Kinematics Controller</h3>
+                        <p class="project-card__body">
+                            A six-axis arm designed in CAD and driven by a Python control application I wrote
+                            from scratch — closed-form inverse kinematics, wrist compensation to hold the
+                            gripper level, and joint-limit validation that refuses illegal poses before they
+                            reach the hardware.
                         </p>
-                        <div class="project-skills">
+                        <div class="chips">
+                            <span>Inverse Kinematics</span>
+                            <span>Python</span>
+                            <span>Serial / Arduino</span>
+                            <span>CAD</span>
+                            <span>Mechanism Design</span>
+                        </div>
+                    </a>
+
+                    <a href="wheelchair-umbrella.html" class="project-card">
+                        <span class="project-card__tag">Assistive Technology · Team Lead</span>
+                        <h3 class="project-card__title">Wheelchair-Mounted Umbrella</h3>
+                        <p class="project-card__body">
+                            A servo-actuated canopy that opens at the press of a button and mounts to a
+                            wheelchair's existing accessory tracks — built so users who lack the grip strength
+                            to open an umbrella don't need a caregiver to stay dry. I led mechanical design
+                            across two years and five team members.
+                        </p>
+                        <div class="chips">
+                            <span>Team Leadership</span>
+                            <span>Arduino</span>
+                            <span>Servo Actuation</span>
+                            <span>Mechanism Design</span>
+                            <span>Accessible Design</span>
+                        </div>
+                    </a>
+
+                    <a href="robotic-stroke-device.html" class="project-card">
+                        <span class="project-card__tag">Rehabilitation Robotics</span>
+                        <h3 class="project-card__title">Foot Drop Assistive Device for Stroke Patients</h3>
+                        <p class="project-card__body">
+                            A six-week design sprint on an ankle-foot orthosis for hemiplegic stroke patients,
+                            taken from competitive teardown through cardboard mockup, CAD, and a tested
+                            physical prototype.
+                        </p>
+                        <div class="chips">
                             <span>Rehabilitation Robotics</span>
                             <span>Gait Analysis</span>
-                            <span>Embedded Systems</span>
-                            <span>Control Systems</span>
+                            <span>Rapid Prototyping</span>
+                            <span>Human Factors</span>
                         </div>
-                    
-                </a>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-tag">Design</span>
-                        <h3>Human-Centered Design Projects</h3>
-                    </div>
-                    <p class="project-description">
-                        Applied user research methodologies and design thinking principles to various 
-                        healthcare and engineering challenges. Emphasized accessibility and inclusive 
-                        design throughout all project phases.
-                    </p>
-                    <div class="project-skills">
-                        <span>User Research</span>
-                        <span>Design Thinking</span>
-                        <span>Accessibility</span>
-                    </div>
+                    </a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Course Projects or Other Work -->
-        <section class="projects-section">
-            <h2>Skills & Tools</h2>
-            
-            <div class="skills-showcase">
-                <div class="skill-category">
-                    <h3>Technical Skills</h3>
-                    <div class="project-skills">
-                        <span>SOLIDWORKS</span>
-                        <span>Python</span>
-                        <span>C++</span>
-                        <span>Finite Element Analysis</span>
-                        <span>MATLAB</span>
-                        <span>HTML + CSS</span>
-                        <span>nTopology</span>
-                        <span>Arduino</span>
-                        <span>PCB Design</span>
-                        <span>AI Model Training</span>
-                        <span>Robotics</span>
-                        <span>Design for Manufacturing</span>
-                    </div>
+            <!-- ===== Research ===== -->
+            <section class="section">
+                <div class="section__head">
+                    <h2>Research</h2>
                 </div>
 
-                <div class="skill-category">
-                    <h3>Research and Design</h3>
-                    <div class="project-skills">
-                        <span>User Research</span>
-                        <span>Usability Testing</span>
-                        <span>Market Analysis</span>
-                        <span>Human Factors</span>
-                        <span>Biomechanics</span>
-                        <span>Medical Physiology</span>
-                        <span>Statistical Analysis</span>
-                        
-                    </div>
+                <div class="projects">
+                    <a href="biomechanics-research.html" class="project-card">
+                        <span class="project-card__tag">Master's Thesis</span>
+                        <h3 class="project-card__title">Osseointegrated Implant Biomechanical Test Rig</h3>
+                        <p class="project-card__body">
+                            Designing and building a mechanical test rig to characterize femur fracture risk in
+                            patients with osseointegrated prosthetic implants, in the Shefelbine lab at
+                            Northeastern. Now on its third design iteration, with FEA used to verify the
+                            fixture before machining.
+                        </p>
+                        <div class="chips">
+                            <span>Finite Element Analysis</span>
+                            <span>Mechanical Testing</span>
+                            <span>Fixture Design</span>
+                            <span>SOLIDWORKS</span>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- ===== Other work — compact entries ===== -->
+            <section class="section">
+                <div class="section__head">
+                    <h2>Other Work</h2>
                 </div>
 
-                <div class="skill-category">
-                    <h3>Interpersonal Skills</h3>
-                    <div class="project-skills">
-                        <span>Detail-Oriented</span>
-                        <span>Adaptability</span>
-                        <span>Reliability</span>
-                        <span>Leadership</span>
-                        <span>Technical Communication & Writing</span>
-                        <span>Professional Communication</span>
-                        <span>Teamwork</span>
+                <ul class="minor-list">
+                    <li>
+                        <a href="dementia-journal.html" class="minor">
+                            <span class="minor__title">REWIND — AI Memory Support for Dementia Care</span>
+                            <span class="minor__meta">Software · 2024–25</span>
+                            <span class="minor__body">
+                                A full-stack journaling tool that generates personalized recall quizzes from a
+                                patient's own diary entries. Flask, Firebase, and the Gemini API.
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="minor">
+                            <span class="minor__title">Creative Stimuli for Multi-Agent LLM Brainstorming</span>
+                            <span class="minor__meta">Publication · 2025</span>
+                            <span class="minor__body">
+                                Co-authored research on structuring creative prompts for multi-agent language
+                                model brainstorming (Shang et al.).
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- ===== Skills ===== -->
+            <section class="section">
+                <div class="section__head">
+                    <h2>Skills &amp; Tools</h2>
+                </div>
+
+                <div class="skill-groups">
+                    <div class="skill-group">
+                        <h3>Design &amp; Analysis</h3>
+                        <ul class="chips">
+                            <li>SOLIDWORKS</li>
+                            <li>Finite Element Analysis</li>
+                            <li>nTopology</li>
+                            <li>Design for Manufacturing</li>
+                            <li>Mechanism Design</li>
+                            <li>GD&amp;T</li>
+                            <li>3D Printing (FFF)</li>
+                            <li>Silicone Casting</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3>Software &amp; Controls</h3>
+                        <ul class="chips">
+                            <li>Python</li>
+                            <li>C++</li>
+                            <li>MATLAB</li>
+                            <li>Arduino</li>
+                            <li>Inverse Kinematics</li>
+                            <li>Serial / Embedded I/O</li>
+                            <li>PCB Design</li>
+                            <li>HTML &amp; CSS</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3>Research &amp; Human Factors</h3>
+                        <ul class="chips">
+                            <li>Usability Testing</li>
+                            <li>Cognitive Task Analysis</li>
+                            <li>Statistical Analysis</li>
+                            <li>Experimental Design</li>
+                            <li>Biomechanics</li>
+                            <li>Medical Physiology</li>
+                            <li>Market Analysis</li>
+                            <li>Technical Writing</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    </div>
+        </div>
+    </main>
+
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

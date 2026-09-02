@@ -1,249 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated Wheelchair Rain Protection - Courtney Cho</title>
-    <link rel="stylesheet" href="casestudy.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheelchair-Mounted Umbrella | Courtney Cho</title>
+    <meta name="description" content="A servo-actuated, wheelchair-mounted umbrella designed with HuskyADAPT so users can deploy rain cover without a caregiver — built from fiberglass poles, vinyl, and 3D-printed mounting adapters." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to home</a>
-        
-        <section class="hero">
-            <h1>Automated Rain Protection System for Wheelchair Users</h1>
-            <p class="subtitle">Leading a multidisciplinary engineering team to develop adaptive assistive technology that provides independence and dignity for wheelchair users in all weather conditions</p>
-            <div class="hero-image">
-                <img src="wheelchair-umbrella-hero.png" alt="Automated Wheelchair Umbrella System">
-            </div>
-        </section>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-        <section class="project-details">
-            <div class="detail-grid">
-                <div class="detail-item">
-                    <h4>Role</h4>
-                    <p>Mechanical Design Team Lead</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Timeline</h4>
-                    <p>September 2022 - June 2024</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Organization</h4>
-                    <p>HuskyADAPT, University of Washington</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Key Technologies</h4>
-                    <p>Sensor Fusion, Adaptive Control, Robotics</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="challenge">
-            <h2>The Challenge</h2>
-            <p>
-                Wheelchair users face significant challenges during rain, often requiring assistance to deploy 
-                traditional umbrellas or rain covers. This dependence on others reduces autonomy and can limit 
-                mobility during inclement weather. Many wheelchair users avoid going out in the rain entirely, 
-                impacting their independence and quality of life.
-            </p>
-            <p>
-                Existing solutions are inadequate:
-            </p>
-            <ul>
-                <li><strong>Manual umbrellas</strong> require use of both hands, making wheelchair operation impossible</li>
-                <li><strong>Fixed canopies</strong> obstruct visibility and are cumbersome in fair weather</li>
-                <li><strong>Caregiver-dependent systems</strong> reduce user autonomy and dignity</li>
-                <li><strong>No adaptive response</strong> to changing weather conditions</li>
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
             </ul>
-        </section>
-
-        <div class="image-full">
-            <img src="existing-umbrella.png" alt="Existing solutions">
-            <p class="caption">Current solutions force users to choose between independence and weather protection</p>
         </div>
+    </nav>
 
-        <section class="solution">
-            <h2>Our Solution</h2>
-            <p>
-                As Mechanical Design Team Lead, I guided a multidisciplinary engineering team through the complete 
-                product development lifecycle to create a fully automated rain protection system. The device uses 
-                sensor fusion and adaptive control algorithms to detect rain and automatically deploy protective 
-                coverage without user intervention.
-            </p>
-            
-            <h3>Key Features</h3>
-            <div class="features-grid">
-                <div class="feature">
-                    <h4>Automated Deployment</h4>
-                    <p>Rain sensors trigger automatic canopy deployment, requiring no manual intervention</p>
-                </div>
-                <div class="feature">
-                    <h4>Sensor Fusion Algorithms</h4>
-                    <p>Multiple sensors work together to detect precipitation and environmental conditions</p>
-                </div>
-                <div class="feature">
-                    <h4>Adaptive Control System</h4>
-                    <p>Intelligent response adjusts to varying rain intensity and wind conditions</p>
-                </div>
-                <div class="feature">
-                    <h4>Compact Design</h4>
-                    <p>Streamlined mechanical system integrates seamlessly with standard wheelchairs</p>
-                </div>
-                <div class="feature">
-                    <h4>Accessibility Compliance</h4>
-                    <p>Design validated with disability advocacy groups to ensure real-world usability</p>
-                </div>
-                <div class="feature">
-                    <h4>Robust Mechanism</h4>
-                    <p>Durable construction withstands repeated deployment cycles and outdoor conditions</p>
-                </div>
-            </div>
-        </section>
+    <main id="main">
+        <div class="container">
+            <a href="all-projects.html" class="back-link">← All projects</a>
 
-        <div class="image-full">
-            <div class="image-placeholder">[Image: Automated umbrella system deployed]</div>
-            <p class="caption">The automated system provides weather protection while maintaining user independence</p>
-        </div>
-
-        <section class="process">
-            <h2>Leadership & Development Process</h2>
-            
-            <div class="process-section">
-                <h3>Team Leadership</h3>
-                <p>
-                    As Mechanical Design Team Lead, I managed cross-functional collaboration between mechanical, 
-                    electrical, and software engineering team members. This included establishing project timelines, 
-                    coordinating design reviews, and mentoring junior engineers on assistive technology design 
-                    principles and project management best practices.
+            <!-- ===== Hero ===== -->
+            <header class="case-hero">
+                <span class="case-hero__eyebrow">Assistive Technology · HuskyADAPT</span>
+                <h1>A Wheelchair Umbrella You Can Open Yourself</h1>
+                <p class="case-hero__subtitle">
+                    People were cancelling physical therapy appointments because it was raining. Not
+                    because of the rain — because opening an umbrella meant waiting for someone else.
                 </p>
-            </div>
+                <div class="case-hero__image">
+                    <img src="wheelchair-umbrella-hero.png" alt="The wheelchair-mounted umbrella deployed over a wheelchair seat" />
+                </div>
+            </header>
 
-            <div class="process-section">
-                <h3>User-Centered Development</h3>
-                <p>
-                    Working closely with disability advocacy groups throughout the design process ensured our 
-                    solution addressed real user needs. Regular feedback sessions validated design decisions and 
-                    identified potential accessibility barriers early in development.
+            <!-- ===== Metadata ===== -->
+            <section class="meta">
+                <div>
+                    <div class="meta__label">Role</div>
+                    <div class="meta__value">Mechanical Design Team Lead</div>
+                </div>
+                <div>
+                    <div class="meta__label">Timeline</div>
+                    <div class="meta__value">September 2022 – June 2024</div>
+                </div>
+                <div>
+                    <div class="meta__label">Organization</div>
+                    <div class="meta__value">HuskyADAPT, University of Washington</div>
+                </div>
+                <div>
+                    <div class="meta__label">Team</div>
+                    <div class="meta__value">Courtney Cho, Annie Yao, Ella Jung, Jimmy Le, Aidan Frondozo</div>
+                </div>
+            </section>
+
+            <!-- ===== Challenge ===== -->
+            <section class="case-section">
+                <h2>Finding the Real Problem</h2>
+                <p class="lead">
+                    We started with a vague brief — rain protection for wheelchair users — and got to a
+                    sharp one by talking to someone who knew the population.
                 </p>
-            </div>
-
-            <div class="process-section">
-                <h3>Technical Innovation</h3>
-                <p>Key engineering achievements included:</p>
+                <p>
+                    We consulted Julia Ladner, an occupational therapist specializing in assistive
+                    technology, whose clients include people with cerebral palsy and spinal cord injuries.
+                    What she told us reframed the project entirely. The problem was not that wheelchair
+                    users lacked umbrellas. It was that:
+                </p>
                 <ul>
-                    <li>Developing sensor fusion algorithms that reliably detect rain while minimizing false positives</li>
-                    <li>Designing adaptive control systems that respond intelligently to varying weather conditions</li>
-                    <li>Creating a compact mechanical deployment mechanism that integrates with existing wheelchairs</li>
-                    <li>Implementing fail-safe systems to ensure user safety during operation</li>
+                    <li><strong>Many users don't have the grip strength to open one.</strong> A standard umbrella assumes a hand that can push a catch and force a spring — an assumption that quietly excludes a lot of people.</li>
+                    <li><strong>Water on the chair controls is a real concern.</strong> A powered chair's joystick and control panel are exposed, and users are protecting expensive equipment, not just themselves.</li>
+                    <li><strong>Existing devices still require a caregiver.</strong> Users who already owned umbrella attachments relied on someone else to attach, open, close, and detach them — which converts an umbrella into a scheduling problem.</li>
+                    <li><strong>So people just don't go.</strong> Clients were cancelling therapy appointments because of rain.</li>
                 </ul>
-            </div>
-
-            <div class="process-section">
-                <h3>Product Development Lifecycle</h3>
                 <p>
-                    Led the team through conceptualization, prototyping, testing, and refinement phases. This 
-                    included CAD modeling, mechanism design, sensor integration, control system development, and 
-                    extensive field testing with end users.
+                    That last point set the actual design target. The goal was not a better umbrella. It was
+                    removing the caregiver from the loop.
                 </p>
-            </div>
-        </section>
+            </section>
 
-       <div class="image-grid">
-            <div class="grid-item">
-                <img src="technical-implementation.png" alt="Arduino">
-                <p class="caption">Arduino Implementation</p>
+            <figure class="figure">
+                <img src="existing-umbrella.png" alt="Existing wheelchair umbrella attachments, all requiring manual setup" />
+                <figcaption>Existing attachments on the market: functional, but every one of them needs someone else to set it up.</figcaption>
+            </figure>
+
+            <!-- ===== Constraints ===== -->
+            <section class="case-section">
+                <h2>Constraints From the Hardware</h2>
+                <p>
+                    Alongside the expert consultation we ran a market teardown of existing designs and
+                    studied the chairs themselves. Powered wheelchairs are not a blank mounting surface,
+                    and that generated most of our hard requirements:
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <h4>Mount to existing tracks</h4>
+                        <p>Permobil chairs have accessory tracks on the armrests and back seat. Using them meant no drilling, no modification, and no voided warranty.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Never exceed the chair's footprint</h4>
+                        <p>The umbrella could not be wider than the wheels or armrests — anything that overhangs turns doorways and ramps into obstacles.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Prioritize head and torso</h4>
+                        <p>Full-body coverage wasn't the goal. Keeping the user and the chair's controls dry was.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Fully removable</h4>
+                        <p>Users wanted it off the chair in fair weather, without tools and without help.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Operable without grip strength</h4>
+                        <p>Deployment had to work for someone who cannot grasp, push, or twist — which ruled out every mechanical trigger.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Keep water off the controls</h4>
+                        <p>Coverage geometry had to account for the joystick and control panel, not just the seat.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Solution ===== -->
+            <section class="case-section">
+                <h2>What We Built</h2>
+                <p>
+                    The final prototype is a canopy of three fiberglass poles carrying a vinyl tarp. The
+                    poles mount to a 3-inch PVC pipe through 3D-printed adapters that clamp onto the
+                    wheelchair's existing accessory tracks. The outermost pole is driven by a servo motor,
+                    so the canopy rotates open and closed at the press of a button.
+                </p>
+                <p>
+                    Button actuation is the whole point. It replaces the one action — gripping and forcing
+                    an umbrella open — that the people we designed for cannot reliably perform, and it is
+                    the difference between a device that needs a caregiver and one that doesn't.
+                </p>
+
+                <h3>Why these materials</h3>
+                <ul>
+                    <li><strong>Fiberglass poles</strong> — enough stiffness to hold canopy shape at low weight, and they flex rather than snap under wind load</li>
+                    <li><strong>Vinyl tarp</strong> — waterproof, cheap, and replaceable if it tears</li>
+                    <li><strong>3D-printed adapters</strong> — the geometry between round pole stock and a proprietary wheelchair track isn't something you can buy, and printing let us re-cut the interface each time we measured the chair more carefully</li>
+                    <li><strong>3-inch PVC spine</strong> — off-the-shelf, structurally adequate, and trivially replaceable</li>
+                </ul>
+            </section>
+
+            <div class="figure-grid">
+                <figure>
+                    <img src="CAD-draft.png" alt="CAD model of the umbrella pole assembly and mounting adapters" />
+                    <figcaption>CAD model of the pole assembly and track-mount adapters</figcaption>
+                </figure>
+                <figure>
+                    <img src="technical-implementation.png" alt="Arduino and servo wiring for button-controlled canopy actuation" />
+                    <figcaption>Arduino and servo control for button-driven deployment</figcaption>
+                </figure>
+                <figure>
+                    <img src="presentation.png" alt="Presenting the wheelchair umbrella project at the CREATE showcase" />
+                    <figcaption>Presenting at the CREATE showcase</figcaption>
+                </figure>
             </div>
-            <div class="grid-item">
-                <img src="presentation.png" alt="Presentation">
-                <p class="caption">Presenting at the CREATE showcase</p>
-            </div>
-            <div class="grid-item">
-                <img src="CAD-draft.png" alt="CAD prototype">
-                <p class="caption">CAD Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="CAD-prototype.png" alt="CAD prototype">
-                <p class="caption">CAD Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="testing-foot-drop.png" alt="Testing prototype">
-                <p class="caption">Testing Prototype</p>
-            </div>
-            <div class="grid-item">
-                <img src="final-prototype.png" alt="Final prototype">
-                <p class="caption">Final Prototype</p>
-            </div>
+
+            <!-- ===== Leadership ===== -->
+            <section class="case-section">
+                <h2>Leading the Mechanical Design</h2>
+                <p>
+                    As Mechanical Design Team Lead I was responsible for the physical system — pole
+                    geometry, the mounting interface, and the handoff to the electrical side where the
+                    servo attaches. Across a two-year project with five members, that meant as much
+                    coordination as design.
+                </p>
+
+                <h3>What that actually involved</h3>
+                <ul>
+                    <li>Translating Julia's clinical input into mechanical requirements the team could design against, rather than a list of things users said</li>
+                    <li>Holding the line on the width constraint when more coverage was tempting — an umbrella that doesn't fit through a doorway is worse than no umbrella</li>
+                    <li>Defining the mechanical-to-electrical boundary so the servo mount and the pole design could progress in parallel</li>
+                    <li>Running design reviews and keeping a multi-year, rotating student team oriented on the same target</li>
+                    <li>Onboarding newer members onto assistive technology design principles</li>
+                </ul>
+
+                <div class="callout">
+                    <span class="callout__label">The lesson that stuck</span>
+                    <p>
+                        Our first instinct was to make the umbrella bigger and more protective. The needs
+                        expert's input pointed the opposite direction: coverage was never the bottleneck,
+                        independence was. Every hour we would have spent optimizing canopy area would have
+                        made the product worse at the thing that actually mattered. Talking to someone who
+                        knew the users before we started designing is the reason we built the right thing.
+                    </p>
+                </div>
+            </section>
+
+            <figure class="figure">
+                <img src="CreateShowcase.JPG" alt="The HuskyADAPT team with the wheelchair umbrella prototype and project poster at the CREATE showcase" />
+                <figcaption>The team with the prototype and poster at the UW CREATE showcase.</figcaption>
+            </figure>
+
+            <!-- ===== Status ===== -->
+            <section class="case-section">
+                <h2>Where It Stands</h2>
+                <p>
+                    The prototype deploys and retracts under button control and mounts to the intended
+                    track interface. It has not yet been through user testing — that is the next milestone,
+                    and deliberately the next one rather than a later one.
+                </p>
+
+                <h3>Next steps</h3>
+                <ul>
+                    <li>Mount the system to a Permobil chair and test through extended use and open-air conditions</li>
+                    <li>User testing with wheelchair users — the design decisions above are grounded in expert consultation, and they need validation from the people who would actually use it</li>
+                    <li>Evaluate alternative pole and canopy materials for durability and weight</li>
+                </ul>
+
+                <div class="callout">
+                    <span class="callout__label">Honest assessment</span>
+                    <p>
+                        This is a working prototype with a validated problem definition, not a finished
+                        product. The requirements came from an occupational therapist who works with the
+                        target population daily, which is a strong foundation — but expert consultation is
+                        not the same as testing with end users, and that gap is the most important thing
+                        left to close.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ===== Prev / next ===== -->
+            <nav class="case-nav">
+                <a href="biomechanics-research.html">← Previous: Implant Test Rig</a>
+                <a href="robotic-stroke-device.html">Next: Foot Drop Device →</a>
+            </nav>
+
         </div>
+    </main>
 
-        <section class="impact">
-            <h2>Impact & Leadership Outcomes</h2>
-            <p>
-                This project demonstrated the power of engineering leadership focused on accessibility and user 
-                empowerment. By combining technical innovation with genuine user engagement, we created a solution 
-                that addresses a real gap in assistive technology.
-            </p>
-
-            <h3>Key Achievements</h3>
-            <ul>
-                <li>Successfully led multidisciplinary engineering team through complete product development cycle</li>
-                <li>Developed functioning automated system using sensor fusion and adaptive control algorithms</li>
-                <li>Established collaborative relationships with disability advocacy organizations</li>
-                <li>Mentored junior engineers in assistive technology design and project management</li>
-                <li>Created accessibility-compliant solution validated by end users</li>
-                <li>Gained extensive experience in robotics, mechatronics, and control systems</li>
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
             </ul>
-
-            <h3>Technical Skills Developed</h3>
-            <div class="results-grid">
-                <div class="result-item">
-                    <h3>Robotics & Control</h3>
-                    <ul>
-                        <li>Sensor fusion algorithms</li>
-                        <li>Adaptive control systems</li>
-                        <li>Automated deployment mechanisms</li>
-                        <li>Real-time system response</li>
-                    </ul>
-                </div>
-
-                <div class="result-item">
-                    <h3>Mechanical Design</h3>
-                    <ul>
-                        <li>CAD modeling and simulation</li>
-                        <li>Mechanism design and kinematics</li>
-                        <li>Materials selection for durability</li>
-                        <li>Design for manufacturing</li>
-                    </ul>
-                </div>
-
-                <div class="result-item">
-                    <h3>Leadership & Collaboration</h3>
-                    <ul>
-                        <li>Team management and coordination</li>
-                        <li>Stakeholder engagement</li>
-                        <li>Mentorship of junior engineers</li>
-                        <li>Project lifecycle management</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>Lessons in Assistive Technology</h3>
-            <p>
-                Leading this project reinforced the importance of designing with users, not just for them. Regular 
-                engagement with wheelchair users and advocacy groups revealed insights that purely technical 
-                approaches would have missed. The experience shaped my understanding of how engineering can create 
-                meaningful impact through assistive technology that truly empowers users.
-            </p>
-        </section>
-
-
-        <div class="project-navigation">
-            <a href="dementia-journal.html" class="nav-link">← Previous Project</a>
-            <a href="index.html" class="nav-link">Back to Projects</a>
-            <a href="test.html" class="nav-link">Next Project →</a>
         </div>
-
-    </div>
+    </footer>
 </body>
 </html>
