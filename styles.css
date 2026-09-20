@@ -40,9 +40,10 @@
     --rule:          #E0E0E0;   /* hairlines and card borders                */
     --rule-strong:   #999999;   /* hover borders                             */
 
-    --accent:        #0E6B68;   /* deep teal — links, active nav, stats      */
-    --accent-deep:   #094B49;   /* hover state                               */
-    --accent-wash:   #E6F0EF;   /* tinted backgrounds                        */
+    --accent:        #A9A4FF;   /* lavender — links, active nav, stats       */
+    --accent-deep:   #7B72E8;   /* hover state / anywhere it sits on a light
+                                    wash and needs more contrast to read     */
+    --accent-wash:   #F1F0FF;   /* tinted backgrounds                        */
 
     /* --- Type -------------------------------------------------------------
        System font stack only — no webfont download, and it matches the
@@ -349,6 +350,54 @@ main {
    4. HOME PAGE — hero, bio, news
    ========================================================================== */
 
+/* --- Dark band ------------------------------------------------------------
+   The homepage only: a black band behind the hero + intro, everything below
+   it (Selected Work, Currently Building, News) stays on the normal white
+   page. Only the specific elements that live inside .hero-band get color
+   overrides here — nothing outside it is affected. */
+
+.hero-band {
+    background: #0B0B0D;
+    padding-block: var(--space-8) var(--space-9);
+}
+
+.hero-band h1,
+.hero-band .hero__subtitle,
+.hero-band .bio p {
+    color: #FFFFFF;
+}
+
+.hero-band .hero__subtitle {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.hero-band .bio p {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.hero-band .intro {
+    border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Buttons keep an opaque, light background regardless of what's behind them
+   so their text stays readable against black. */
+.hero-band .button {
+    background: #FFFFFF;
+    color: var(--ink);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hero-band .button:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-band .button--primary:hover {
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    color: var(--ink);
+}
+
 .hero {
     text-align: center;
     padding-block: var(--space-6) var(--space-8);
@@ -446,11 +495,13 @@ main {
     flex-shrink: 0;
 }
 
-/* Primary variant — used once per page at most. */
+/* Primary variant — used once per page at most. Text is dark, not white:
+   the accent is a light lavender, and white text on top of it is very hard
+   to read. */
 .button--primary {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    color: var(--ink);
 }
 
 .button--primary:hover {
@@ -923,7 +974,7 @@ a.project-card:hover .project-card__title {
 
 .stat-row .stat__number {
     font-size: var(--text-2xl);
-    color: var(--accent);
+    color: var(--accent-deep);
 }
 
 /* --- Callout ------------------------------------------------------------ */
