@@ -12,7 +12,7 @@
      1. Tokens          — colors, type, spacing. Edit these.
      2. Base            — reset and element defaults
      3. Layout          — page shell, nav, footer
-     4. Home page       — hero, bio, news
+     4. Home page       — photo hero, section index, bio, news
      5. Projects        — cards, tags, skill chips
      6. Case study      — detail grid, features, images, results
      7. Responsive      — mobile overrides
@@ -24,33 +24,34 @@
    ========================================================================== */
 
 :root {
-    color-scheme: light;
+    color-scheme: dark;
 
-    /* --- Color ------------------------------------------------------------
-       The palette is intentionally small: a clean white ground, near-black
-       ink, and one accent used sparingly for links and emphasis. */
-    --ground:        #FFFFFF;   /* page background — clean white             */
-    --surface:       #FFFFFF;   /* cards sitting on the ground               */
-    --surface-sunk:  #F8F8F8;   /* recessed panels (detail grids, features)  */
+    /* --- Color --------------------------------------------------------------
+       Dark ground, near-white ink, one lavender accent with a lighter
+       secondary tone for hover/emphasis. --accent-ink exists specifically
+       for text that sits ON TOP of the light accent color (e.g. a solid
+       accent button) — the accent is too light for white text to sit on. */
+    --ground:        #0B0C10;   /* page background — near black              */
+    --surface:       rgba(255, 255, 255, 0.035);  /* cards on the ground     */
+    --surface-sunk:  rgba(255, 255, 255, 0.055);  /* recessed panels         */
 
-    --ink:           #1A1A1A;   /* headings — near black                     */
-    --ink-body:      #444444;   /* body copy                                 */
-    --ink-muted:     #666666;   /* captions, labels, metadata                */
+    --ink:           #F2F1F7;   /* headings — near white                     */
+    --ink-body:      #B9BAC6;   /* body copy                                 */
+    --ink-muted:     #8A8B99;   /* captions, labels, metadata                */
 
-    --rule:          #E0E0E0;   /* hairlines and card borders                */
-    --rule-strong:   #999999;   /* hover borders                             */
+    --rule:          rgba(255, 255, 255, 0.10);   /* hairlines, borders      */
+    --rule-strong:   rgba(255, 255, 255, 0.22);   /* hover borders           */
 
-    --accent:        #A9A4FF;   /* lavender — links, active nav, stats       */
-    --accent-deep:   #7B72E8;   /* hover state / anywhere it sits on a light
-                                    wash and needs more contrast to read     */
-    --accent-wash:   #F1F0FF;   /* tinted backgrounds                        */
+    --accent:        #A9A4FF;   /* lavender — links, tags, stats             */
+    --accent-deep:   #C9AEF6;   /* lighter amethyst — hover / emphasis       */
+    --accent-ink:    #14161A;   /* dark text for use on top of --accent      */
+    --accent-wash:   rgba(169, 164, 255, 0.12);   /* tinted panels           */
+    --grad: linear-gradient(120deg, var(--accent), var(--accent-deep));
 
-    /* --- Type -------------------------------------------------------------
-       System font stack only — no webfont download, and it matches the
-       typeface the site originally shipped with. --font-mono is aliased to
-       the same stack so labels that use it just render as uppercase sans. */
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-mono: var(--font-sans);
+    /* --- Type ---------------------------------------------------------------
+       'Exo' for display/body, 'JetBrains Mono' for labels and tags. */
+    --font-sans: 'Exo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
     /* Fluid type scale. clamp(min, preferred, max) keeps headings readable
        on phones without a separate mobile font-size for every rule. */
@@ -61,9 +62,9 @@
     --text-xl:   clamp(1.25rem, 1.1rem + 0.6vw,  1.5rem);
     --text-2xl:  clamp(1.5rem,  1.3rem + 1vw,    2rem);
     --text-3xl:  clamp(1.875rem, 1.5rem + 1.8vw, 2.75rem);
-    --text-4xl:  clamp(2.25rem, 1.7rem + 2.6vw,  3.5rem);
+    --text-4xl:  clamp(2.5rem, 1.8rem + 3.2vw,  4.25rem);
 
-    /* --- Spacing ---------------------------------------------------------- */
+    /* --- Spacing ------------------------------------------------------------ */
     --space-1:  0.25rem;
     --space-2:  0.5rem;
     --space-3:  0.75rem;
@@ -74,26 +75,22 @@
     --space-8:  4rem;
     --space-9:  6rem;
 
-    /* --- Shape ------------------------------------------------------------ */
-    --radius-sm: 4px;
+    /* --- Shape --------------------------------------------------------------- */
+    --radius-sm: 5px;
     --radius:    8px;
     --radius-lg: 12px;
 
-    --shadow:      0 1px 2px rgba(20, 22, 26, 0.04),
-                   0 4px 16px rgba(20, 22, 26, 0.06);
-    --shadow-lift: 0 2px 4px rgba(20, 22, 26, 0.05),
-                   0 12px 32px rgba(20, 22, 26, 0.10);
+    --shadow:      0 1px 2px rgba(0, 0, 0, 0.3),
+                   0 4px 16px rgba(0, 0, 0, 0.35);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35),
+                   0 20px 50px -12px rgba(0, 0, 0, 0.55);
 
-    /* --- Layout ----------------------------------------------------------- */
+    /* --- Layout --------------------------------------------------------------- */
     --measure:      68rem;   /* wide container — project grids, case studies */
     --measure-text: 46rem;   /* narrow container — long-form reading         */
 
-    --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-
-/* This site is light only, by design. `color-scheme: light` tells the browser
-   not to auto-darken form controls or scrollbars for visitors whose operating
-   system is set to dark mode. */
 
 
 /* ==========================================================================
@@ -126,8 +123,8 @@ body {
 
 h1, h2, h3, h4 {
     color: var(--ink);
-    line-height: 1.2;
-    font-weight: 650;
+    line-height: 1.15;
+    font-weight: 600;
     letter-spacing: -0.02em;
     text-wrap: balance;      /* avoids a single orphaned word on a new line */
 }
@@ -217,36 +214,49 @@ main li > a:hover,
     padding-inline: var(--space-5);
 }
 
-/* Long-form case-study prose is constrained to a comfortable reading
-   measure, while images and grids stay full width. */
 .container--reading {
     max-width: var(--measure-text);
 }
 
 main {
-    padding-block: var(--space-8) var(--space-9);
+    padding-block: 0 var(--space-9);
 }
 
-/* --- Site navigation ---------------------------------------------------- */
+/* --- Site navigation ------------------------------------------------------
+   Stays in normal flow (position: sticky, not fixed) so no page needs
+   compensating top padding. site.js toggles .is-scrolled once the page has
+   scrolled a little, tightening the padding and solidifying the background —
+   a small polish detail, not required for the nav to work. */
 
 .site-nav {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--ground) 85%, transparent);
-    backdrop-filter: saturate(180%) blur(12px);
-    -webkit-backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--ground) 55%, transparent);
+    backdrop-filter: saturate(160%) blur(10px);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: padding var(--transition), background var(--transition), border-color var(--transition);
+}
+
+.site-nav.is-scrolled {
+    background: color-mix(in srgb, var(--ground) 82%, transparent);
+    border-bottom-color: var(--rule);
 }
 
 .site-nav__inner {
     max-width: var(--measure);
     margin-inline: auto;
-    padding: var(--space-3) var(--space-5);
+    padding: var(--space-4) var(--space-5);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-5);
+    transition: padding var(--transition);
+}
+
+.site-nav.is-scrolled .site-nav__inner {
+    padding-block: var(--space-3);
 }
 
 .site-nav__brand {
@@ -254,7 +264,7 @@ main {
     align-items: center;
     gap: var(--space-3);
     color: var(--ink);
-    font-weight: 650;
+    font-weight: 600;
     font-size: var(--text-base);
     letter-spacing: -0.01em;
     white-space: nowrap;
@@ -275,6 +285,7 @@ main {
 
 .site-nav__links a {
     color: var(--ink-muted);
+    font-family: var(--font-mono);
     font-size: var(--text-sm);
     font-weight: 500;
     padding-block: var(--space-2);
@@ -283,7 +294,6 @@ main {
 
 .site-nav__links a:hover { color: var(--ink); }
 
-/* Current page marker */
 .site-nav__links a[aria-current="page"] {
     color: var(--ink);
 }
@@ -295,11 +305,11 @@ main {
     right: 0;
     bottom: 0;
     height: 2px;
-    background: var(--accent);
+    background: var(--grad);
     border-radius: 1px;
 }
 
-/* --- Footer ------------------------------------------------------------- */
+/* --- Footer ---------------------------------------------------------------- */
 
 .site-footer {
     border-top: 1px solid var(--rule);
@@ -329,9 +339,10 @@ main {
     gap: var(--space-5);
     list-style: none;
     font-size: var(--text-sm);
+    font-family: var(--font-mono);
 }
 
-/* --- Back link (case studies) ------------------------------------------- */
+/* --- Back link (case studies) ---------------------------------------------- */
 
 .back-link {
     display: inline-flex;
@@ -347,67 +358,35 @@ main {
 
 
 /* ==========================================================================
-   4. HOME PAGE — hero, bio, news
+   4. HOME PAGE — photo hero, section index, bio, news
    ========================================================================== */
 
-/* --- Dark band ------------------------------------------------------------
-   The homepage only: a black band behind the hero + intro, everything below
-   it (Selected Work, Currently Building, News) stays on the normal white
-   page. Only the specific elements that live inside .hero-band get color
-   overrides here — nothing outside it is affected. */
-
-.hero-band {
-    background: #0B0B0D;
-    padding-block: var(--space-8) var(--space-9);
-}
-
-.hero-band h1,
-.hero-band .hero__subtitle,
-.hero-band .bio p {
-    color: #FFFFFF;
-}
-
-.hero-band .hero__subtitle {
-    color: rgba(255, 255, 255, 0.68);
-}
-
-.hero-band .bio p {
-    color: rgba(255, 255, 255, 0.82);
-}
-
-.hero-band .intro {
-    border-bottom-color: rgba(255, 255, 255, 0.14);
-}
-
-/* Buttons keep an opaque, light background regardless of what's behind them
-   so their text stays readable against black. */
-.hero-band .button {
-    background: #FFFFFF;
-    color: var(--ink);
-    border-color: rgba(255, 255, 255, 0.25);
-}
-
-.hero-band .button:hover {
-    background: rgba(255, 255, 255, 0.85);
-    border-color: rgba(255, 255, 255, 0.85);
-}
-
-.hero-band .button--primary:hover {
-    background: #FFFFFF;
-    border-color: #FFFFFF;
-    color: var(--ink);
-}
+/* A full-bleed photo hero — a direct child of <main>, not .container, so it
+   can span the full viewport width; a nested .container inside it aligns
+   the actual text content to the same measure as the rest of the page. */
 
 .hero {
-    text-align: center;
-    padding-block: var(--space-6) var(--space-8);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: min(82vh, 720px);
+    background-image:
+        linear-gradient(180deg, rgba(11, 12, 16, 0.25) 0%, rgba(11, 12, 16, 0.55) 55%, rgba(11, 12, 16, 0.96) 100%),
+        url('profile.JPG');
+    background-size: cover;
+    background-position: top center;
+}
+
+.hero__inner {
+    padding-block: var(--space-8) var(--space-8);
+    width: 100%;
 }
 
 .hero__logo {
-    width: 64px;
-    height: 64px;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
-    margin: 0 auto var(--space-4);
+    margin-bottom: var(--space-4);
 }
 
 .hero__eyebrow {
@@ -423,40 +402,39 @@ main {
 .hero h1 {
     font-size: var(--text-4xl);
     margin-bottom: var(--space-4);
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .hero__subtitle {
     font-size: var(--text-lg);
-    color: var(--ink-muted);
-    max-width: 34ch;
-    margin-inline: auto;
+    color: rgba(242, 241, 247, 0.78);
+    max-width: 42ch;
 }
 
-/* --- Intro: bio + portrait ---------------------------------------------- */
+/* --- Section index (the "01", "02" labels before each homepage section) --- */
 
-.intro {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: var(--space-8);
-    align-items: start;
-    padding-bottom: var(--space-8);
-    border-bottom: 1px solid var(--rule);
+.section__index {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    margin-right: var(--space-3);
 }
+
+/* --- Bio -------------------------------------------------------------------- */
 
 .bio p {
     font-size: var(--text-lg);
+    max-width: var(--measure-text);
     margin-bottom: var(--space-4);
 }
 
 .bio p:last-of-type { margin-bottom: 0; }
 
-.portrait img {
-    width: 100%;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-
-/* --- Action buttons ----------------------------------------------------- */
+/* --- Action buttons ---------------------------------------------------------- */
 
 .actions {
     display: flex;
@@ -470,7 +448,7 @@ main {
     align-items: center;
     gap: var(--space-2);
     padding: var(--space-3) var(--space-4);
-    border: 1px solid var(--rule);
+    border: 1px solid var(--rule-strong);
     border-radius: var(--radius);
     background: var(--surface);
     color: var(--ink);
@@ -495,26 +473,27 @@ main {
     flex-shrink: 0;
 }
 
-/* Primary variant — used once per page at most. Text is dark, not white:
-   the accent is a light lavender, and white text on top of it is very hard
-   to read. */
+/* Primary variant — light accent fill needs dark (not white) text. */
 .button--primary {
     background: var(--accent);
     border-color: var(--accent);
-    color: var(--ink);
+    color: var(--accent-ink);
 }
 
 .button--primary:hover {
     background: var(--accent-deep);
     border-color: var(--accent-deep);
-    color: #fff;
+    color: var(--accent-ink);
 }
 
-/* --- Section headers ---------------------------------------------------- */
+/* --- Section headers ---------------------------------------------------------- */
 
 .section {
     padding-block: var(--space-8);
+    border-bottom: 1px solid var(--rule);
 }
+
+.section:last-of-type { border-bottom: none; }
 
 .section__head {
     display: flex;
@@ -524,7 +503,7 @@ main {
     margin-bottom: var(--space-6);
 }
 
-.section__head h2 { margin: 0; }
+.section__head h2 { margin: 0; display: inline; }
 
 .section__link {
     font-family: var(--font-mono);
@@ -532,7 +511,7 @@ main {
     white-space: nowrap;
 }
 
-/* --- News --------------------------------------------------------------- */
+/* --- News ---------------------------------------------------------------------- */
 
 .news {
     list-style: none;
@@ -577,12 +556,13 @@ main {
     color: inherit;
     transition: border-color var(--transition),
                 box-shadow var(--transition),
-                transform var(--transition);
+                transform var(--transition),
+                background var(--transition);
 }
 
-/* Anchor cards get the lift; the plain <div> variant stays static. */
 a.project-card:hover {
     border-color: var(--rule-strong);
+    background: var(--surface-sunk);
     box-shadow: var(--shadow-lift);
     transform: translateY(-2px);
 }
@@ -612,7 +592,7 @@ a.project-card:hover .project-card__title {
     margin-bottom: var(--space-4);
 }
 
-/* --- Placeholder cards ---------------------------------------------------
+/* --- Placeholder cards -------------------------------------------------------
    For work that's in progress. Each still links to a real page — just one
    that's mostly a "details coming soon" scaffold rather than a finished case
    study — so they keep the standard hover-lift; the dashed border is what
@@ -624,7 +604,7 @@ a.project-card:hover .project-card__title {
     background: var(--surface-sunk);
 }
 
-/* --- Skill chips -------------------------------------------------------- */
+/* --- Skill chips --------------------------------------------------------------- */
 
 .chips {
     display: flex;
@@ -637,6 +617,7 @@ a.project-card:hover .project-card__title {
 .chips span {
     padding: var(--space-1) var(--space-3);
     background: var(--surface-sunk);
+    border: 1px solid var(--rule);
     border-radius: var(--radius-sm);
     color: var(--ink-muted);
     font-size: var(--text-xs);
@@ -644,7 +625,7 @@ a.project-card:hover .project-card__title {
     letter-spacing: 0.01em;
 }
 
-/* --- Minor projects ------------------------------------------------------
+/* --- Minor projects -----------------------------------------------------------
    A compact row for secondary work — present and linkable, but visually
    subordinate to the full project cards above it. */
 
@@ -697,7 +678,7 @@ a.project-card:hover .project-card__title {
     .minor__meta { white-space: normal; }
 }
 
-/* --- Skills showcase (all-projects page) -------------------------------- */
+/* --- Skills showcase (all-projects page) --------------------------------------- */
 
 .skill-groups {
     display: grid;
@@ -707,6 +688,7 @@ a.project-card:hover .project-card__title {
 .skill-group {
     padding: var(--space-6);
     background: var(--surface-sunk);
+    border: 1px solid var(--rule);
     border-radius: var(--radius-lg);
 }
 
@@ -726,7 +708,7 @@ a.project-card:hover .project-card__title {
    ========================================================================== */
 
 .case-hero {
-    padding-block: var(--space-4) var(--space-7);
+    padding-block: var(--space-9) var(--space-7);
 }
 
 .case-hero__eyebrow {
@@ -758,10 +740,11 @@ a.project-card:hover .project-card__title {
 .case-hero__image img {
     width: 100%;
     border-radius: var(--radius-lg);
+    border: 1px solid var(--rule);
     box-shadow: var(--shadow);
 }
 
-/* --- Project metadata --------------------------------------------------- */
+/* --- Project metadata ------------------------------------------------------- */
 
 .meta {
     display: grid;
@@ -769,6 +752,7 @@ a.project-card:hover .project-card__title {
     gap: var(--space-5);
     padding: var(--space-6);
     background: var(--surface-sunk);
+    border: 1px solid var(--rule);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-8);
 }
@@ -788,7 +772,7 @@ a.project-card:hover .project-card__title {
     line-height: 1.6;
 }
 
-/* --- Case study body ---------------------------------------------------- */
+/* --- Case study body ---------------------------------------------------------- */
 
 .case-section {
     margin-bottom: var(--space-8);
@@ -823,7 +807,7 @@ a.project-card:hover .project-card__title {
     color: var(--ink);
 }
 
-/* --- Feature grid ------------------------------------------------------- */
+/* --- Feature grid ------------------------------------------------------------- */
 
 .features {
     display: grid;
@@ -853,7 +837,7 @@ a.project-card:hover .project-card__title {
     margin-bottom: 0;
 }
 
-/* --- Images ------------------------------------------------------------- */
+/* --- Images --------------------------------------------------------------------- */
 
 .figure {
     margin-block: var(--space-8);
@@ -865,7 +849,6 @@ a.project-card:hover .project-card__title {
     border: 1px solid var(--rule);
 }
 
-/* Constrains tall or narrow images so they don't dominate the page. */
 .figure--narrow img {
     max-width: 34rem;
     margin-inline: auto;
@@ -904,7 +887,7 @@ a.project-card:hover .project-card__title {
     text-align: left;
 }
 
-/* --- Results / stats ---------------------------------------------------- */
+/* --- Results / stats -------------------------------------------------------------- */
 
 .results {
     display: grid;
@@ -966,6 +949,7 @@ a.project-card:hover .project-card__title {
     gap: var(--space-5);
     padding: var(--space-6);
     background: var(--accent-wash);
+    border: 1px solid var(--rule);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-6);
 }
@@ -974,14 +958,15 @@ a.project-card:hover .project-card__title {
 
 .stat-row .stat__number {
     font-size: var(--text-2xl);
-    color: var(--accent-deep);
+    color: var(--accent);
 }
 
-/* --- Callout ------------------------------------------------------------ */
+/* --- Callout ------------------------------------------------------------------------ */
 
 .callout {
     padding: var(--space-5) var(--space-6);
     background: var(--surface-sunk);
+    border: 1px solid var(--rule);
     border-left: 3px solid var(--accent);
     border-radius: 0 var(--radius) var(--radius) 0;
     margin-block: var(--space-6);
@@ -999,7 +984,7 @@ a.project-card:hover .project-card__title {
     margin-bottom: var(--space-2);
 }
 
-/* --- Code --------------------------------------------------------------- */
+/* --- Code ---------------------------------------------------------------------------- */
 
 .code-block {
     padding: var(--space-5);
@@ -1031,7 +1016,7 @@ code {
     background: none;
 }
 
-/* --- Spec table --------------------------------------------------------- */
+/* --- Spec table ---------------------------------------------------------------------- */
 
 .spec-table-wrap { overflow-x: auto; margin-block: var(--space-5); }
 
@@ -1061,7 +1046,7 @@ code {
 .spec-table td:first-child { color: var(--ink); font-weight: 550; }
 .spec-table tr:last-child td { border-bottom: none; }
 
-/* --- Prev / next -------------------------------------------------------- */
+/* --- Prev / next --------------------------------------------------------------------- */
 
 .case-nav {
     display: flex;
@@ -1086,33 +1071,13 @@ code {
    7. RESPONSIVE
    ========================================================================== */
 
-@media (max-width: 62rem) {
-    .intro {
-        grid-template-columns: 1fr 240px;
-        gap: var(--space-6);
-    }
-}
-
 @media (max-width: 46rem) {
     :root {
         --space-8: 3rem;
         --space-9: 4rem;
     }
 
-    main { padding-block: var(--space-6) var(--space-8); }
-
-    /* Portrait moves above the bio on small screens. */
-    .intro {
-        grid-template-columns: 1fr;
-        gap: var(--space-5);
-    }
-
-    .portrait {
-        order: -1;
-        max-width: 15rem;
-    }
-
-    .hero__subtitle { max-width: none; }
+    .hero { min-height: min(88vh, 620px); }
 
     .news li {
         grid-template-columns: 1fr;
@@ -1130,9 +1095,8 @@ code {
     .meta { padding: var(--space-5); }
 
     .site-nav__inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-2);
+        flex-wrap: wrap;
+        gap: var(--space-3);
     }
 
     .site-nav__links {
@@ -1156,6 +1120,8 @@ code {
     .back-link { display: none; }
 
     body { background: #fff; color: #000; }
+    .hero { background: none; min-height: auto; }
+    .hero h1 { -webkit-text-fill-color: #000; color: #000; background: none; }
 
     a { color: #000; text-decoration: underline; }
 

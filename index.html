@@ -6,6 +6,9 @@
     <title>Courtney Cho — Bioengineer &amp; Robotics</title>
     <meta name="description" content="Courtney Cho is a bioengineering master's candidate at Northeastern University working on medical devices, assistive robotics, and biomechanical test systems." />
     <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -30,79 +33,73 @@
 
     <main id="main">
 
-        <!-- ===== Dark band: hero + intro only. Everything below this stays
-             on the normal white page. ===== -->
-        <div class="hero-band">
-            <div class="container">
+        <!-- ===== Photo hero ===== -->
+        <header class="hero">
+            <div class="container hero__inner">
+                <img src="url-logo.png" alt="Courtney Cho" class="hero__logo" />
+                <span class="hero__eyebrow">Bioengineering · Robotics · Medical Devices</span>
+                <h1>Courtney Cho</h1>
+                <p class="hero__subtitle">
+                    I design and build mechanical systems that have to work on real people.
+                </p>
 
-                <!-- ===== Hero ===== -->
-                <header class="hero">
-                    <img src="url-logo.png" alt="Courtney Cho" class="hero__logo" />
-                    <span class="hero__eyebrow">Bioengineering · Robotics · Medical Devices</span>
-                    <h1>Courtney Cho</h1>
-                    <p class="hero__subtitle">
-                        I design and build mechanical systems that have to work on real people.
-                    </p>
-                </header>
-
-                <!-- ===== Intro ===== -->
-                <div class="intro">
-                    <section class="bio">
-                        <p>
-                            I'm a Bioengineering master's candidate at
-                            <a href="https://bioe.northeastern.edu/" target="_blank" rel="noopener">Northeastern University</a>,
-                            where my thesis work involves designing a biomechanical test rig to predict femur
-                            fracture in patients with osseointegrated prosthetic implants.
-                        </p>
-                        <p>
-                            My work sits where mechanical design meets the human body: actuated assistive
-                            devices, robotic control systems, and medical simulation hardware. I move between
-                            CAD and FEA, embedded control and inverse kinematics, and the user research that
-                            tells me whether any of it actually helps. Before Northeastern I earned a BS in
-                            Human Centered Design and Engineering from the University of Washington.
-                        </p>
-                        <p>
-                            I'm currently looking for robotics and medical device roles where hardware has to
-                            survive contact with real users.
-                        </p>
-
-                        <div class="actions">
-                            <a href="all-projects.html" class="button button--primary">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-                                    <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-                                </svg>
-                                View all projects
-                            </a>
-                            <a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener" class="button">
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
-                                </svg>
-                                Resume
-                            </a>
-                            <a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener" class="button">
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                </svg>
-                                LinkedIn
-                            </a>
-                        </div>
-                    </section>
-
-                    <div class="portrait">
-                        <img src="profile.JPG" alt="Portrait of Courtney Cho" />
-                    </div>
+                <div class="actions">
+                    <a href="all-projects.html" class="button button--primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        View all projects
+                    </a>
+                    <a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener" class="button">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                        </svg>
+                        Resume
+                    </a>
+                    <a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener" class="button">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
                 </div>
-
             </div>
-        </div>
+        </header>
 
         <div class="container">
 
-            <!-- ===== Featured projects ===== -->
-            <section class="section">
+            <!-- ===== About ===== -->
+            <section class="section" id="about">
                 <div class="section__head">
-                    <h2>Selected Work</h2>
+                    <h2><span class="section__index">01</span>About</h2>
+                </div>
+
+                <div class="bio">
+                    <p>
+                        I'm a Bioengineering master's candidate at
+                        <a href="https://bioe.northeastern.edu/" target="_blank" rel="noopener">Northeastern University</a>,
+                        where my thesis work involves designing a biomechanical test rig to predict femur
+                        fracture in patients with osseointegrated prosthetic implants.
+                    </p>
+                    <p>
+                        My work sits where mechanical design meets the human body: actuated assistive
+                        devices, robotic control systems, and medical simulation hardware. I move between
+                        CAD and FEA, embedded control and inverse kinematics, and the user research that
+                        tells me whether any of it actually helps. Before Northeastern I earned a BS in
+                        Human Centered Design and Engineering from the University of Washington.
+                    </p>
+                    <p>
+                        I'm currently looking for robotics and medical device roles where hardware has to
+                        survive contact with real users.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ===== Selected Work ===== -->
+            <section class="section" id="work">
+                <div class="section__head">
+                    <h2><span class="section__index">02</span>Selected Work</h2>
                     <a href="all-projects.html" class="section__link">All projects →</a>
                 </div>
 
@@ -173,9 +170,9 @@
             </section>
 
             <!-- ===== Currently building — placeholders, no case study yet ===== -->
-            <section class="section">
+            <section class="section" id="building">
                 <div class="section__head">
-                    <h2>Currently Building</h2>
+                    <h2><span class="section__index">03</span>Currently Building</h2>
                 </div>
 
                 <div class="projects">
@@ -222,9 +219,9 @@
             </section>
 
             <!-- ===== News ===== -->
-            <section class="section">
+            <section class="section" id="news">
                 <div class="section__head">
-                    <h2>News</h2>
+                    <h2><span class="section__index">04</span>News</h2>
                 </div>
 
                 <ul class="news">
@@ -267,8 +264,11 @@
                 <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
                 <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
                 <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
+                <li><a href="#main">Back to top ↑</a></li>
             </ul>
         </div>
     </footer>
+
+    <script defer src="site.js"></script>
 </body>
 </html>
