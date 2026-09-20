@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMU-to-OpenSim Motion Pipeline | Courtney Cho</title>
+    <meta name="description" content="An in-progress personal project streaming IMU sensor data into OpenSim for motion analysis." />
+    <link rel="icon" type="image/png" href="url-logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- ===== Site navigation — keep this block identical on every page ===== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">
+                <img src="url-logo.png" alt="" />
+                Courtney Cho
+            </a>
+            <ul class="site-nav__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html" aria-current="page">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main">
+        <div class="container">
+            <a href="all-projects.html" class="back-link">← All projects</a>
+
+            <!-- ===== Hero ===== -->
+            <header class="case-hero">
+                <span class="case-hero__eyebrow">Wearable Tech · Personal Project · In Progress</span>
+                <h1>IMU-to-OpenSim Motion Pipeline</h1>
+                <p class="case-hero__subtitle">
+                    Streaming IMU sensor data into OpenSim to analyze human motion — a personal project
+                    built to sharpen my wearable sensing and biomechanical modeling skills.
+                </p>
+            </header>
+
+            <!-- ===== Metadata ===== -->
+            <section class="meta">
+                <div>
+                    <div class="meta__label">Role</div>
+                    <div class="meta__value">Sole Developer</div>
+                </div>
+                <div>
+                    <div class="meta__label">Status</div>
+                    <div class="meta__value">In progress</div>
+                </div>
+                <div>
+                    <div class="meta__label">Timeline</div>
+                    <div class="meta__value">Ongoing</div>
+                </div>
+                <div>
+                    <div class="meta__label">Stack</div>
+                    <div class="meta__value">IMU Sensors · Python · OpenSim</div>
+                </div>
+            </section>
+
+            <!-- ===== The idea ===== -->
+            <section class="case-section">
+                <h2>The Idea</h2>
+                <p class="lead">
+                    Motion capture in a lab is precise but expensive and confined to a fixed volume.
+                    Wearable IMUs — inertial measurement units — can measure motion anywhere. The
+                    tradeoff is turning raw accelerometer and gyroscope data into something a
+                    biomechanics tool can actually use.
+                </p>
+                <p>
+                    This project is my attempt to close that gap: a pipeline that takes IMU sensor output
+                    and feeds it into OpenSim, an open-source platform for modeling and simulating
+                    musculoskeletal movement, so wearable data can drive the kind of motion analysis
+                    normally reserved for marker-based lab setups.
+                </p>
+            </section>
+
+            <!-- ===== Status ===== -->
+            <section class="case-section">
+                <h2>Status</h2>
+                <div class="callout">
+                    <span class="callout__label">In progress</span>
+                    <p>
+                        This page is a placeholder for a project still in development. Once the pipeline
+                        is working end to end, this case study will cover the sensor setup, the data
+                        processing pipeline, how it's validated against OpenSim's models, and what the
+                        results show.
+                    </p>
+                </div>
+
+                <h3>What this case study will cover</h3>
+                <ul>
+                    <li>Why IMU-based motion capture, and where it fits next to traditional lab systems</li>
+                    <li>Sensor hardware and placement</li>
+                    <li>The data pipeline — from raw IMU signal to OpenSim-ready input</li>
+                    <li>Validation approach and results</li>
+                    <li>What I'd build next</li>
+                </ul>
+            </section>
+
+            <!-- ===== Prev / next ===== -->
+            <nav class="case-nav">
+                <a href="all-projects.html">← All projects</a>
+                <a href="medical-device-tool.html">Next: Medical Device Tool →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <!-- ===== Footer — keep this block identical on every page ===== -->
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__note">© 2026 Courtney Cho</span>
+            <ul class="site-footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="all-projects.html">Projects</a></li>
+                <li><a href="https://drive.google.com/file/d/1_Njs4tzKzRXHr1TKFpShlfMAn3VPKCJ9/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="https://www.linkedin.com/in/courtneyncho/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:cho.co@northeastern.edu">Email</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

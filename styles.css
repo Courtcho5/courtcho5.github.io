@@ -562,9 +562,10 @@ a.project-card:hover .project-card__title {
 }
 
 /* --- Placeholder cards ---------------------------------------------------
-   For work that's in progress and doesn't have a case study yet. A dashed
-   border marks it as "not finished" without hiding it — these are plain
-   <div>s rather than <a>s, so they never pick up the hover-lift rule above. */
+   For work that's in progress. Each still links to a real page — just one
+   that's mostly a "details coming soon" scaffold rather than a finished case
+   study — so they keep the standard hover-lift; the dashed border is what
+   marks them as unfinished. */
 
 .project-card--placeholder {
     border-style: dashed;
