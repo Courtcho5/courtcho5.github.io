@@ -24,6 +24,8 @@
    ========================================================================== */
 
 :root {
+    color-scheme: light;
+
     /* --- Color ------------------------------------------------------------
        The palette is intentionally small: a warm paper ground, near-black
        ink, and one accent used sparingly for links and emphasis. */
@@ -85,31 +87,9 @@
     --transition: 180ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark mode. Only the color tokens are redefined — every component rule
-   below is written against the tokens, so nothing else needs to change. */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --ground:       #121316;
-        --surface:      #1A1C20;
-        --surface-sunk: #202328;
-
-        --ink:          #F2F1EE;
-        --ink-body:     #C2C6CC;
-        --ink-muted:    #8A9099;
-
-        --rule:         #2B2F35;
-        --rule-strong:  #434952;
-
-        --accent:       #4FB3AE;
-        --accent-deep:  #7FCCC8;
-        --accent-wash:  #16302F;
-
-        --shadow:      0 1px 2px rgba(0, 0, 0, 0.3),
-                       0 4px 16px rgba(0, 0, 0, 0.35);
-        --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35),
-                       0 12px 32px rgba(0, 0, 0, 0.45);
-    }
-}
+/* This site is light only, by design. `color-scheme: light` tells the browser
+   not to auto-darken form controls or scrollbars for visitors whose operating
+   system is set to dark mode. */
 
 
 /* ==========================================================================
