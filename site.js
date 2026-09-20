@@ -29,3 +29,26 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
 })();
+
+/* Light/dark toggle. The initial theme is applied synchronously by a small
+   inline script in <head> (reading the same localStorage key) so the page
+   never flashes the wrong theme on load — this just handles clicks. */
+(function () {
+    var toggle = document.querySelector('.theme-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        try {
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        } catch (e) {
+            /* localStorage unavailable (private browsing, etc.) — theme still
+               applies for this page load, it just won't persist. */
+        }
+    });
+})();

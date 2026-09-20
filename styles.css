@@ -96,6 +96,32 @@
     --transition: 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
+/* Dark mode — toggled by adding data-theme="dark" to <html> (see the
+   .theme-toggle button and site.js). Every component is already written
+   against these tokens, so redefining them here is enough to re-theme the
+   whole site; nothing below this block needs to change. --accent itself
+   doesn't change between themes — it already reads fine on both — but
+   --accent-deep flips from "darker, for text on a light surface" to
+   "lighter, for text on a dark surface" since the correct direction to
+   darken/lighten for contrast reverses with the background. */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --ground:        #0B0C10;
+    --surface:       rgba(255, 255, 255, 0.035);
+    --surface-sunk:  rgba(255, 255, 255, 0.055);
+
+    --ink:           #F2F1F7;
+    --ink-body:      #B9BAC6;
+    --ink-muted:     #8A8B99;
+
+    --rule:          rgba(255, 255, 255, 0.10);
+    --rule-strong:   rgba(255, 255, 255, 0.22);
+
+    --accent-deep:   #C9AEF6;
+    --accent-wash:   rgba(169, 164, 255, 0.12);
+}
+
 
 /* ==========================================================================
    2. BASE
@@ -154,9 +180,11 @@ a {
 
 a:hover { color: var(--accent-deep); }
 
-/* Prose links get an underline; structural links (cards, nav) opt out. */
+/* Prose links get an underline; structural links (cards, nav, .minor) opt
+   out — .minor is an <a> inside an <li> too, so it needs an explicit
+   exclusion or it picks up the prose treatment by accident. */
 main p > a,
-main li > a,
+main li > a:not(.minor),
 .bio a {
     text-decoration: underline;
     text-underline-offset: 0.2em;
@@ -165,7 +193,7 @@ main li > a,
 }
 
 main p > a:hover,
-main li > a:hover,
+main li > a:not(.minor):hover,
 .bio a:hover {
     text-decoration-color: currentColor;
 }
@@ -269,6 +297,29 @@ main {
     border-bottom-color: var(--rule);
 }
 
+/* On the homepage the nav sits directly over the dark photo hero, so its
+   default (unscrolled) state uses a dark glass tint and light text instead
+   of the normal light-mode nav colors — otherwise it reads as a pale bar
+   cutting across the photo. Once scrolled past the hero it switches back to
+   the normal .is-scrolled treatment above, which already tracks whatever
+   theme is active via --ground. */
+body.has-hero .site-nav:not(.is-scrolled) {
+    background: rgba(11, 12, 16, 0.32);
+}
+
+body.has-hero .site-nav:not(.is-scrolled) .site-nav__brand,
+body.has-hero .site-nav:not(.is-scrolled) .site-nav__links a,
+body.has-hero .site-nav:not(.is-scrolled) .theme-toggle {
+    color: rgba(255, 255, 255, 0.82);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+body.has-hero .site-nav:not(.is-scrolled) .site-nav__links a:hover,
+body.has-hero .site-nav:not(.is-scrolled) .theme-toggle:hover {
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
 .site-nav__inner {
     max-width: var(--measure);
     margin-inline: auto;
@@ -333,6 +384,43 @@ main {
     background: var(--grad);
     border-radius: 1px;
 }
+
+/* --- Theme toggle -------------------------------------------------------
+   A light/dark switch, sun icon showing in dark mode (click to go light),
+   moon icon showing in light mode (click to go dark). See site.js for the
+   click handler and the inline script in <head> that applies a saved
+   preference before first paint. */
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition);
+}
+
+.theme-toggle:hover {
+    color: var(--ink);
+    border-color: var(--rule-strong);
+}
+
+.theme-toggle__icon {
+    width: 16px;
+    height: 16px;
+}
+
+.theme-toggle__icon--moon { display: block; }
+.theme-toggle__icon--sun { display: none; }
+
+[data-theme="dark"] .theme-toggle__icon--moon { display: none; }
+[data-theme="dark"] .theme-toggle__icon--sun { display: block; }
 
 /* --- Footer ---------------------------------------------------------------- */
 
