@@ -27,26 +27,29 @@
     color-scheme: light;
 
     /* --- Color ------------------------------------------------------------
-       The palette is intentionally small: a warm paper ground, near-black
+       The palette is intentionally small: a clean white ground, near-black
        ink, and one accent used sparingly for links and emphasis. */
-    --ground:        #FAFAF8;   /* page background — warm off-white          */
+    --ground:        #FFFFFF;   /* page background — clean white             */
     --surface:       #FFFFFF;   /* cards sitting on the ground               */
-    --surface-sunk:  #F2F1EC;   /* recessed panels (detail grids, features)  */
+    --surface-sunk:  #F8F8F8;   /* recessed panels (detail grids, features)  */
 
-    --ink:           #14161A;   /* headings — near black                     */
-    --ink-body:      #3D4249;   /* body copy                                 */
-    --ink-muted:     #6B7178;   /* captions, labels, metadata                */
+    --ink:           #1A1A1A;   /* headings — near black                     */
+    --ink-body:      #444444;   /* body copy                                 */
+    --ink-muted:     #666666;   /* captions, labels, metadata                */
 
-    --rule:          #E3E1DA;   /* hairlines and card borders                */
-    --rule-strong:   #C9C6BC;   /* hover borders                             */
+    --rule:          #E0E0E0;   /* hairlines and card borders                */
+    --rule-strong:   #999999;   /* hover borders                             */
 
     --accent:        #0E6B68;   /* deep teal — links, active nav, stats      */
     --accent-deep:   #094B49;   /* hover state                               */
     --accent-wash:   #E6F0EF;   /* tinted backgrounds                        */
 
-    /* --- Type ------------------------------------------------------------- */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    /* --- Type -------------------------------------------------------------
+       System font stack only — no webfont download, and it matches the
+       typeface the site originally shipped with. --font-mono is aliased to
+       the same stack so labels that use it just render as uppercase sans. */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: var(--font-sans);
 
     /* Fluid type scale. clamp(min, preferred, max) keeps headings readable
        on phones without a separate mobile font-size for every rule. */
@@ -347,7 +350,15 @@ main {
    ========================================================================== */
 
 .hero {
+    text-align: center;
     padding-block: var(--space-6) var(--space-8);
+}
+
+.hero__logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin: 0 auto var(--space-4);
 }
 
 .hero__eyebrow {
@@ -369,6 +380,7 @@ main {
     font-size: var(--text-lg);
     color: var(--ink-muted);
     max-width: 34ch;
+    margin-inline: auto;
 }
 
 /* --- Intro: bio + portrait ---------------------------------------------- */
@@ -547,6 +559,17 @@ a.project-card:hover .project-card__title {
 .project-card__body {
     color: var(--ink-body);
     margin-bottom: var(--space-4);
+}
+
+/* --- Placeholder cards ---------------------------------------------------
+   For work that's in progress and doesn't have a case study yet. A dashed
+   border marks it as "not finished" without hiding it — these are plain
+   <div>s rather than <a>s, so they never pick up the hover-lift rule above. */
+
+.project-card--placeholder {
+    border-style: dashed;
+    border-color: var(--rule-strong);
+    background: var(--surface-sunk);
 }
 
 /* --- Skill chips -------------------------------------------------------- */

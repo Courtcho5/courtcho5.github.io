@@ -6,9 +6,6 @@
     <title>Courtney Cho — Bioengineer &amp; Robotics</title>
     <meta name="description" content="Courtney Cho is a bioengineering master's candidate at Northeastern University working on medical devices, assistive robotics, and biomechanical test systems." />
     <link rel="icon" type="image/png" href="url-logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;550;650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -19,7 +16,7 @@
     <nav class="site-nav">
         <div class="site-nav__inner">
             <a href="index.html" class="site-nav__brand">
-                <img src="logo.png" alt="" />
+                <img src="url-logo.png" alt="" />
                 Courtney Cho
             </a>
             <ul class="site-nav__links">
@@ -36,6 +33,7 @@
 
             <!-- ===== Hero ===== -->
             <header class="hero">
+                <img src="url-logo.png" alt="Courtney Cho" class="hero__logo" />
                 <span class="hero__eyebrow">Bioengineering · Robotics · Medical Devices</span>
                 <h1>Courtney Cho</h1>
                 <p class="hero__subtitle">
@@ -102,53 +100,49 @@
                 <div class="projects">
                     <a href="practiv.html" class="project-card">
                         <span class="project-card__tag">Medical Simulation</span>
-                        <h3 class="project-card__title">PRACTIV — A Novel IV Arm Trainer</h3>
+                        <h3 class="project-card__title">PRACTIV — IV Arm Trainer</h3>
                         <p class="project-card__body">
-                            A modular IV training arm with anatomically accurate vein placement, a 3D-printed
-                            TPU lattice that mimics soft tissue, and a pressurized fluid system for blood
-                            flashback. In a formal usability study against a leading commercial trainer,
-                            PRACTIV scored 73.6 on the System Usability Scale versus 49.7, with significantly
-                            higher ratings across every realism measure tested.
+                            Designed and built a modular IV training arm with 3D-printed lattice tissue and
+                            real fluid flashback — then beat a leading commercial trainer head-to-head, 73.6
+                            vs. 49.7 on the System Usability Scale. Published in <em>Simulation in Healthcare</em>.
                         </p>
                         <div class="chips">
                             <span>SOLIDWORKS</span>
                             <span>nTopology</span>
-                            <span>Silicone Casting</span>
                             <span>Usability Testing</span>
+                            <span>Published Research</span>
                         </div>
                     </a>
 
                     <a href="robotic-arm.html" class="project-card">
                         <span class="project-card__tag">Robotics</span>
-                        <h3 class="project-card__title">6-DOF Robotic Arm &amp; Inverse Kinematics Controller</h3>
+                        <h3 class="project-card__title">6-DOF Robotic Arm &amp; IK Controller</h3>
                         <p class="project-card__body">
-                            A six-axis arm designed in CAD and driven by a Python control application I wrote
-                            from scratch. It solves closed-form inverse kinematics for a target position in
-                            Cartesian space, compensates the wrist to hold the gripper level, and validates
-                            every joint against its mechanical limits before a single command reaches the servos.
+                            Designed a six-axis robotic arm and wrote the Python controller that drives it:
+                            closed-form inverse kinematics, live joint-limit checks, and a GUI built from
+                            scratch to turn a target coordinate into a safe, physical pose.
                         </p>
                         <div class="chips">
                             <span>Inverse Kinematics</span>
                             <span>Python</span>
-                            <span>Serial / Arduino</span>
-                            <span>Mechanism Design</span>
+                            <span>Embedded Control</span>
+                            <span>CAD</span>
                         </div>
                     </a>
 
                     <a href="biomechanics-research.html" class="project-card">
-                        <span class="project-card__tag">Master's Thesis · Research</span>
-                        <h3 class="project-card__title">Osseointegrated Implant Biomechanical Test Rig</h3>
+                        <span class="project-card__tag">Master's Thesis</span>
+                        <h3 class="project-card__title">Osseointegrated Implant Test Rig</h3>
                         <p class="project-card__body">
-                            Designing and building a mechanical test rig to characterize femur fracture risk
-                            in patients with osseointegrated prosthetic implants. Now on its third design
-                            iteration, with finite element analysis used to verify structural integrity of
-                            the fixture before machining.
+                            Designing and building a biomechanical test rig to predict femur fracture risk
+                            around bone-anchored prosthetic implants — now on its third iteration, verified
+                            in FEA before every build.
                         </p>
                         <div class="chips">
                             <span>Finite Element Analysis</span>
-                            <span>Mechanical Testing</span>
                             <span>Fixture Design</span>
-                            <span>Experimental Design</span>
+                            <span>SOLIDWORKS</span>
+                            <span>Mechanical Testing</span>
                         </div>
                     </a>
 
@@ -156,19 +150,65 @@
                         <span class="project-card__tag">Assistive Technology · Team Lead</span>
                         <h3 class="project-card__title">Wheelchair-Mounted Umbrella</h3>
                         <p class="project-card__body">
-                            Led mechanical design on a two-year HuskyADAPT project: a servo-actuated canopy
-                            that opens at the press of a button, mounted to a wheelchair's existing accessory
-                            tracks. Requirements came from an occupational therapist whose clients were
-                            cancelling therapy appointments because opening an umbrella meant waiting for
-                            a caregiver.
+                            Led mechanical design on a servo-actuated umbrella that opens at the push of a
+                            button — built around a clinician's insight that grip strength, not weather, was
+                            what kept wheelchair users from going out.
                         </p>
                         <div class="chips">
                             <span>Team Leadership</span>
-                            <span>Arduino</span>
                             <span>Servo Actuation</span>
                             <span>Mechanism Design</span>
                         </div>
                     </a>
+                </div>
+            </section>
+
+            <!-- ===== Currently building — placeholders, no case study yet ===== -->
+            <section class="section">
+                <div class="section__head">
+                    <h2>Currently Building</h2>
+                </div>
+
+                <div class="projects">
+                    <div class="project-card project-card--placeholder">
+                        <span class="project-card__tag">Wearable Tech · In Progress</span>
+                        <h3 class="project-card__title">IMU-to-OpenSim Motion Pipeline</h3>
+                        <p class="project-card__body">
+                            Building a pipeline that streams IMU sensor data into OpenSim for motion
+                            analysis — a personal project to sharpen my wearable sensing and programming
+                            skills. Full case study coming soon.
+                        </p>
+                        <div class="chips">
+                            <span>IMU Sensing</span>
+                            <span>OpenSim</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card project-card--placeholder">
+                        <span class="project-card__tag">Medical Device · Co-op · In Progress</span>
+                        <h3 class="project-card__title">Medical Device Development Tool</h3>
+                        <p class="project-card__body">
+                            Developing a device engineering tool as part of my current co-op, applying
+                            end-to-end medical device development skills in an industry setting. Details to
+                            follow as the work becomes shareable.
+                        </p>
+                        <div class="chips">
+                            <span>Medical Devices</span>
+                            <span>Product Development</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card project-card--placeholder">
+                        <span class="project-card__tag">Medical Device · Co-op · In Progress</span>
+                        <h3 class="project-card__title">Withdrawal Project</h3>
+                        <p class="project-card__body">
+                            A second project underway at my current co-op. Full case study coming soon.
+                        </p>
+                        <div class="chips">
+                            <span>Medical Devices</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
