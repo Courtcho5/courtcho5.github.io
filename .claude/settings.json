@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"^/\\\\* ====.*HOME PAGE\\\\|^\\\\.hero \\\\|^\\\\.hero__inner\\\\|^\\\\.hero__logo\\\\|^\\\\.hero__eyebrow\\\\|^\\\\.hero h1\\\\|^\\\\.hero__subtitle\\\\|section__index\" styles.css)"
+    ]
+  }
+}

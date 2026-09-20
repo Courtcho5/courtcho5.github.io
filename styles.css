@@ -24,28 +24,32 @@
    ========================================================================== */
 
 :root {
-    color-scheme: dark;
+    color-scheme: light;
 
     /* --- Color --------------------------------------------------------------
-       Dark ground, near-white ink, one lavender accent with a lighter
-       secondary tone for hover/emphasis. --accent-ink exists specifically
-       for text that sits ON TOP of the light accent color (e.g. a solid
-       accent button) — the accent is too light for white text to sit on. */
-    --ground:        #0B0C10;   /* page background — near black              */
-    --surface:       rgba(255, 255, 255, 0.035);  /* cards on the ground     */
-    --surface-sunk:  rgba(255, 255, 255, 0.055);  /* recessed panels         */
+       The page itself is light — white ground, dark ink. The dark look now
+       lives only in .dark-band (the hero + About section at the top of the
+       homepage; see section 4), which sets its own local overrides rather
+       than flipping these tokens. --accent-ink exists specifically for text
+       that sits ON TOP of the light accent color (e.g. a solid accent
+       button) — the accent itself is too light for white text on it, on
+       either background. */
+    --ground:        #FFFFFF;   /* page background — clean white             */
+    --surface:       #FFFFFF;   /* cards on the ground                       */
+    --surface-sunk:  #F8F8F8;   /* recessed panels                           */
 
-    --ink:           #F2F1F7;   /* headings — near white                     */
-    --ink-body:      #B9BAC6;   /* body copy                                 */
-    --ink-muted:     #8A8B99;   /* captions, labels, metadata                */
+    --ink:           #1A1A1A;   /* headings — near black                     */
+    --ink-body:      #444444;   /* body copy                                 */
+    --ink-muted:     #666666;   /* captions, labels, metadata                */
 
-    --rule:          rgba(255, 255, 255, 0.10);   /* hairlines, borders      */
-    --rule-strong:   rgba(255, 255, 255, 0.22);   /* hover borders           */
+    --rule:          #E0E0E0;   /* hairlines, borders                        */
+    --rule-strong:   #999999;   /* hover borders                             */
 
     --accent:        #A9A4FF;   /* lavender — links, tags, stats             */
-    --accent-deep:   #C9AEF6;   /* lighter amethyst — hover / emphasis       */
+    --accent-deep:   #7B72E8;   /* deeper indigo — used wherever the text    */
+                                 /* needs to read clearly on a light surface  */
     --accent-ink:    #14161A;   /* dark text for use on top of --accent      */
-    --accent-wash:   rgba(169, 164, 255, 0.12);   /* tinted panels           */
+    --accent-wash:   #F1F0FF;   /* tinted panels                             */
     --grad: linear-gradient(120deg, var(--accent), var(--accent-deep));
 
     /* --- Type ---------------------------------------------------------------
@@ -220,6 +224,27 @@ main li > a:hover,
 
 main {
     padding-block: 0 var(--space-9);
+}
+
+/* --- Page progress bar -----------------------------------------------------
+   A thin fixed bar at the very top of the viewport, above the nav, that
+   fills left-to-right as you scroll the page. site.js sets the fill width;
+   with no JS it just sits at 0% and is invisible against the track. */
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 100;
+    background: var(--rule);
+}
+
+.progress-bar__fill {
+    height: 100%;
+    width: 0%;
+    background: var(--grad);
 }
 
 /* --- Site navigation ------------------------------------------------------
@@ -412,6 +437,31 @@ main {
     font-size: var(--text-lg);
     color: rgba(242, 241, 247, 0.78);
     max-width: 42ch;
+}
+
+/* --- Dark band --------------------------------------------------------------
+   Wraps the photo hero AND the About section right after it — "the main
+   info," as opposed to Work/Building/Skills/News below, which stay on the
+   normal light page. The hero's own background-image + gradient already
+   render dark regardless of theme; this just gives the About section a
+   matching solid dark background and flips its (otherwise light-theme) text
+   colors locally, without touching the global tokens. */
+
+.dark-band {
+    background: #0B0C10;
+}
+
+.dark-band #about h2,
+.dark-band #about .bio p {
+    color: #FFFFFF;
+}
+
+.dark-band #about .bio p {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.dark-band #about.section {
+    border-bottom-color: rgba(255, 255, 255, 0.14);
 }
 
 /* --- Section index (the "01", "02" labels before each homepage section) --- */
@@ -958,7 +1008,7 @@ a.project-card:hover .project-card__title {
 
 .stat-row .stat__number {
     font-size: var(--text-2xl);
-    color: var(--accent);
+    color: var(--accent-deep);
 }
 
 /* --- Callout ------------------------------------------------------------------------ */
