@@ -51,20 +51,16 @@
             <!-- ===== Hero ===== -->
             <header class="case-hero">
                 <span class="case-hero__eyebrow">Robotics · Controls</span>
-                <h1>A 6-DOF Arm and the Software That Drives It</h1>
+                <h1>A 3-DOF Robot Arm Solved Using Cyclic Coordinate Descent</h1>
                 <p class="case-hero__subtitle">
-                    Designing a six-axis manipulator, then writing the inverse kinematics that lets you
-                    tell it <em>where to go</em> instead of what angle every joint should hold.
+                    Designing a simple three-axis manipulator, then writing the inverse kinematics that lets you
+                    tell it where to go.
                 </p>
                 <p>video</p>
             </header>
 
             <!-- ===== Metadata ===== -->
             <section class="meta">
-                <div>
-                    <div class="meta__label">Role</div>
-                    <div class="meta__value">Sole designer &amp; developer</div>
-                </div>
                 <div>
                     <div class="meta__label">Stack</div>
                     <div class="meta__value">Python · Tkinter · pySerial · Arduino · SOLIDWORKS</div>
@@ -79,12 +75,13 @@
             <section class="case-section">
                 <h2>From Classroom to Project</h2>
                 <p class="lead">
-                    After taking ME 5590 Robotic and Kinematic Controls at Northeastern University. I sought a way to apply the concepts from class to a personal project. I landed on designing a 6-DOF arm with the accompanying C++ code. 
+                    After taking ME 5250 Robotic Mechanics and Controls at Northeastern University. I sought a way to apply the concepts from class to a personal project. I landed on designing a 3-DOF arm with the accompanying C++ code. 
                 </p>
                 <p>
                     There were 3 goals in this 1 month project. 
-                    <li>Build a simple 6 DOF robot </li>
-                    <li>Use inverse kinematics to develop a phantom</li>
+                    <li>Design a simple 3 DOF robot.</li>
+                    <li>Solve motion control using inverse kinematics</li>
+                    <li>Program movement in blender</li>
                 </p>
                 <p>
                     That means solving the inverse kinematics problem: given a target position for the
@@ -97,8 +94,7 @@
             <section class="case-section">
                 <h2>Mechanical Design</h2>
                 <p>
-                    The arm is a serial manipulator: a rotating base, two primary links, and a wrist
-                    assembly carrying the gripper. Link lengths are the input the kinematics are built
+                    The arm is a serial manipulator: a rotating base and two primary links. A wrist gripper was not built into this original design but could be easily added with the addition of 2 hobby servo motors. Link lengths are the input the kinematics are built
                     around, so they were fixed in CAD first and measured precisely.
                 </p>
 
@@ -134,10 +130,17 @@
             <section class="case-section">
                 <h2>Solving the Kinematics</h2>
                 <p>
-                    Rather than reach for a numerical solver, I derived a closed-form solution. For a
-                    3-link planar arm the geometry is tractable, and a closed-form answer is fast,
-                    deterministic, and — unlike an iterative solver — tells you immediately and exactly
-                    when a target is unreachable.
+                   To solve the motion of my robot I chose Cyclic Coordinate Descent (CCD) was chosed over 
+                   closed-form/analytic IK and Jacovian-based methods (transpose, pseudoinverse, damped least squares) for 
+                   a few practical reasons:
+                   <li><bold>Limited matrix math required.</bold> Jacobian methods need matrix inverses recomputed
+                    every iteration. This is a expensive process on an Arduino Uno with no FPU. CCD is a cheap
+                    computation per joint per iteration. Proof I can solve an analytical IK will be at the bottom of 
+                    this page :). </li>
+                    <li><bold>Singularities.</bold> Jacobian methods struggle near singular configurations. CCD has no matrix to invert and 
+                    will continue converging in singular configurations. The trade-off is that it may converse slower 
+                    but will never produce a velocity spoke.</li>
+                    <li><bold>Why not geometric solution?</bold> I wanted to do a numerical IK method. </li>
                 </p>
 
                 <h3>Step 1 — Collapse the problem to two dimensions</h3>
