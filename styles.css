@@ -1133,6 +1133,11 @@ a.project-card:hover .project-card__title {
     margin-block: var(--space-5);
 }
 
+.code-block--scroll {
+    max-height: 22rem;
+    overflow-y: auto;
+}
+
 .code-block pre {
     font-family: var(--font-mono);
     font-size: var(--text-sm);

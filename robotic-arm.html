@@ -151,7 +151,7 @@
                 <div class="callout">
                     <span class="callout__label">Why not a geometric solution?</span>
                     <p>
-                        A closed-form 2-link solution is honestly simpler and exact for this specific arm — but it doesn't
+                        A closed-form 2-link solution is simpler and exact for this specific arm — but it doesn't
                         scale if I add a joint or change link lengths later, and it wouldn't demonstrate the kind of general,
                         iterative solver used on arms with more DOF. CCD was the more representative choice for a portfolio piece.
                     </p>
@@ -163,6 +163,169 @@
                 <h2>Hardware Design</h2>
                 <p>Here is the schematic I designed and followed to wire my robot.</p>
                 <p>Diagram</p>
+
+                <h2>Software</h2>
+                <p>The Arduino sketch that reads a target position over serial and drives the three steppers via CCD:</p>
+                <div class="code-block code-block--scroll">
+                    <pre><code>/*
+  3-DOF Robotic Arm — CCD Inverse Kinematics
+  Hardware: 3x 28BYJ-48 stepper + ULN2003 driver board, Arduino Uno/Nano
+  Library required: AccelStepper (Library Manager -&gt; "AccelStepper" by Mike McCauley)
+
+  Joint layout:
+    Joint 0 — Base yaw      (solved analytically: atan2)
+    Joint 1 — Shoulder      (solved with CCD, in the r-z plane)
+    Joint 2 — Elbow         (solved with CCD, in the r-z plane)
+
+  Serial protocol: send "X Y Z\n" (millimeters) over Serial Monitor (115200 baud),
+  e.g.  "100 50 60"
+*/
+
+#include &lt;AccelStepper.h&gt;
+#include &lt;math.h&gt;
+
+// ---------------- Stepper setup ----------------
+// AccelStepper HALF4WIRE pin order is (pin1=IN1, pin2=IN3, pin3=IN2, pin4=IN4)
+#define MOTOR_INTERFACE AccelStepper::HALF4WIRE
+
+AccelStepper baseMotor    (MOTOR_INTERFACE, 8, 10, 9, 11);   // physical IN1..IN4 = 8,9,10,11
+AccelStepper shoulderMotor(MOTOR_INTERFACE, 4, 6, 5, 7);     // physical IN1..IN4 = 4,5,6,7
+AccelStepper elbowMotor   (MOTOR_INTERFACE, A0, A2, A1, A3); // physical IN1..IN4 = A0,A1,A2,A3
+
+// 28BYJ-48 in half-step mode: commonly cited as 4096 steps/rev, true value is
+// closer to ~4075.7 (gear ratio varies slightly by batch, ~63.68:1 or ~64:1).
+// CALIBRATE: command exactly one full revolution and measure the real angle,
+// then adjust this constant so 360 deg of travel matches the physical output shaft.
+const float STEPS_PER_REV = 4096.0;
+
+// ---------------- Arm geometry (mm) ----------------
+const float L1 = 80.0;          // shoulder pivot -&gt; elbow pivot
+const float L2 = 80.0;          // elbow pivot -&gt; end effector
+const float BASE_HEIGHT = 40.0; // height of shoulder pivot above the base/world origin
+
+// ---------------- Joint state (radians) ----------------
+// theta1: shoulder angle measured from horizontal
+// theta2: elbow angle measured relative to the shoulder link's direction
+float theta1 = 0.0;
+float theta2 = 0.0;
+
+// Soft joint limits (radians) — set these to match what your printed housing
+// can physically do before it collides with itself or the base.
+const float THETA1_MIN = -1.57, THETA1_MAX = 1.57; // +/-90 deg
+const float THETA2_MIN = -2.60, THETA2_MAX = 2.60; // ~+/-149 deg
+
+void setup() {
+  Serial.begin(115200);
+
+  baseMotor.setMaxSpeed(500);
+  baseMotor.setAcceleration(250);
+  shoulderMotor.setMaxSpeed(500);
+  shoulderMotor.setAcceleration(250);
+  elbowMotor.setMaxSpeed(500);
+  elbowMotor.setAcceleration(250);
+
+  Serial.println(F("Ready. Send target as: X Y Z  (mm), e.g. 100 50 60"));
+  Serial.println(F("Make sure the arm was manually zeroed (shoulder horizontal, elbow straight) before power-on."));
+}
+
+void loop() {
+  if (Serial.available()) {
+    float x = Serial.parseFloat();
+    float y = Serial.parseFloat();
+    float z = Serial.parseFloat();
+    // consume trailing newline
+    while (Serial.available() &amp;&amp; Serial.peek() != '\n') Serial.read();
+    if (Serial.available()) Serial.read();
+
+    moveToXYZ(x, y, z);
+  }
+
+  // Non-blocking stepping — call run() as often as possible
+  baseMotor.run();
+  shoulderMotor.run();
+  elbowMotor.run();
+}
+
+// ---------------- Top-level IK ----------------
+void moveToXYZ(float x, float y, float z) {
+  // 1) Base yaw is analytic: it just points the whole arm's plane at the target
+  float theta0 = atan2(y, x);
+
+  // 2) Project the target into that vertical plane
+  float r = sqrt(x * x + y * y);
+  float zPlane = z - BASE_HEIGHT;
+
+  // 3) Solve shoulder + elbow with CCD
+  solveCCD(r, zPlane);
+
+  // 4) Command all three motors
+  baseMotor.moveTo(radiansToSteps(theta0));
+  shoulderMotor.moveTo(radiansToSteps(theta1));
+  elbowMotor.moveTo(radiansToSteps(theta2));
+
+  Serial.print(F("theta0(deg)=")); Serial.print(degrees(theta0));
+  Serial.print(F("  theta1(deg)=")); Serial.print(degrees(theta1));
+  Serial.print(F("  theta2(deg)=")); Serial.println(degrees(theta2));
+}
+
+// ---------------- Cyclic Coordinate Descent (2-link planar chain) ----------------
+// Solves for theta1 (shoulder) and theta2 (elbow) so the end effector reaches
+// (targetR, targetZ) as closely as the chain allows.
+void solveCCD(float targetR, float targetZ) {
+  const int   MAX_ITER  = 50;
+  const float TOLERANCE = 0.5; // mm
+
+  for (int iter = 0; iter &lt; MAX_ITER; iter++) {
+    // Forward kinematics with current joint angles
+    float elbowR = L1 * cos(theta1);
+    float elbowZ = L1 * sin(theta1);
+    float endR   = elbowR + L2 * cos(theta1 + theta2);
+    float endZ   = elbowZ + L2 * sin(theta1 + theta2);
+
+    float errR = targetR - endR;
+    float errZ = targetZ - endZ;
+    if (sqrt(errR * errR + errZ * errZ) &lt; TOLERANCE) break;
+
+    // --- Work from the tip of the chain back toward the root ---
+
+    // Elbow joint: pivot is the elbow itself
+    float toEndR = endR - elbowR,    toEndZ = endZ - elbowZ;
+    float toTgtR = targetR - elbowR, toTgtZ = targetZ - elbowZ;
+    float deltaElbow = signedAngleBetween(toEndR, toEndZ, toTgtR, toTgtZ);
+    theta2 = clampf(theta2 + deltaElbow, THETA2_MIN, THETA2_MAX);
+
+    // Recompute end effector now that the elbow moved
+    elbowR = L1 * cos(theta1);
+    elbowZ = L1 * sin(theta1);
+    endR   = elbowR + L2 * cos(theta1 + theta2);
+    endZ   = elbowZ + L2 * sin(theta1 + theta2);
+
+    // Shoulder joint: pivot is the base of the chain (r=0, z=0 in this plane)
+    toEndR = endR;    toEndZ = endZ;
+    toTgtR = targetR; toTgtZ = targetZ;
+    float deltaShoulder = signedAngleBetween(toEndR, toEndZ, toTgtR, toTgtZ);
+    theta1 = clampf(theta1 + deltaShoulder, THETA1_MIN, THETA1_MAX);
+  }
+}
+
+// Signed angle (radians) you'd rotate vector A by to align it with vector B
+float signedAngleBetween(float ax, float az, float bx, float bz) {
+  float cross = ax * bz - az * bx;
+  float dot   = ax * bx + az * bz;
+  return atan2(cross, dot);
+}
+
+float clampf(float v, float lo, float hi) {
+  if (v &lt; lo) return lo;
+  if (v &gt; hi) return hi;
+  return v;
+}
+
+long radiansToSteps(float rad) {
+  return (long)(rad / (2.0 * PI) * STEPS_PER_REV);
+}</code></pre>
+                </div>
+
             </section>
 
             <!-- ===== Safety ===== -->
@@ -205,22 +368,14 @@
                 </p>
             </section>
 
-            <!-- ===== Application ===== -->
+            <!-- ===== Simulated Use ===== -->
             <section class="case-section">
                 <h2>The Control Application</h2>
                 <p>
-                    The kinematics are wrapped in a Tkinter desktop application that talks to the arm's
+                    The kinematics were imported into Blender desktop application that talks to the arm's
                     microcontroller over serial:
                 </p>
-                <ul>
-                    <li><strong>Port auto-discovery</strong> — enumerates available serial ports rather than hardcoding one, so it works across machines without edits</li>
-                    <li><strong>Per-joint sliders</strong> — each bounded by that joint's real mechanical limits, for manual positioning and calibration</li>
-                    <li><strong>Named presets</strong> — Home, Pick Up, Drop Off, and Rest, as verified joint configurations rather than coordinates to re-solve</li>
-                    <li><strong>IK panel</strong> — enter a Cartesian target, calculate, review the resulting joint angles, then send. Calculation and transmission are deliberately separate steps</li>
-                    <li><strong>Background read thread</strong> — keeps serial responses flowing without blocking the interface</li>
-                    <li><strong>Live log</strong> — every command and response, timestamped, so a misbehaving move can be traced after the fact</li>
-                </ul>
-
+                
                 <div class="callout">
                     <span class="callout__label">Design decision</span>
                     <p>
