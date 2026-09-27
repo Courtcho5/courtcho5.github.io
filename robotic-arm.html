@@ -63,7 +63,7 @@
             <section class="meta">
                 <div>
                     <div class="meta__label">Stack</div>
-                    <div class="meta__value">Python · Tkinter · pySerial · Arduino · SOLIDWORKS</div>
+                    <div class="meta__value">Python · C · Arduino · SOLIDWORKS</div>
                 </div>
                 <div>
                     <div class="meta__label">Source</div>
@@ -130,101 +130,39 @@
             <section class="case-section">
                 <h2>Solving the Kinematics</h2>
                 <p>
-                   To solve the motion of my robot I chose Cyclic Coordinate Descent (CCD) was chosed over 
-                   closed-form/analytic IK and Jacovian-based methods (transpose, pseudoinverse, damped least squares) for 
-                   a few practical reasons:
-                   <li><bold>Limited matrix math required.</bold> Jacobian methods need matrix inverses recomputed
-                    every iteration. This is a expensive process on an Arduino Uno with no FPU. CCD is a cheap
-                    computation per joint per iteration. Proof I can solve an analytical IK will be at the bottom of 
-                    this page :). </li>
-                    <li><bold>Singularities.</bold> Jacobian methods struggle near singular configurations. CCD has no matrix to invert and 
-                    will continue converging in singular configurations. The trade-off is that it may converse slower 
-                    but will never produce a velocity spoke.</li>
-                    <li><bold>Why not geometric solution?</bold> I wanted to do a numerical IK method. </li>
+                    To solve the motion of my robot I chose Cyclic Coordinate Descent (CCD) over
+                    closed-form/analytic IK and Jacobian-based methods (transpose, pseudoinverse, damped least squares) for
+                    a few practical reasons:
                 </p>
-
-                <h3>Step 1 — Collapse the problem to two dimensions</h3>
-                <p>
-                    The base rotation is independent of everything above it. Solving it first with
-                    <code>atan2(y, x)</code> reduces a 3D problem to a 2D one in the vertical plane the
-                    arm now lies in, described by horizontal reach <code>r</code> and height
-                    <code>h</code> relative to the shoulder joint.
-                </p>
-
-                <h3>Step 2 — Hold the gripper level</h3>
-                <p>
-                    I wanted the gripper to stay horizontal regardless of arm pose — the natural
-                    orientation for picking objects off a flat surface. Because the wrist segment stays
-                    horizontal, it contributes only to horizontal reach, so subtracting <code>L3</code>
-                    from <code>r</code> gives the position the wrist joint itself has to hit. The two-link
-                    shoulder-elbow problem is then solvable on its own.
-                </p>
-
-                <h3>Step 3 — Law of cosines</h3>
-                <p>
-                    With the shoulder-to-wrist distance <code>d</code> known, the elbow angle falls
-                    directly out of the law of cosines, and the shoulder angle is the sum of the angle to
-                    the target and the interior triangle angle.
-                </p>
-
-                <div class="code-block">
-<pre><code># Flatten into the 2D plane, then remove the wrist segment
-r = math.sqrt(x**2 + y**2)      # horizontal reach
-h = z - BASE_HEIGHT             # height above the shoulder joint
-r_eff = r - L3                  # gripper held horizontal
-
-d = math.sqrt(r_eff**2 + h**2)  # shoulder to wrist
-
-# Elbow angle — law of cosines
-cos_e = (L1**2 + L2**2 - d**2) / (2 * L1 * L2)
-cos_e = max(-1.0, min(1.0, cos_e))   # guard float error at the limits
-elbow_deg = math.degrees(math.acos(cos_e))
-
-# Shoulder angle — angle to target plus interior triangle angle
-phi = math.atan2(h, r_eff)
-cos_s = (L1**2 + d**2 - L2**2) / (2 * L1 * d)
-psi = math.acos(max(-1.0, min(1.0, cos_s)))
-shoulder_deg = math.degrees(phi + psi)
-
-# Wrist compensates to keep the gripper level
-wrist_comp = shoulder_deg + elbow_deg - 90</code></pre>
-                </div>
+                <ul>
+                    <li><strong>Limited matrix math required.</strong> Jacobian methods need matrix inverses recomputed
+                    every iteration. This is an expensive process on an Arduino Uno with no FPU. CCD only needs a cheap
+                    trig computation per joint per iteration. Proof I can solve an analytical IK is at the bottom of
+                    this page :)</li>
+                    <li><strong>No singularities to worry about.</strong> Jacobian methods struggle near singular configurations. CCD has no matrix to invert and
+                    keeps converging even in those poses. The trade-off is that it may converge slower,
+                    but it will never produce a velocity spike.</li>
+                    <li><strong>Handles unreachable targets gracefully.</strong> A closed-form solution needs an explicit reachability check
+                    before it runs, and fails outright if the target is outside the arm's reach. CCD doesn't need that check — it
+                    just converges toward the closest point it can actually reach, so a slightly-off coordinate doesn't crash the
+                    solver mid-demo.</li>
+                </ul>
 
                 <div class="callout">
-                    <span class="callout__label">Detail that mattered</span>
+                    <span class="callout__label">Why not a geometric solution?</span>
                     <p>
-                        Both cosine terms are clamped to [-1, 1] before <code>acos</code>. At full
-                        extension the arithmetic can land at 1.0000000002 through floating-point error
-                        alone, and <code>math.acos</code> raises a domain error rather than returning the
-                        obviously-intended 0°. Clamping turns a crash at the edge of the workspace into a
-                        correct answer.
+                        A closed-form 2-link solution is honestly simpler and exact for this specific arm — but it doesn't
+                        scale if I add a joint or change link lengths later, and it wouldn't demonstrate the kind of general,
+                        iterative solver used on arms with more DOF. CCD was the more representative choice for a portfolio piece.
                     </p>
                 </div>
             </section>
 
-            <!-- ===== Calibration ===== -->
+            <!-- ===== Wiring ===== -->
             <section class="case-section">
-                <h2>Geometry Is Not Servo Angles</h2>
-                <p>
-                    The kinematics produce angles in a clean geometric frame — shoulder at 0° means the
-                    upper arm is horizontal. The physical servos know nothing about that frame. Each one
-                    has its own zero, its own direction of rotation, and a mounting orientation set by how
-                    the horn happened to seat during assembly.
-                </p>
-                <p>
-                    I handled this with a set of named offset constants that map geometric angles onto
-                    servo commands, and documented the calibration procedure in the source so the mapping
-                    can be re-derived after any rebuild:
-                </p>
-                <ol>
-                    <li>Manually position the arm pointing straight forward and horizontal</li>
-                    <li>Read the servo angles off the sliders in that pose</li>
-                    <li>Adjust each offset until the IK output matches those readings</li>
-                </ol>
-                <p>
-                    Keeping the offsets isolated at the top of the file means a mechanical change never
-                    requires touching the kinematics themselves.
-                </p>
+                <h2>Hardware Design</h2>
+                <p>Here is the schematic I designed and followed to wire my robot.</p>
+                <p>Diagram</p>
             </section>
 
             <!-- ===== Safety ===== -->
@@ -300,9 +238,7 @@ wrist_comp = shoulder_deg + elbow_deg - 90</code></pre>
                 <p>
                     Deriving the kinematics by hand rather than pulling in a robotics library meant I had
                     to understand exactly why each term exists — and that understanding is what made the
-                    failure modes obvious. The reachability checks aren't defensive boilerplate; they fall
-                    directly out of the geometry, and each one corresponds to a specific way the triangle
-                    the solver is built on can degenerate.
+                    failure modes obvious.
                 </p>
                 <p>
                     It also reinforced something the assistive-device work had already taught me: the
