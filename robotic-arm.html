@@ -66,10 +66,6 @@
                     <div class="meta__value">Sole designer &amp; developer</div>
                 </div>
                 <div>
-                    <div class="meta__label">Degrees of freedom</div>
-                    <div class="meta__value">6 (base, shoulder, elbow, 2× wrist, gripper)</div>
-                </div>
-                <div>
                     <div class="meta__label">Stack</div>
                     <div class="meta__value">Python · Tkinter · pySerial · Arduino · SOLIDWORKS</div>
                 </div>
@@ -79,19 +75,16 @@
                 </div>
             </section>
 
-            <!-- ===== Problem ===== -->
+            <!-- ===== Learnings ===== -->
             <section class="case-section">
-                <h2>The Problem With Joint Control</h2>
+                <h2>From Classroom to Project</h2>
                 <p class="lead">
-                    A servo arm out of the box is controlled one joint at a time. You move a slider, a
-                    servo rotates. That works right up until you want the arm to do something useful.
+                    After taking ME 5590 Robotic and Kinematic Controls at Northeastern University. I sought a way to apply the concepts from class to a personal project. I landed on designing a 6-DOF arm with the accompanying C++ code. 
                 </p>
                 <p>
-                    “Pick up the object 20 cm in front of the base” has no obvious translation into six
-                    servo angles. Getting there by nudging sliders is slow, unrepeatable, and easy to get
-                    wrong in a way that drives a link into the base or the table. I wanted to command the
-                    arm in the coordinate space I actually think in — <code>x</code>, <code>y</code>,
-                    <code>z</code> in centimeters — and have the software work out the joint angles.
+                    There were 3 goals in this 1 month project. 
+                    <li>Build a simple 6 DOF robot </li>
+                    <li>Use inverse kinematics to develop a phantom</li>
                 </p>
                 <p>
                     That means solving the inverse kinematics problem: given a target position for the
