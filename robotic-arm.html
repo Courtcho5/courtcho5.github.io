@@ -113,7 +113,6 @@
                             <tr><td>Base to shoulder</td><td>13.5 cm</td><td>Base rotation</td><td>0–180°</td></tr>
                             <tr><td>Upper arm (L1)</td><td>14.0 cm</td><td>Shoulder</td><td>80–180°</td></tr>
                             <tr><td>Forearm (L2)</td><td>13.0 cm</td><td>Elbow</td><td>50–180°</td></tr>
-                            <tr><td>Wrist + gripper (L3)</td><td>12.5 cm</td><td>Wrist</td><td>0–180°</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -137,8 +136,7 @@
                 <ul>
                     <li><strong>Limited matrix math required.</strong> Jacobian methods need matrix inverses recomputed
                     every iteration. This is an expensive process on an Arduino Uno with no FPU. CCD only needs a cheap
-                    trig computation per joint per iteration. Proof I can solve an analytical IK is at the bottom of
-                    this page :)</li>
+                    trig computation per joint per iteration. Proof I can solve an analytical IK is here :)</li>
                     <li><strong>No singularities to worry about.</strong> Jacobian methods struggle near singular configurations. CCD has no matrix to invert and
                     keeps converging even in those poses. The trade-off is that it may converge slower,
                     but it will never produce a velocity spike.</li>
@@ -162,7 +160,9 @@
             <section class="case-section">
                 <h2>Hardware Design</h2>
                 <p>Here is the schematic I designed and followed to wire my robot.</p>
-                <p>Diagram</p>
+                <div class="case-hero__image">
+                    <img src="robotic-arm-wiring.png" alt="Wiring schematic made in lucidchart" />
+                </div>
 
                 <h2>Software</h2>
                 <p>The Arduino sketch that reads a target position over serial and drives the three steppers via CCD:</p>
