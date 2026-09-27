@@ -63,7 +63,7 @@
             <section class="meta">
                 <div>
                     <div class="meta__label">Stack</div>
-                    <div class="meta__value">Python · C · Arduino · SOLIDWORKS</div>
+                    <div class="meta__value">Python · C · Arduino · SOLIDWORKS · Unity</div>
                 </div>
                 <div>
                     <div class="meta__label">Source</div>
@@ -75,13 +75,13 @@
             <section class="case-section">
                 <h2>From Classroom to Project</h2>
                 <p class="lead">
-                    After taking ME 5250 Robotic Mechanics and Controls at Northeastern University. I sought a way to apply the concepts from class to a personal project. I landed on designing a 3-DOF arm with the accompanying C++ code. 
+                    After taking <a href="https://catalog.northeastern.edu/course-descriptions/me/" target="_blank" rel="noopener">ME 5250 Robotic Mechanics and Controls</a> at Northeastern University. I sought a way to apply the concepts from class to a personal project. I landed on designing a 3-DOF arm with the accompanying C++ code. 
                 </p>
                 <p>
                     There were 3 goals in this 1 month project. 
                     <li>Design a simple 3 DOF robot.</li>
                     <li>Solve motion control using inverse kinematics</li>
-                    <li>Program movement in blender</li>
+                    <li>Program movement in an external application</li>
                 </p>
                 <p>
                     That means solving the inverse kinematics problem: given a target position for the
@@ -95,7 +95,8 @@
                 <h2>Mechanical Design</h2>
                 <p>
                     The arm is a serial manipulator: a rotating base and two primary links. A wrist gripper was not built into this original design but could be easily added with the addition of 2 hobby servo motors. Link lengths are the input the kinematics are built
-                    around, so they were fixed in CAD first and measured precisely.
+                    around, so they were fixed in CAD first and measured precisely. I opted for a very simple mechanical design for the purposes
+                    of this project here is a more robust design.
                 </p>
 
                 <div class="spec-table-wrap">
@@ -149,7 +150,7 @@
                 <div class="callout">
                     <span class="callout__label">Why not a geometric solution?</span>
                     <p>
-                        A closed-form 2-link solution is simpler and exact for this specific arm — but it doesn't
+                        A closed-form 2-link solution is simpler and exact for this specific arm but it doesn't
                         scale if I add a joint or change link lengths later, and it wouldn't demonstrate the kind of general,
                         iterative solver used on arms with more DOF. CCD was the more representative choice for a portfolio piece.
                     </p>
@@ -372,9 +373,11 @@ long radiansToSteps(float rad) {
             <section class="case-section">
                 <h2>The Control Application</h2>
                 <p>
-                    The kinematics were imported into Blender desktop application that talks to the arm's
+                    CAD designs were rendered in Blender then imported into Unity with kinematics to form a desktop application that talks to the arm's
                     microcontroller over serial:
                 </p>
+                <p>blender</p>
+                <p>unity</p>
                 
                 <div class="callout">
                     <span class="callout__label">Design decision</span>
@@ -401,9 +404,7 @@ long radiansToSteps(float rad) {
                     — where the math stops describing something the hardware can actually do, and the
                     software has to notice before the mechanism does.
                 </p>
-                <div class="case-hero__image">
-                    <img src="robotic-arm-cad.png" alt="CAD model of the six-degree-of-freedom robotic arm showing base, shoulder, elbow, wrist, and gripper" />
-                </div>
+                
             </section>
 
             <!-- ===== Prev / next ===== -->
