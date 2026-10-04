@@ -54,8 +54,7 @@
                 <h1>A Test Rig for Predicting Femur Fracture in Osseointegrated Implants</h1>
                 <p class="case-hero__subtitle">
                     Bone-anchored prosthetics restore natural load transfer to the skeleton. The open
-                    question is how much load the remaining femur can take before it breaks — and there
-                    is no standard fixture for asking.
+                    question is how much load the remaining femur can take before it breaks. My Master's thesis focused on designing a standard fixture to investigate this.
                 </p>
                 <div class="case-hero__image">
                     <img src="partialrig.png" alt="Third-iteration test rig assembly for loading an osseointegrated femoral implant" />
@@ -88,12 +87,11 @@
 
             <!-- ===== Context ===== -->
             <section class="case-section">
-                <h2>Why This Matters</h2>
+                <h2>Problem Statement</h2>
                 <p class="lead">
                     In osseointegration, a titanium implant is anchored directly into the residual femur and
-                    passes through the skin to connect to an external prosthesis. It eliminates the socket —
-                    and with it the skin breakdown, poor fit, and lost proprioception that make traditional
-                    limb prostheses hard to live with.
+                    passes through the skin to connect to an external prosthesis. A option with growing popularity as it 
+                    eliminates the challenges that make traditional limb prostheses hard to live with.
                 </p>
                 <p>
                     But routing load straight into the bone changes the mechanics of the femur. Stress
@@ -106,29 +104,33 @@
                 <p>
                     Answering it experimentally requires applying physiologically realistic loads to an
                     instrumented femur–implant construct and recording where and when it fails. There is no
-                    off-the-shelf fixture that does this. Building one is my thesis.
+                    off-the-shelf fixture that does this. Working with the Shefelbine Lab at Northeastern University, I have
+                    design and built one.
                 </p>
             </section>
 
             <!-- ===== Design problem ===== -->
             <section class="case-section">
-                <h2>The Design Problem</h2>
+                <h2>The Design Requirements</h2>
                 <p>
-                    A fixture for this test has to satisfy several constraints at once, and they pull
-                    against each other:
+                    A fixture for this test has to satisfy several constraints at once:
                 </p>
 
                 <div class="features">
                     <div class="feature">
                         <h4>Physiological loading</h4>
-                        <p>Reproduce the load direction and magnitude the femur sees in gait, not just simple axial compression.</p>
+                        <p>Reproduce the load direction and magnitude the femur sees in gait.</p>
                     </div>
                     <div class="feature">
-                        <h4>Rigid where it counts</h4>
+                        <h4>Moment at the femoral head</h4>
+                        <p>Simply rigidly constraining the femoral head would cause the femur to break along the shaft. I needed to design a fixture that allowed hip-like rotation.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Structural Integrity</h4>
                         <p>The rig must be stiff enough that measured deflection comes from the specimen, not from the fixture flexing.</p>
                     </div>
                     <div class="feature">
-                        <h4>Repeatable alignment</h4>
+                        <h4>Adjustable alignment</h4>
                         <p>Specimen-to-specimen variation has to come from the bone, so mounting and alignment must be constrained the same way every time.</p>
                     </div>
                     <div class="feature">
@@ -139,10 +141,7 @@
                         <h4>Survives failure</h4>
                         <p>Fracture releases stored energy suddenly. The fixture has to contain that and remain reusable.</p>
                     </div>
-                    <div class="feature">
-                        <h4>Workable specimens</h4>
-                        <p>Potting and mounting a bone–implant construct has to be practical for one person to do consistently.</p>
-                    </div>
+                    
                 </div>
             </section>
 
@@ -151,15 +150,31 @@
                 <h2>Iterating Toward a Working Fixture</h2>
                 <p>
                     The rig is on its third major revision. Each iteration has been driven by a specific
-                    limitation found in the one before it.
+                    limitation found in the one before it. I have summarized the major design challenges 
+                    and the analysis preformed to solve them.
                 </p>
 
-                <h3>Verifying before machining</h3>
+                <h3>Constraining the femoral head</h3>
                 <p>
-                    Fixture components are analyzed in FEA before anything is cut. The goal is to confirm
-                    that the structure stays well inside its elastic range under peak test load — if the
-                    fixture yields, the data is worthless and the failure mode is ambiguous. Simulating
-                    first is considerably cheaper than machining a part that turns out to be undersized.
+                    Inital brainstorming brought me to exploring hip implant life cycle testers and various other biomechanical test rigs. However, these 
+                    fixtures completely fixing the femoral head using Polymethyl methacrylate (PMMA) or bone cement. This 
+                    method could not be used with this test rig as it would create a moment around the shaft of the femur and cause it to break there. 
+                    Diagram 
+                </p>
+                <p>
+                    The solution was to first mount the femoral head in a acetabular cup and emmulate a ball-and-socket type of fixture. Distributing the force from the femoral head through the rest of the bone.
+                </p>
+                <h3>Muscle Attachments</h3>
+                <p>
+                    POSTS UGH
+                </p>
+                <h3>Adjustability</h3>
+                <p>
+                    HOLES UGH
+                </p>
+                <h3>Structural Integrity</h3>
+                <p>
+                    STEEL UGH
                 </p>
             </section>
 
