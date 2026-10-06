@@ -988,7 +988,7 @@ a.project-card:hover .project-card__title {
 }
 
 .figure--small img {
-    max-width: 6rem;
+    max-width: 10rem;
     margin-inline: auto;
 }
 
